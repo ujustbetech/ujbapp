@@ -1,0 +1,354 @@
+<ion-header>
+    <div class="statusBarPlaceholder" showWhen="ios"></div>
+    <ion-toolbar>
+        <span class="date">{{day}}, {{myDate | date: 'MMM dd'}}</span>
+        <span class="notification" float-right (click)="gotoNotification()">
+            <!-- <ion-icon name="notifications-outline"></ion-icon> -->
+            <img class="icon-bell" src="assets/imgs/icons/notification@2x.png" alt="">
+            <span class="counter" *ngIf="showNotificationCount">{{getNotificationCount.totalUnreadCount}}</span>
+        </span>
+    </ion-toolbar>
+</ion-header>
+<ion-content [ngClass]="{'modal_opened':scrollBlock==true}" (ionScroll)="onPageScroll($event)">
+    <section class="content_head">
+        <div class="user">
+            <div class="userImage">
+                <img class="img_user" (click)="viewImage(imageToView)" src="{{userinfoobj.base64Image}}" #imageToView onerror="src='assets/imgs/icons/profileMan@2x.png'" alt="">
+                <img class="icon_error {{showToPartner}}" src="assets/imgs/icons/errorCopy@2x.png" alt="">
+            </div>
+
+            <div class="userName {{profileActive}}" (click)="gotoProfile()">
+                Hello {{userData.firstName}}
+                <div class="userProfile">({{userData.userRole}})</div>
+            </div>
+        </div>
+        <div class="validateError" *ngIf="isClientPartner && userinfoobj.noOfLeads>0">
+            <span (click)="openBusinessStat('business')">
+                You have recieved {{userinfoobj.noOfLeads}} leads. Please attend to it HERE
+            </span>
+        </div>
+        <div class="validateError {{myClass2}}" *ngIf="isPartner||isClientPartner">{{kycIncomplete}}
+            <span class="red ujb_link inline-block" (click)="gotoKYC()">HERE</span>
+        </div>
+        <div class="validateError {{myClass5}}" *ngIf="isPartner||isClientPartner">Please accept Partner Agreement
+            <span class="red ujb_link inline-block" (click)="gotoAgreement('Partner')">HERE</span>
+        </div>
+        <div class="validateError {{myClass6}}" *ngIf="isClientPartner">Please accept Listed Partner Agreement
+            <span class="red ujb_link inline-block" (click)="gotoAgreement('Listed')">HERE</span>
+        </div>
+        <div class="validateError red {{myClass3}}" *ngIf="isPartner||isClientPartner">{{kycRejected}}</div>
+        <div class="validateError red {{myClass4}}" *ngIf="isPartner||isClientPartner">{{kycPnding}}</div>
+
+        <div class="ujb_search" *ngIf="isPartner||isGuest||isClientPartner">
+            <form action=".">
+                <ion-searchbar search-icon="null" class="ujb_searchbar searchbar-ios" [ngModelOptions]="{standalone: true}" [(ngModel)]="searchTerm" (search)="searchData(searchTerm)" (ionInput)="setFilteredItems()" placeholder="{{placeholderBusinessSearch}}"></ion-searchbar>
+                <button end>
+                    <img (click)="searchData(searchTerm)" src="assets/imgs/icons/search@2x.png" alt="">
+                </button>
+            </form>
+            <ion-list *ngIf="hideSearch">
+                <ion-item *ngFor="let item of items" (click)="selectValue(item,searchTerm)">
+                    {{item.businessName}}
+                </ion-item>
+            </ion-list>
+        </div>
+    </section>
+
+    <!-- Client Partner: Stat Slider -->
+    <section class="sliderAdjooooo">
+        <!-- <pdf-viewer src="http://www.pdf995.com/samples/pdf.pdf" style="display: block;"></pdf-viewer> -->
+        <!-- <iframe [src]="sanitizer.bypassSecurityTrustResourceUrl(pdfSrc)"></iframe> -->
+        <h3 class="m-b-5">UJustBe as of Today</h3>
+        <ion-slides #slider2  [options]="slideOptions" class="ujb_stats_slides" *ngIf="isPartner||isGuest||isClientPartner">
+            <!-- <ion-slide class="ujb_bg_grd_purple">
+                <ion-grid no-padding class="grid">
+                    <ion-row class="row">
+                        <ion-col size="8" class="col">
+                            <h2>Referral amount earned by UJustBe Partners</h2>
+                            <div class="{{ujbStat.getUjbDataStat.refAmtEarnedAmount}}">&#8377; {{ujbStat.getUjbDataStat.refAmtEarned}}</div>
+                        </ion-col>
+                        <ion-col size="4" class="imgCol">
+                            <img class="img_amountEarned" src="assets/imgs/icons/ammountEarnedPink@2x.png" alt="">
+                        </ion-col>
+                    </ion-row>
+                </ion-grid>
+            </ion-slide> -->
+            <ion-slide class="ujb_bg_grd_fairskin">                
+                <ion-grid no-padding>
+                    <ion-row>
+                        <ion-col size="7">
+                            <h2>Partners</h2>
+                            <div class="{{ujbStat.getUjbDataStat.partnersCount}}">{{ujbStat.getUjbDataStat.partners}}</div>
+                        </ion-col>
+                        <ion-col size="5" class="imgCol pad-r10">
+                            <img class="img_partners" src="assets/imgs/icons/partners@2x.png" alt="">
+                        </ion-col>
+                    </ion-row>
+                </ion-grid>
+            </ion-slide>
+            <ion-slide class="ujb_bg_grd_yellow">                
+                <ion-grid no-padding>
+                    <ion-row>
+                        <ion-col size="8">
+                            <h2>Referrals Passed</h2>
+                            <div class="{{ujbStat.getUjbDataStat.refsPassedCount}}">{{ujbStat.getUjbDataStat.refsPassed}}</div>
+                        </ion-col>
+                        <ion-col size="4" class="imgCol">
+                            <img class="img_referralsPassed" src="assets/imgs/icons/referralsPassed@2x.png" alt="">
+                        </ion-col>
+                    </ion-row>
+                </ion-grid>
+            </ion-slide>
+            <ion-slide class="ujb_bg_grd_green">                
+                <ion-grid no-padding>
+                    <ion-row>
+                        <ion-col size="8">
+                            <h2>Listed Partners</h2>
+                            <div class="{{ujbStat.getUjbDataStat.listedPartnersCount}}">{{ujbStat.getUjbDataStat.listedPartners}}</div>
+                        </ion-col>
+                        <ion-col size="4" class="imgCol pad-r10">
+                            <img class="img_listedPartners" src="assets/imgs/icons/listedPartners@2x.png" alt="">
+                        </ion-col>
+                    </ion-row>
+                </ion-grid>
+            </ion-slide>
+            <ion-slide class="ujb_bg_grd_blue">                
+                <ion-grid no-padding>
+                    <ion-row>
+                        <ion-col size="8">
+                            <h2>Business closed within Community</h2>
+                            <div class="{{ujbStat.getUjbDataStat.businessClosedAmount}}">&#8377; {{ujbStat.getUjbDataStat.businessClosed}}</div>
+                        </ion-col>
+                        <ion-col size="4" class="imgCol">
+                            <img class="img_businessClosed" src="assets/imgs/icons/businessClosed@2x.png" alt="">
+                        </ion-col>
+                    </ion-row>
+                </ion-grid>
+            </ion-slide>
+        </ion-slides>
+
+        <div class="user_guest_Only" *ngIf="isGuest">
+            <div class="ujb_button">
+                <button class="ujb_btn_blue" (click)="becomePartner()">Become a Partner</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="ujb_userContent">
+        <!-- ======================================================================== USER BASED CONTENT -->
+        <div class="ujb_userBased" *ngIf="isClientPartner || isPartner||isGuest">
+
+            <!-- Client Partner : Stat Tab -->
+            <h3 class="m-b-0" *ngIf="isClientPartner">Your Statistics</h3>
+            <div class="ujb_segment user_clientPartner_Only" *ngIf="isClientPartner">
+                <div class="ujb_segment_tab">
+                    <ion-segment [(ngModel)]="segmentSlider">
+                        <ion-segment-button value="0" (click)="selectedSegment(0)">Referral</ion-segment-button>
+                        <ion-segment-button value="1" (click)="selectedSegment(1)">Business</ion-segment-button>
+                    </ion-segment>
+                </div>
+
+                <div class="ujb_segment_content partnerStats">
+
+                    <ion-slides #slider (ionSlideWillChange)="selectedSlide($event)">
+                        <ion-slide class="referralsTab" (click)="openBusinessStat('referral')">
+                            <ion-card class="ujb_userStatsCard">
+                                <ion-card-content>
+                                    <ion-grid>
+                                        <ion-row>
+                                            <ion-col>
+                                                <div class="imgContainer">
+                                                    <img class="img_referralsGiven" src="assets/imgs/icons/referralsGiven@2x.png" alt="">
+                                                </div>
+                                                <p class="slotTitle m-b-0">Referrals</p>
+                                                <p class="slotTitle m-t-0">Given</p>
+                                                <h3 class="counts">{{userData.userStatInfo.referralStats.refsGiven}}</h3>
+                                            </ion-col>
+                                            <ion-col>
+                                                <div class="imgContainer">
+                                                    <img class="img_dealsClosed" src="assets/imgs/icons/dealsClosed@2x.png" alt="">
+                                                </div>
+                                                <p class="slotTitle m-b-0">Deals</p>
+                                                <p class="slotTitle m-t-0">Closed</p>
+                                                <h3 class="counts">{{userData.userStatInfo.referralStats.dealsClosed}}</h3>
+                                            </ion-col>
+                                            <ion-col>
+                                                <div class="imgContainer">
+                                                    <img class="img_amountEarned" src="assets/imgs/icons/ammountEarned@2x.png" alt="">
+                                                </div>
+                                                <p class="slotTitle m-b-0">Referrals</p>
+                                                <p class="slotTitle m-t-0">Earned</p>
+                                                <h3 class="{{refsEarnedTotal}}">&#x20b9; {{totalRefs}}</h3>
+                                            </ion-col>
+                                        </ion-row>
+
+                                    </ion-grid>
+                                    <div class="col-pr"></div>
+                                </ion-card-content>
+                            </ion-card>
+                        </ion-slide>
+                        <ion-slide (click)="openBusinessStat('business')">
+                            <ion-card class="ujb_userStatsCard">
+                                <ion-card-content>
+                                    <ion-grid>
+                                        <ion-row>
+                                            <ion-col>
+                                                <div class="imgContainer">
+                                                    <img class="img_businessClosed" src="assets/imgs/icons/businessClosed@2x.png" alt="">
+                                                </div>
+                                                <p class="slotTitle">Total amount of Business Closed</p>
+                                                <h3 class="{{totalBusinessClosed}}">&#x20b9; {{userData.userStatInfo.businessStats.totalBusinessClosed}}</h3>
+                                            </ion-col>
+                                            <ion-col>
+                                                <div class="imgContainer">
+                                                    <img class="img_dealsClosed" src="assets/imgs/icons/dealsClosed@2x.png" alt="">
+                                                </div>
+                                                <p class="slotTitle">Total Number of deals closed</p>
+                                                <h3 class="counts">{{userData.userStatInfo.businessStats.totalDealsClosed}}</h3>
+                                            </ion-col>
+                                        </ion-row>
+                                    </ion-grid>
+                                    <div class="col-pr"></div>
+                                </ion-card-content>
+                            </ion-card>
+                        </ion-slide>
+                    </ion-slides>
+                </div>
+            </div>
+
+            <!-- Partner : Stat Tab -->
+            <div class="user_partner_Only" *ngIf="isPartner">
+                <h3 class="m-b-0">Your Statistics</h3>
+                <div class="ujb_segment">
+                    <div class="ujb_segment_content" [ngSwitch]="ujbSegPartnerDashboard">
+                        <div class="partnerStats" *ngSwitchCase="'referralOnly'" (click)="openBusinessStat()">
+                            <ion-card class="ujb_userStatsCard">
+                                <ion-card-content>
+                                    <ion-grid>
+                                        <ion-row>
+                                            <ion-col>
+                                                <div class="imgContainer">
+                                                    <img class="img_referralsGiven" src="assets/imgs/icons/referralsGiven@2x.png" alt="">
+                                                </div>
+                                                <p class="slotTitle m-b-0">Referrals</p>
+                                                <p class="slotTitle m-t-0">Given</p>
+                                                <h3 class="counts">{{userData.userStatInfo.referralStats.refsGiven}}</h3>
+                                            </ion-col>
+                                            <ion-col>
+                                                <div class="imgContainer">
+                                                    <img class="img_dealsClosed" src="assets/imgs/icons/dealsClosed@2x.png" alt="">
+                                                </div>
+                                                <p class="slotTitle m-b-0">Deals</p>
+                                                <p class="slotTitle m-t-0">Closed</p>
+                                                <h3 class="counts">{{userData.userStatInfo.referralStats.dealsClosed}}</h3>
+                                            </ion-col>
+                                            <ion-col>
+                                                <div class="imgContainer">
+                                                    <img class="img_amountEarned" src="assets/imgs/icons/ammountEarned@2x.png" alt="">
+                                                </div>
+                                                <p class="slotTitle m-b-0">Referrals</p>
+                                                <p class="slotTitle m-t-0">Earned</p>
+                                                <h3 class="counts">&#x20b9; {{totalRefs}}</h3>
+                                            </ion-col>
+                                        </ion-row>
+                                    </ion-grid>
+                                    <div class="col-pr"></div>
+                                </ion-card-content>
+                            </ion-card>
+                        </div>
+                    </div>
+                </div>
+                <div class="ujb_button">
+                    <button class="ujb_btn_blue" (click)="businessListing()">List your business</button>
+                </div>
+            </div>
+
+            <!-- Client Partner: Category List -->
+            <h3>Categories
+                <span class="ujb_link" (click)="viewCategories()" float-right>view all</span>
+            </h3>
+            <div class="categoryGrid" *ngIf="isGuest||isPartner|| isClientPartner">
+                <ul>
+                    <li *ngFor="let categoryinfoobj of ujbStat.getUjbDataCategories">
+                        <div>
+                            <img src="{{categoryinfoobj.categoryImgBase64}}" alt="" (click)="selectCategory(categoryinfoobj)">
+                            <div>{{categoryinfoobj.categoryName}}</div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <!-- Client Partner: Business Card -->
+            <h3 class="m-b-0 m-t-0">Businesses around you
+                <span class="ujb_link" float-right (click)="viewBusiness()">view all</span>
+            </h3>
+
+            <div class="{{businessListings}} {{blurName}}">
+                <ion-card class="ujb_businessCard ujb_businessCard_utility" *ngFor="let businessinfoobj of ujbStat.getUjbDataBusinessList,let i=index">
+                    <ion-item class="item-block">
+                        <ion-avatar item-start (click)="viewBusinessDetail(i)">
+                            <div>
+                                <img src="{{businessinfoobj.logo.logoBase64}}" onerror='src="assets/imgs/content-imgs/businessprofileCopy@2x.png"'>
+                                <!-- <img src="businessinfoobj.logo.logoBase64"> -->
+                            </div>
+                        </ion-avatar>
+                        <ion-card-content>
+                            <p class="business_categories" (click)="viewBusinessDetail(i)" *ngIf="businessinfoobj.categories.length>0">{{businessinfoobj.categories[0].categoryName}}
+                                <span class="circleSeperator" *ngIf="businessinfoobj.categories.length>1"></span><span *ngIf="businessinfoobj.categories.length>1"> {{businessinfoobj.categories[1].categoryName}}</span></p>
+                            <h2 class="business_name" (click)="viewBusinessDetail(i)">{{businessinfoobj.businessName}}</h2>
+                            <!-- <p class="business_service" (click)="viewBusinessDetail(i)">{{businessinfoobj.tagline}}</p> -->
+                            <address (click)="viewBusinessDetail(i)">
+                                <img class="icon-location" src="assets/imgs/icons/location.png" alt=""> {{businessinfoobj.address.location}}
+                            </address>
+                            <div class="cardIndicator">
+                                <img (click)="viewBusinessDetail(i)" class="ratingStar" src="assets/imgs/icons/ratingCopy7@2x.png">
+                                <span (click)="viewBusinessDetail(i)">{{businessinfoobj.rating}}</span>
+                                <span *ngIf="businessinfoobj.showShared">
+                                <span (click)="viewBusinessDetail(i)" class="circleSeperator"></span>
+                                <span (click)="viewBusinessDetail(i)" *ngIf="businessinfoobj.showPercent" class="textLight">% shared </span>
+                                <span (click)="viewBusinessDetail(i)" *ngIf="businessinfoobj.showAmount" class="textLight">&#x20b9; shared </span>
+                                <span (click)="viewBusinessDetail(i)" *ngIf="businessinfoobj.showValue">&nbsp;&nbsp;{{businessinfoobj.shareDatailValue}}</span>
+                                <span (click)="viewBusinessDetail(i)" class="icon-arrow" *ngIf="businessinfoobj.showArrow">
+                                    <ion-icon ios="ios-arrow-down" md="md-arrow-down"></ion-icon>
+                                </span>
+                                </span>
+                                <button class="btnCardReferNow" (click)="gotoReferNow(businessinfoobj)" *ngIf="businessinfoobj.showShared">Refer Now</button>
+                                <button class="btnCardReferNow" (click)="gotoReferNow(businessinfoobj)" *ngIf="!businessinfoobj.showShared">Connect</button>
+                            </div>
+                        </ion-card-content>
+                    </ion-item>
+                </ion-card>
+                <!--<ion-card class="ujb_businessCard ujb_businessCard_utility">
+                        <ion-item>
+                            <ion-avatar item-start (click)="viewBusinessDetail()">
+                                <img src="assets/imgs/content-imgs/businessprofileCopy@2x.png">
+                            </ion-avatar>
+                            <ion-card-content>
+                                <p class="business_categories" (click)="viewBusinessDetail()">IT & Tech
+                                    <span class="circleSeperator"></span> Software development</p>
+                                <h2 class="{{blurName}}" (click)="viewBusinessDetail()">Karuyaki Solutions Pvt. Ltd.</h2>
+                                <p class="business_service" (click)="viewBusinessDetail()">Web and Software development</p>
+                                <address (click)="viewBusinessDetail()"> Andheri East, Mumbai</address>
+                                <div class="cardIndicator">
+                                    <img class="ratingStar" src="assets/imgs/icons/ratingCopy7@2x.png">
+                                    <span (click)="viewBusinessDetail()">4.3</span>
+                                    <span class="circleSeperator"></span>
+                                    <span class="textLight">% Shared </span>
+                                    <span>10%</span>
+                                    <button class="btnCardReferNow" (click)="gotoReferNow()">Refer Now</button>
+                                </div>
+                            </ion-card-content>
+                        </ion-item>
+                    </ion-card>-->
+            </div>
+            <div class="user_guest_Only" *ngIf="isGuest">
+                <div class="ujb_button m-t-0 m-b-25 {{height}}">
+                    <button class="ujb_btn_blue" (click)="becomePartner()">Become a Partner</button>
+                </div>
+            </div>
+        </div>
+    </section>
+</ion-content>
+
+<ion-footer class="footer-adj">
+    <bottombar [activePage]="activePage"></bottombar>
+</ion-footer>

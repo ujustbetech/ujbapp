@@ -1,0 +1,36 @@
+<!-- <ion-header class="ujb_header">
+  <div class="statusBarPlaceholder" showWhen="ios"></div>
+  <ion-navbar></ion-navbar>
+</ion-header> -->
+<ion-content [ngClass]="{'keypadFocused':pushNow==true}">
+  <div class="content-header">
+      <img class="ujb_logo_login" src="assets/imgs/logo_with_slogan.png" alt="ujb logo">
+      <ion-icon class="back_button" *ngIf="hideBackArrow" ios="ios-arrow-back" md="md-arrow-back" (click)="backtoregistrationopt()"></ion-icon>
+  </div>
+  <div class="wrapper">
+    <form [formGroup]="loginForm" (ngSubmit)="logIn()">
+      <h3>Welcome back</h3>
+      <ion-list class="ujb_list" padding-horizontal>
+        <ion-item class="ujb_input_icon">
+          <ion-label position="floating">Mobile Number / Email Id*</ion-label>
+          <ion-input class="iconUser" type="email" (ionFocus)="scrollTo(10);"  value="" formControlName="Username" [(ngModel)]="userName"></ion-input>
+        </ion-item>
+        <div class="validateError"*ngIf="loginForm.get('Username').hasError('required') && checkValidation">Mobile number/E-mail-id is required</div>
+        
+        <ion-item class="ujb_input_icon">
+          <ion-label position="floating">Password*</ion-label>
+          <ion-input class="password" (ionFocus)="scrollTo(60);"  oncopy="return false" onpaste="return false" clearOnEdit="false" [type]="passwordType"  formControlName="Password" [(ngModel)]="password"></ion-input>
+          <!--<ion-icon class="inputIcon_right" name="eye" color="gray" item-end></ion-icon>-->
+          <ion-icon class="inputIcon_right" [name]="passwordIcon" color="gray" (click)='hideShowPassword()' item-end></ion-icon>
+          <!--<ion-icon item-end [name]="passwordIcon" class="passwordIcon" (click)='hideShowPassword()'></ion-icon>-->
+        </ion-item>
+        <div class="validateError"*ngIf="loginForm.get('Password').hasError('required') && checkValidation">Password is required</div>
+       
+      </ion-list>
+      <div class="ujb_link" text-right>
+        <span class="inline-block" (click)="forgotPassword()">Forgot Password?</span>
+      </div>
+      <button class="ujb_btn_blue" type="submit">Explore</button>
+    </form>
+  </div>
+</ion-content>

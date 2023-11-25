@@ -1,0 +1,10 @@
+<div class="modalAlert">
+    <div class="header">{{title}}</div>
+    <section>
+        <p>{{text}}</p>
+    </section>
+    <footer>
+        <button [ngClass]="cancelClass" (click)="cancel()">{{cancelText}}</button>
+        <button (click)="ok()">{{okText}}</button>
+    </footer>
+</div>

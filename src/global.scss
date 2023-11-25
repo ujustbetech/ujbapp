@@ -1,0 +1,2337 @@
+/*
+ * App Global CSS
+ * ----------------------------------------------------------------------------
+ * Put style rules here that you want to apply globally. These styles are for
+ * the entire app and not just one component. Additionally, this file can be
+ * used as an entry point to import other CSS/Sass files to be included in the
+ * output CSS.
+ * For more information on global stylesheets, visit the documentation:
+ * https://ionicframework.com/docs/layout/global-stylesheets
+ */
+
+/* Core CSS required for Ionic components to work properly */
+@import "~@ionic/angular/css/core.css";
+@import "./theme/variables.scss";
+
+/* Basic CSS for apps built with Ionic */
+@import "~@ionic/angular/css/normalize.css";
+@import "~@ionic/angular/css/structure.css";
+@import "~@ionic/angular/css/typography.css";
+
+/* Optional CSS utils that can be commented out */
+@import "~@ionic/angular/css/padding.css";
+@import "~@ionic/angular/css/float-elements.css";
+@import "~@ionic/angular/css/text-alignment.css";
+@import "~@ionic/angular/css/text-transformation.css";
+@import "~@ionic/angular/css/flex-utils.css";
+
+
+/*
+ * App CSS
+ * ----------------------------------------------------------------------------
+ * Imports a file that can contain Sass/CSS that should be used throughout
+ * the entire app.
+ */
+
+@import "./app/app.scss";
+
+// .ujb_theme {
+    // UTILITIES #################################################################################### (1) */
+    
+
+    // ======================================================================== Display */
+    .display-block, .block { display: block; }
+    .display-inline-block, .inline-block { display: inline-block; }
+    .display-inline,
+    .inline { display: inline; }
+    .display-none, .hide { display: none; }
+    // ======================================================================== Positions*/
+    .relative { position: relative; }
+    // ======================================================================== Text */
+    .t18 { font-size: 18px; }
+    .t20 { font-size: 20px; }
+    .t22 { font-size: 22px; }
+    .t24 { font-size: 24px; }
+    // ======================================================================== Text Colors */
+    .text_ujbBlue, .link { color: var(--ujb_blueDark); }
+    // ======================================================================== Text Decorations */
+    .bold {
+        font-weight: bold;
+    }
+    .semiBold {
+        font-weight: 600;
+    }
+    .unbold { font-weight: normal !important; }
+    // ======================================================================== Backgrounds */
+    .bg-white {
+        background: #fff;
+    }
+    // ======================================================================== Paddings */
+    .pad-15 {
+        padding: 15px;
+    }
+    .pad-t0 {
+        padding-top: 0 !important;
+    }
+    .pad-t-15 {
+        padding-top: 15px;
+    }
+    .pad-l-5 {
+        padding-left: 5px;
+    }
+    .pad-lr-5 {
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+    .pad-r-5 {
+        padding-right: 5px;
+    }
+    .pad-r-15 {
+        padding-right: 15px !important;
+    }
+    .pad-r10 {
+        padding-right: 10px !important;
+    }
+    .ujb_padding .scroll-content {
+        padding-left: 35px;
+        padding-right: 35px;
+    }
+    // ======================================================================== Margins */
+    .m-t-0 { margin-top: 0 !important; }
+    .m-t-5 { margin-top: 5px !important; }
+    .m-t-10 { margin-top: 10px !important; }
+    .m-r-15 {
+        margin-right: 15px;
+    }
+    .m-t-15 {
+        margin-top: 15px !important;
+    }
+    .m-t-20 { margin-top: 20px !important; }
+    .m-t-25 {
+        margin-top: 25px !important;
+    }
+    .m-t-50 {
+        margin-top: 50px;
+    }
+    .m-b-80 { margin-bottom: 80px; }
+    .m-b-0 {
+        margin-bottom: 0 !important;
+    }
+    .m-b-5 {
+        margin-bottom: 5px !important;
+    }
+    .m-b-10 {
+        margin-bottom: 10px !important;
+    }
+    .m-b-20 {
+        margin-bottom: 20px;
+    }
+    .m-b-25 { margin-bottom: 25px !important; }
+    .m-b-35 { margin-bottom: 35px !important; }
+    .m-b-40 {
+        margin-bottom: 40px;
+    }
+    .m-tb-40 {
+        margin-top: 40px;
+        margin-bottom: 40px;
+    }
+    .m-l-10 { margin-left: 10px; }
+    // ======================================================================== Scroll */
+    .scroll-disabled .scroll-content {
+        overflow: hidden;
+    }
+    .w-full {
+        width: 100% !important;
+    }
+    // ======================================================================== Horizontal and Vertical Middle - Flex */
+    .flex-middle {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    // .offset_width { position: relative; left: -15px; right: -15px; width: calc(100% + 30px); }
+    .ujb_blueDark {
+        color: var(--ujb_blueDark);
+    }
+    .ujb_bg_blueLight {
+        background: var(--ujb_blueLight)
+    }
+    .ujb_bg_grd_lBlue {
+        background: -moz-linear-gradient(90deg, rgba(107, 159, 208, 1) 0%, rgba(51, 119, 187, 1) 100%);
+        // ff3.6+ */
+        background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(51, 119, 187, 1)), color-stop(100%, rgba(107, 159, 208, 1)));
+        // safari4+,chrome */
+        background: -webkit-linear-gradient(90deg, rgba(107, 159, 208, 1) 0%, rgba(51, 119, 187, 1) 100%);
+        // safari5.1+,chrome10+ */
+        background: -o-linear-gradient(90deg, rgba(107, 159, 208, 1) 0%, rgba(51, 119, 187, 1) 100%);
+        // opera 11.10+ */
+        background: -ms-linear-gradient(90deg, rgba(107, 159, 208, 1) 0%, rgba(51, 119, 187, 1) 100%);
+        // ie10+ */
+        background: linear-gradient(0deg, rgba(107, 159, 208, 1) 0%, rgba(51, 119, 187, 1) 100%);
+        // w3c */
+        //filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#3377BB', endColorstr='#6B9FD0', GradientType=0);
+        // ie6-9 */
+    }
+    .ujb_bg_grd_green {
+        background: #9bead5;
+        // Old browsers */
+        background: -moz-linear-gradient(left, #9bead5 0%, #00e4a7 67%, #00e4a7 100%);
+        // FF3.6-15 */
+        background: -webkit-linear-gradient(left, #9bead5 0%, #00e4a7 67%, #00e4a7 100%);
+        // Chrome10-25,Safari5.1-6 */
+        background: linear-gradient(to right, #9bead5 0%, #00e4a7 67%, #00e4a7 100%);
+        // W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+        //filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#9bead5', endColorstr='#00e4a7', GradientType=1);
+        // IE6-9 */
+    }
+    .ujb_bg_grd_yellow {
+        background: rgba(255, 204, 102, 1);
+        background: -moz-linear-gradient(left, rgba(255, 204, 102, 1) 0%, rgba(255, 204, 102, 1) 25%, rgba(221, 159, 60, 1) 77%, rgba(221, 159, 60, 1) 93%, rgba(221, 159, 60, 1) 100%);
+        background: -webkit-gradient(left top, right top, color-stop(0%, rgba(255, 204, 102, 1)), color-stop(25%, rgba(255, 204, 102, 1)), color-stop(77%, rgba(221, 159, 60, 1)), color-stop(93%, rgba(221, 159, 60, 1)), color-stop(100%, rgba(221, 159, 60, 1)));
+        background: -webkit-linear-gradient(left, rgba(255, 204, 102, 1) 0%, rgba(255, 204, 102, 1) 25%, rgba(221, 159, 60, 1) 77%, rgba(221, 159, 60, 1) 93%, rgba(221, 159, 60, 1) 100%);
+        background: -o-linear-gradient(left, rgba(255, 204, 102, 1) 0%, rgba(255, 204, 102, 1) 25%, rgba(221, 159, 60, 1) 77%, rgba(221, 159, 60, 1) 93%, rgba(221, 159, 60, 1) 100%);
+        background: -ms-linear-gradient(left, rgba(255, 204, 102, 1) 0%, rgba(255, 204, 102, 1) 25%, rgba(221, 159, 60, 1) 77%, rgba(221, 159, 60, 1) 93%, rgba(221, 159, 60, 1) 100%);
+        background: linear-gradient(to right, rgba(255, 204, 102, 1) 0%, rgba(255, 204, 102, 1) 25%, rgba(221, 159, 60, 1) 77%, rgba(221, 159, 60, 1) 93%, rgba(221, 159, 60, 1) 100%);
+        //filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#ffcc66', endColorstr='#dd9f3c', GradientType=1);
+    }
+    .ujb_bg_grd_blue {
+        background: #6c9ed0;
+        // Old browsers */
+        background: -moz-linear-gradient(left, #6c9ed0 1%, #3377bb 66%, #3377bb 100%);
+        // FF3.6-15 */
+        background: -webkit-linear-gradient(left, #6c9ed0 1%, #3377bb 66%, #3377bb 100%);
+        // Chrome10-25,Safari5.1-6 */
+        background: linear-gradient(to right, #6c9ed0 1%, #3377bb 66%, #3377bb 100%);
+        // W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+        //filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#6c9ed0', endColorstr='#3377bb', GradientType=1);
+        // IE6-9 */
+    }
+    .ujb_bg_grd_purple {
+        background: rgba(183, 130, 211, 1);
+        background: -moz-linear-gradient(left, rgba(183, 130, 211, 1) 0%, rgba(183, 130, 211, 1) 26%, rgba(159, 64, 200, 1) 77%, rgba(159, 64, 200, 1) 93%, rgba(159, 64, 200, 1) 100%);
+        background: -webkit-gradient(left top, right top, color-stop(0%, rgba(183, 130, 211, 1)), color-stop(26%, rgba(183, 130, 211, 1)), color-stop(77%, rgba(159, 64, 200, 1)), color-stop(93%, rgba(159, 64, 200, 1)), color-stop(100%, rgba(159, 64, 200, 1)));
+        background: -webkit-linear-gradient(left, rgba(183, 130, 211, 1) 0%, rgba(183, 130, 211, 1) 26%, rgba(159, 64, 200, 1) 77%, rgba(159, 64, 200, 1) 93%, rgba(159, 64, 200, 1) 100%);
+        background: -o-linear-gradient(left, rgba(183, 130, 211, 1) 0%, rgba(183, 130, 211, 1) 26%, rgba(159, 64, 200, 1) 77%, rgba(159, 64, 200, 1) 93%, rgba(159, 64, 200, 1) 100%);
+        background: -ms-linear-gradient(left, rgba(183, 130, 211, 1) 0%, rgba(183, 130, 211, 1) 26%, rgba(159, 64, 200, 1) 77%, rgba(159, 64, 200, 1) 93%, rgba(159, 64, 200, 1) 100%);
+        background: linear-gradient(to right, rgba(183, 130, 211, 1) 0%, rgba(183, 130, 211, 1) 26%, rgba(159, 64, 200, 1) 77%, rgba(159, 64, 200, 1) 93%, rgba(159, 64, 200, 1) 100%);
+        //filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#b782d3', endColorstr='#9f40c8', GradientType=1);
+    }
+    .ujb_bg_grd_fairskin {
+        background: #ffc8b3;
+        // Old browsers */
+        background: -moz-linear-gradient(left, #ffc8b3 1%, #fd9a83 66%, #fd9a83 100%);
+        // FF3.6-15 */
+        background: -webkit-linear-gradient(left, #ffc8b3 1%, #fd9a83 66%, #fd9a83 100%);
+        // Chrome10-25,Safari5.1-6 */
+        background: linear-gradient(to right, #ffc8b3 1%, #fd9a83 66%, #fd9a83 100%);
+        // W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+        //filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#ffc8b3', endColorstr='#fd9a83', GradientType=1);
+        // IE6-9 */
+    }
+    .header_bgr {
+        background: #b2d9ff;
+        // Old browsers */
+        background: -moz-linear-gradient(left, #b2d9ff 0%, #6699cc 100%);
+        // FF3.6-15 */
+        background: -webkit-linear-gradient(left, #b2d9ff 0%, #6699cc 100%);
+        // Chrome10-25,Safari5.1-6 */
+        background: linear-gradient(to right, #b2d9ff 0%, #6699cc 100%);
+        // W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+        //filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#b2d9ff', endColorstr='#6699cc', GradientType=1);
+        // IE6-9 */
+    }
+    .footer_bgr {
+        background: #b2d9ff;
+        // Old browsers */
+        background: -moz-linear-gradient(top, #b2d9ff 0%, #6699cc 100%);
+        // FF3.6-15 */
+        background: -webkit-linear-gradient(top, #b2d9ff 0%, #6699cc 100%);
+        // Chrome10-25,Safari5.1-6 */
+        background: linear-gradient(to bottom, #b2d9ff 0%, #6699cc 100%);
+        // W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+        //filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#b2d9ff', endColorstr='#6699cc', GradientType=0);
+        // IE6-9 */
+    }
+    // Text Colors */
+    .ujb_gray {
+        color: var(--ujb_gray);
+    }
+    // Contextual ####################################################################################### (2) */
+    .wrapper {
+        padding: 35px 20px;
+    }
+    // Resets ####################################################################################### (2) */
+    //Ionic Bordered and box shadows removed
+    .item-md.item-block .item-inner,
+    .item-md.item-input.input-has-focus .item-inner,
+    .item-md.item-input.ng-valid.input-has-value:not(.input-has-focus) .item-inner,
+    .item-md.item-input.ng-invalid.ng-touched:not(.input-has-focus) .item-inner,
+    .list-md .item-input.input-has-focus:last-child,
+    .list-md .item-input.ng-valid.input-has-value:not(.input-has-focus):last-child,
+    .list-md .item-input.ng-invalid.ng-touched:not(.input-has-focus):last-child {
+        border-bottom: none;
+        box-shadow: none;
+    }
+    .list-md .item-input.input-has-focus:last-child .item-inner,
+    .list-md .item-input.ng-valid.input-has-value:not(.input-has-focus):last-child .item-inner,
+    .list-md .item-input.ng-invalid.ng-touched:not(.input-has-focus):last-child .item-inner {
+        box-shadow: none;
+    }
+    a,
+    a:focus,
+    a:active,
+    a:hover {
+        text-decoration: none;
+    }
+    p {
+        margin: 0;
+    }
+    // IONIC Select Popover */
+    .select-popover .popover-content {
+        width: 90px;
+        border-radius: 8px;
+        ion-item {
+            padding-right: 0 !important;
+            border-bottom: none !important;
+        }
+    }
+    // UJB Components and Content Panels ############################################################ (3) */
+    // -------------------------------------- UJB Header - Simple (1) */
+    ion-header.ujb_header {
+        .statusBarPlaceholder {
+            height: 20px;
+            width: 100%;
+        }
+        .back-button {
+            color: var(--ujb_gray);
+        }
+        .toolbar-background-md,
+        .toolbar-background-ios {
+            border-bottom: 0;
+            background: transparent;
+        }
+    }
+    // ion-header.ujb_header.header-md::after { background-image: none !important; }
+    // Removed Bottom Shadow visible in Android in All UJB Headers */
+    ion-header.ujb_header.header-md::after {
+        display: none;
+    }
+
+    // LAYOUT BASE ################################################################################## (4) */
+    // ======================================================================== HEADERS */
+    // -------------------------------------- Header SMall (A) */
+    ion-header.ujb_header_sm {
+        padding: 1.5px 16px;
+        @extend .header_bgr;
+        .backButton {
+            font-size: 1.6em;
+        }
+        ion-title {
+            --padding: 0;
+            --position: absolute;
+            --width: 100%;
+            --left: 0;
+            --right: 0;
+            --top: 0;
+            --bottom: 0;
+            .toolbar-title-md,
+            .toolbar-title-ios {
+                font-size: 20px;
+                font-family: Lato Semibold;
+                text-align: center;
+                line-height: 40px;
+                color: var(--ujb_gray);
+                padding: 0;
+
+                @media screen and (max-width: 411px) {
+                    font-size: 18px;
+                }
+            }
+            ion-icon .icon-ios {
+                padding-left: 15px;
+            }
+        }
+        ion-toolbar {
+            --position: relative;
+            .toolbar-background-md,
+            .toolbar-background-ios {
+                border-bottom: 0;
+                background: transparent;
+            }
+            // .toolbar-ios {
+            //     min-height: 75px !important;
+            // }
+            .back-button {
+                left: -5px !important;
+                z-index: 10;
+                margin-left: 0 !important; padding-left: 0 !important;
+            }
+            .back-button {
+                .back-button-icon { font-size: 1.8em !important; }
+            }
+        }
+        // IOS Header Height Adj */
+        // ion-navbar.toolbar-ios {
+        //     min-height: 71.5px !important;
+        // }
+    }
+    // -------------------------------------- UJB Header - Banner (2) */
+    // ======================================================================== FOOTER */
+    // -------------------------------------- Footer Common (0) */
+    ion-footer {
+        @extend .footer_bgr;
+        padding: 0 25px;
+        footer.ujb_footerTab {
+            text-align: center;
+            ul {
+                list-style-type: none;
+                padding: 0;
+                margin: 0;
+                display: flex;
+                justify-content: space-between;
+                li {
+                    display: inline-block;
+                    padding: 7px 20px;
+                    border-top: 3px solid transparent;
+                    img {
+                        max-width: 25px;
+                        max-height: 25px;
+                    }
+                }
+                li.active {
+                    border-top: 3px solid var(--ujb_blueDark);
+                }
+            }
+        }
+    }
+    .footer-md::before {
+        background-image: none;
+    }
+    // ======================================================================== Ujb Frame (0) */
+    // Questionnair and Business Listing Form */
+    .ujbFrame_header,
+    .ujbFrameContent,
+    .ujbFrame_footer,
+    .ujbFrame_header .toolbar-background {
+        background: var(--ujb_frame_bg);
+        border: none;
+        overflow: auto;
+    }
+    .ujbFrame_header {
+        padding: 0 15px 0 15px;
+        ion-title {
+            --position: absolute;
+            --width: 100%;
+            --left: 0;
+            --right: 0;
+            --top: 0;
+            --bottom: 0;
+            .toolbar-title {
+                text-align: center;
+                color: var(--ujb_gray);
+                font-weight: 500;
+                font-size: 20px;
+                @media screen and (max-width: 411px) {
+                    font-size: 18px;
+                }
+            }
+        }
+        ion-toolbar {
+            position: relative;
+            .back-button {
+                left: -5px !important;
+                z-index: 10;
+                margin-left: 0 !important;
+            }
+        }
+    }
+    .ujbFrame_header.header-ios { padding: 0 15px 10px 15px; }
+    .ujbFrameContent {
+        .scroll-content {
+            padding-top: 0 !important;
+            padding-bottom: 0 !important;
+            overflow: hidden;
+        }
+    }
+    .layerFront,
+    .layerSecond,
+    .layerLast {
+        background: var(--white);
+        border-radius: 5px;
+    }
+    .stackLayers {
+        position: relative;
+        height: 100%;
+        margin: 0 15px;
+    }
+    .stackLayers.ujbFrame_footerButton {
+        // height: calc(100% - 134px);
+        height: 100%;
+    }
+    // .stackLayers.ujbFrame_footerSkipLink {
+    //     // height: calc(100% - 99px);
+    // }
+    .layerFront,
+    .layerSecond,
+    .layerLast {
+        position: absolute;
+        padding: 15px;
+    }
+    .layerFront {
+        bottom: 30px;
+        width: 100%;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 3;
+        .contentArea {
+            position: absolute;
+            top: 15px;
+            bottom: 15px;
+            left: 15px;
+            right: 15px;
+            overflow-y: auto;
+        }
+    }
+    .layerSecond {
+        width: calc(100% - 30px);
+        bottom: 15px;
+        left: 15px;
+        right: 10px;
+        opacity: 0.6;
+        z-index: 2;
+    }
+    .layerLast {
+        width: calc(100% - 60px);
+        bottom: 0;
+        left: 30px;
+        right: 30px;
+        opacity: 0.4;
+        z-index: 1;
+    }
+    .ujbFrame_footer {
+        padding: 15px;
+        .toolbar-background {
+            background: transparent !important;
+            border: none;
+        }
+        .navLeft,
+        .navRight {
+            display: inline-block;
+            font-size: 14px;
+            color: var(--ujb_blueDark2);
+            height: 40px;
+            text-transform: uppercase;
+            font-family: Lato Bold;
+            img.img-icon {
+                width: 36px;
+                height: 36px;
+                vertical-align: middle;
+            }
+            span {
+                padding: 0 5px;
+            }
+        }
+        .link-skip {
+            font-size: 14px;
+            color: var(--ujb_blueDark2);
+            text-transform: uppercase;
+            padding: 5px 15px 0 15px;
+            font-family: Lato Bold;
+            min-height: 21px;
+        }
+    }
+    // COMMON COMPONENTS ################################################################################## (4) */
+    // -------------------------------------- UJB Notification */
+    .notification {
+        position: relative;
+        display: inline-block;
+        font-size: 25px;
+        padding: 4px 5px 0 0;
+        .counter {
+            position: absolute;
+            width: 18px;
+            height: 18px;
+            line-height: 18px;
+            display: inline-block;
+            font-size: 10px;
+            background: #fff;
+            z-index: 1;
+            border-radius: 100%;
+            text-align: center;
+            top: 0;
+            right: 0;
+        }
+    }
+
+    // Simple Server validation text style */
+    .zeroConnects { position: relative; top: -10px; color: rgba(51,51,51, 0.8); }
+    // -------------------------------------- UJB OR Horizontal Row (HR) */
+    .ujb_orHR {
+        position: relative;
+        text-align: center;
+        margin: 25px 0;
+        hr {
+            color: rgba(0, 0, 0, 0.3);
+            height: 1px;
+            width: 100%;
+            margin: 0;
+            position: relative;
+            top: 9px;
+            z-index: -1;
+            font-size: 16px;
+        }
+        span {
+            padding: 7px;
+            background: var(--white)
+        }
+    }
+    // ======================================================================== Slides/Carousels (4) */
+    // -------------------------------------- UJB Intro Slides (01) */
+    .ujb_intro_slides {
+        position: relative;
+
+        .swiper-pagination-bullet {
+            width: 10px;
+            height: 10px;
+            background: var(--white);
+            opacity: 1;
+            margin: 0 10px !important;
+        }
+        .swiper-pagination-bullet-active {
+            width: 40px;
+            border-radius: 12px;
+            height: 11px;
+            background: var(--ujb_blueDark);
+        }
+        ion-slide {
+            --background: rgba(169,209,248,1);
+            --background: -moz-linear-gradient(top, rgba(169,209,248,1) 0%, rgba(169,209,248,1) 20%, rgba(139,183,224,1) 61%, rgba(139,183,224,1) 86%, rgba(139,183,224,1) 100%);
+            --background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(169,209,248,1)), color-stop(20%, rgba(169,209,248,1)), color-stop(61%, rgba(139,183,224,1)), color-stop(86%, rgba(139,183,224,1)), color-stop(100%, rgba(139,183,224,1)));
+            --background: -webkit-linear-gradient(top, rgba(169,209,248,1) 0%, rgba(169,209,248,1) 20%, rgba(139,183,224,1) 61%, rgba(139,183,224,1) 86%, rgba(139,183,224,1) 100%);
+            --background: -o-linear-gradient(top, rgba(169,209,248,1) 0%, rgba(169,209,248,1) 20%, rgba(139,183,224,1) 61%, rgba(139,183,224,1) 86%, rgba(139,183,224,1) 100%);
+            --background: -ms-linear-gradient(top, rgba(169,209,248,1) 0%, rgba(169,209,248,1) 20%, rgba(139,183,224,1) 61%, rgba(139,183,224,1) 86%, rgba(139,183,224,1) 100%);
+            --background: linear-gradient(to bottom, rgba(169,209,248,1) 0%, rgba(169,209,248,1) 20%, rgba(139,183,224,1) 61%, rgba(139,183,224,1) 86%, rgba(139,183,224,1) 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a9d1f8', endColorstr='#8bb7e0', GradientType=0 );
+        }
+        // .swiper-pagination {
+        //     bottom: 18%;
+
+        //     @media screen and (max-height: 680px){
+        //         bottom: 15%;
+        //     }
+        //     @media screen and (max-height: 650px){
+        //         bottom: 10%;
+        //     }
+        //     @media screen and (max-height: 570px){
+        //         bottom: 30px;
+        //     }
+        //     @media screen and (max-height: 559px){
+        //         bottom: 30px;
+        //     }
+        // }
+        h2 { margin-top: 35px; font-size: 25px; color: var(--ujb_heading_text); }
+        // @media screen and (max-height: 559px){
+        //     h2 { margin-top: 15px; }
+        // }
+        .ujb_btn_blue {
+            position: absolute;
+            bottom: 60px;
+            left: 25px;
+            right: 25px;
+            width: calc(100% - 50px);
+        }
+    }
+    // -------------------------------------- UJB Stats Slides (02) */
+    
+    .ujb_stats_slides {
+        height: 155px;
+        ion-slide {
+            border-radius: 10px;
+            color: var(--ujb_gray);
+            h2,
+            .amount,
+            .count {
+                text-align: left;
+                padding: 0 0 0 25px;
+            }
+            h2 {
+                font-size: 17px;
+                margin-top: 0;
+                @media screen and (min-width: 414px) {
+                    font-size: 19px;
+                }
+                @media screen and (max-width: 411px){
+                    font-size: 16px;
+                }
+            }
+            .amount {
+                font-size: 28px;
+                font-weight: 500;
+            }
+            .amountdigit {
+                font-size: 23px;
+                font-weight: 500;
+                @media screen and (max-width: 411px){
+                    font-size: 20px;
+                }
+            }
+            .count {
+                font-size: 40px;
+                font-weight: 500;
+                @media screen and (max-width: 411px){
+                    font-size: 36px;
+                }
+            }
+            .countdigit {
+                font-size: 23px;
+                font-weight: 500;
+                @media screen and (max-width: 411px){
+                    font-size: 20px;
+                }
+            }
+            // Image Icon Sizes */
+            .img_amountEarned {
+                width: 61px;
+                height: 61px;
+            }
+            .img_partners {
+                width: 76px;
+                height: 46.7px;
+            }
+            .img_referralsPassed {
+                width: 64.3px;
+                height: 63px;
+            }
+            .img_listedPartners {
+                width: 55px;
+                height: 52.9px;
+            }
+            .img_businessClosed {
+                width: 51.3px;
+                height: 51.3px;
+            }
+            .imgCol {
+                position: relative;
+                img {
+                    position: absolute;
+                    bottom: 0;
+                    left: 0;
+                }
+            }
+        }
+        // ion-slide:last-child { width: 302px !important; }
+        .swiper-pagination-bullet-active {
+            width: 23px !important;
+            height: 5.3px;
+            border-radius: 5px;
+            background: rgb(0, 51, 102);
+        }
+        .swiper-pagination-bullet {
+            width: 6px;
+            height: 6px;
+        }
+        .swiper-container-horizontal {
+            padding-bottom: 30px;
+        }
+    }
+    .promotionalSlider {
+        .ujb_stats_slides {
+            height: auto;
+            img { width: 100%; height: auto; border-radius: 10px; display: block; }
+        }
+    }
+    // -------------------------------------- UJB Image Carousel (03) */
+    .ujb_imageCarousel {
+        position: relative;
+        // .Ujb_productImages { width: 300px; margin: auto; }
+        ion-slides {
+            ion-slide {
+                img {
+                    width: 100%;
+                    z-index: -1;
+                }
+            }
+        }
+        .swiper-button-prev,
+        .swiper-button-next {
+            box-shadow: none;
+        }
+        .swiper-button-prev {
+            background-image: url(https://www.directlink.coop/img/icons/110912-font-awesome/png/angle-pointing-to-left.png);
+            background-size: 30px 34px;
+            background-color: transparent;
+        }
+        .swiper-button-next {
+            background-image: url(https://www.directlink.coop/img/icons/110912-font-awesome/png/angle-arrow-pointing-to-right.png);
+            background-size: 30px 34px;
+            background-color: transparent;
+        }
+    }
+    // -------------------------------------- UJB Segment (04) */
+    .ujb_segment {
+        padding: 0 16px;
+        .ujb_segment_tab {
+            ion-segment-button {
+                color: var(--ujb_gray3);
+                font-size: 15px;
+                background: #fff;
+                border-radius: 0;
+                border: none;
+                border-bottom: 3px solid #ccc;
+                margin: 0 8px;
+                margin-bottom: -2px;
+                border-bottom-color: transparent;
+                background: transparent;
+                height: 35px;
+                line-height: 35px;
+                text-transform: uppercase;
+                @media screen and (max-width: 411px) {
+                    font-size: 15px;
+                }
+            }
+            ion-segment-button:first-child {
+                margin-left: 25px;
+            }
+            ion-segment-button:last-child {
+                margin-right: 25px;
+            }
+            ion-segment-button.segment-activated {
+                color: var(--ujb_blueLight);
+                border-bottom-color: var(--ujb_blueLight);
+                text-transform: uppercase;
+            }
+        }
+        .ujb_segment_content {
+            border: 1.3px solid rgb(92, 148, 208);
+            box-shadow: -0.1px -1px 7.9px 0.1px rgba(0, 0, 0, 0.21);
+            border-radius: 8.3px;
+            padding: 10px 0 10px 0;
+        }
+    }
+    .ujb_segment_plus_style2 {
+        padding: 0;
+        .ujb_segment_tab {
+            ion-segment-button.segment-activated {
+                border-color: var(--ujb_blueDark);
+                color: var(--ujb_blueDark);
+                font-family: Lato Bold;
+            }
+        }
+        .ujb_segment_content {
+            border-radius: 0;
+            border: none;
+            border-top: 1px solid var(--ujb_lgray);
+            box-shadow: 1px 1px 1px 1px #fafafa;
+
+            // .swiper-slide:not(.swiper-slide-active) > div.slide-zoom {
+            //     display:none;
+            // }
+
+            // ion-slide:not(.swiper-slide-active) { display: none; }
+            // ion-slide.swiper-slide-active { display: block; }
+        }
+    }
+    // UJB Icons ==================================== */
+    .userGuest img {
+        width: 40px;
+        height: 53px;
+        position: relative;
+        top: 7px;
+    }
+    .ujb_logo {
+        width: 75px;
+        height: 58.59px;
+        display: block;
+        margin: 40px auto;
+    }
+    .imgIcon_play {
+        width: 27px;
+        height: 27px;
+        vertical-align: middle;
+    }
+    @media screen and (min-width: 415px) {
+        .ujb_logo {
+            width: 18.11594202898551vw;
+            height: auto;
+        }
+        .btnUser {
+            width: 27.77777777777778vw;
+            height: 27.77777777777778vw;
+        }
+        .btnUser img {
+            width: 9.661835748792271vw;
+            height: auto;
+        }
+    }
+    // UJB Sign UP Progress Bar [OLD]*/
+    // .ujb_signUpProgressBar {
+    //     position: relative; max-width: 362px; margin: auto;
+    //     @media screen and (min-width: 400px){
+    //         .ui-adj-pos-l { position: relative; left: -10px; }
+    //         .ui-adj-pos-r { position: relative; right: -10px; }
+    //     }
+    //     .circle { 
+    //         width: 42px; height: 42px; display: inline-block; background: #fff;
+    //         border: 2px solid var(--ujb_blueLight) padding: 10px; text-align: center; border-radius: 100%;
+    //         z-index: 1; line-height: 20px;
+    //     }
+    //     .circle.active { background: var(--ujb_blueDark); color: #fff; border-color: var(--ujb_blueDark); }
+    //     .circle.done { background: var(--ujb_blueLight) }
+    //     hr { 
+    //         position: absolute; width: 100%; height: 0; left: 0; right: 0; top: 0; bottom: 0;
+    //         margin: auto; border-bottom: 6px dotted var(--ujb_lines); background: none; z-index: -1;
+    //     }
+    // }
+    // UJB Referral Item */
+    .partnerStats {
+        .ujb_userStatsCard {
+            margin: 0;
+            box-shadow: none;
+            margin-right: 0;
+            width: 100%;
+            ion-card-content {
+                padding: 0;
+                ion-grid {
+                    padding: 0;
+                    ion-col {
+                        padding: 0 7px;
+                        text-align: center;
+                        .imgContainer {
+                            height: 40px;
+                            @extend .flex-middle;
+                            // Image Sizes */
+                            img {
+                                display: inline;
+                            }
+                            .img_referralsGiven {
+                                width: 42.7px;
+                                height: 28.7px;
+                            }
+                            .img_dealsClosed {
+                                width: 42.7px;
+                                height: 27.7px;
+                            }
+                            .img_amountEarned {
+                                width: 34.3px;
+                                height: 33.3px;
+                            }
+                            .img_businessClosed {
+                                width: 34.3px;
+                                height: 34.3px;
+                            }
+                        }
+                        .slotTitle {
+                            font-size: 15px;
+                            color: var(--ujb_gray);
+                            margin: 7px 0;
+
+                            @media screen and (max-width: 413px) {
+                                font-size: 15px;
+                            }
+                            // @media screen and (max-width: 384px) { font-size: 16px; }
+                            // @media screen and (max-width: 374px) { font-size: 14px; }
+                        }
+                        .counts {
+                            font-size: 16px !important;
+                            color: var(--ujb_blueDark);
+                            font-family: Lato Semibold;
+                            line-height: 27px;
+                        }
+                        .counts-partnerStats {
+                            font-size: 12.2px !important;
+                            color: #003366 !important;
+                            font-family: Lato Semibold;
+                            padding-top: 0px !important;
+                        }
+                        @media screen and (min-width:320px) and (max-width: 412px){
+                            .counts { font-size: 15px !important;}
+                            .counts-partnerStats {
+                                font-size: 12.2px !important;
+                            }
+                        }
+                        @media screen and (max-width: 413px){
+                            .counts { font-size: 16px !important; padding: 0 !important; }
+                            .counts-partnerStats {
+                                font-size: 16px !important;
+                            }
+                        }
+                        @media screen and (max-width: 411px) {
+                            padding: 0 11px;
+                        }
+                    }
+                    ion-col:nth-child(2) {
+                        border-left: 1px solid #ccc;
+                        border-right: 1px solid #ccc;
+                    }
+                }
+            }
+        }
+        .referralsTab {
+            .slotTitle {
+                font-size: 15px;
+                color: var(--ujb_gray);
+                margin: 7px 0;
+
+                @media screen and (max-width: 413px) {
+                    width: 75px; margin-left: auto !important; margin-right: auto !important;
+                }
+            }
+        }
+    }
+    // UJB Business Card */
+    .ujb_businessCard_utility {
+        width: calc(100% - 32px) !important;
+        margin: 15px auto !important;
+    }
+    .ujb_businessCard {
+        box-shadow: -0.1px -1px 7.9px 0.1px rgba(0, 0, 0, 0.21);
+        border-radius: 8.3px;
+        margin: 0 0 15px 0;
+        width: 100%;
+        ion-label {
+            margin-top: 0;
+            margin-bottom: 0;
+        }
+        ion-item {
+            align-items: unset;
+        }
+        ion-avatar {
+            margin: 13px 0 0 0 !important;
+            img, div {
+                width: 65px;
+                height: 65px;
+                @media screen and (max-width: 413px) {
+                    // width: 50px;
+                    // height: 50px;
+                    width: 65px;
+                    height: 65px;
+                }
+                @media screen and (max-width: 374px) {
+                    width: 50px;
+                    height: 50px;
+                }
+            }
+            div { overflow: hidden; }
+        }
+        .circleSeperator {
+            width: 3.3px;
+            height: 3.3px;
+            background: var(--ujb_gray);
+            margin: 2px 5px;
+            border-radius: 50%;
+            display: inline-block;
+        }
+        .card-content {
+            padding-right: 0;
+        }
+        .business_categories {
+            color: var(--ujb_businessCard_category_text);
+            font-size: 10px;
+            // line-height: 16px;
+            text-transform: uppercase;
+            // min-height: 16px;
+            margin-bottom: 1px;
+            .circleSeperator {
+                background: var(--ujb_businessCard_category_text);
+            }
+            .date { text-transform: none; }
+        }
+        .business_name {
+            font-size: 20px;
+            color: var(--ujb_blueDark);
+            font-family: Lato Semibold;
+            // min-height: 22px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            margin-bottom: 1px;
+            @media screen and (max-width: 411px) {
+                font-size: 17px;
+                // line-height: 22px;
+            }
+        }
+        .business_service {
+            color: var(--ujb_gray);
+            font-size: 14px;
+            // line-height: 18px;
+            // min-height: 14px;
+            margin-bottom: 8px;
+            @media screen and (max-width: 411px) {
+                font-size: 13px;
+                // min-height: 16px;
+            }
+        }
+        address {
+            font-style: italic;
+            color: var(--ujb_gray);
+            font-size: 14px;
+            width: 100%;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            // min-height: 14px;
+            margin-bottom: 1px;
+            img.icon-location { width: 11px; height: 11px; display: inline-block; margin-right: 4px; }
+
+            @media screen and (max-width: 411px) {
+                font-size: 13px;
+            }
+        }
+        .cardIndicator {
+            font-size: 12.7px;
+            overflow: auto;
+            line-height: 28px;
+            @media screen and (max-width: 411px){
+                font-size: 11.7px;
+            }
+            img.ratingStar {
+                width: 11.3px;
+                height: 11px;
+                display: inline-block;
+            }
+            .btnCardReferNow {
+                padding: 8px;
+                background: var(--ujb_blueDark);
+                color: #fff;
+                border-radius: 3.5px;
+                font-size: 12px;
+                margin-left: 15px;
+                float: right;
+                font-family: Lato Heavy;
+                text-transform: uppercase;
+                padding: 8px;
+                min-width: 81px;
+                @media screen and (max-width: 411px){
+                    font-size: 11px;
+                    margin-left: 10px;
+                }
+            }
+        }
+        .textLight {
+            color: var(--ujb_gray2);
+            font-style: italic; margin-right: 5px;
+        }
+
+        .icon-arrow {
+            position: relative;
+            top: 5px;
+            padding-left: 3px;
+
+            ion-icon { font-size: 1.9em; }
+        }
+    }
+    
+    .ujb_referralStatusIndicator {
+        padding: 5px;
+        background: rgba(0, 0, 0, 0.05);
+        border-radius: 5px;
+        .rSi_label {
+            font-size: 14px;
+            line-height: 20px;
+            color: var(--ujb_lgray);
+        }
+        .statusIcon {
+            width: 15px;
+            height: 15px;
+            margin-left: 4px;
+            vertical-align: middle;
+        }
+        .statusDate {
+            font-size: 12.7px;
+            float: right;
+        }
+        .referralStatus {
+            font-size: 16px;
+            color: var(--ujb_businessCard_category_text);
+            line-height: 30px;
+            @media screen and (max-width: 413px) {
+                font-size: 14.5px;
+            }
+        }
+    }
+    // .rSi_pad_lr {}
+    .btn_invisible {
+        padding: 0;
+        background: transparent;
+        display: inline-block;
+    }
+    // UJB Button Blue */
+    .ujb_btn_blue {
+        display: block;
+        width: 100%;
+        padding: 0 15px;
+        background: var(--ujb_blueDark);
+        border-radius: 24.5px;
+        color: var(--white)
+    }
+    .ujb_btn_blue:disabled {
+        background: #cdcdcd;
+    }
+    // UJB Button Bordered */
+    .ujb_btnSet_sm,
+    .ujb_btnSet_md {
+        margin: auto;
+    }
+    .ujb_btnSet_sm {
+        width: 193px;
+    }
+    .ujb_btnSet_md {
+        width: 246px;
+    }
+    .ujb_btn_bordered,
+    .ujb_btn_bordered_sm,
+    .ujb_btn_bordered_lg {
+        padding: 0 15px;
+        background: white;
+        width: 103%;
+        border: 1px solid var(--ujb_blueDark);
+        color: var(--ujb_blueDark);
+        font-size: 18px;
+    }
+    // .ujb_btn_bordered:hover, .ujb_btn_bordered:focus, .ujb_btn_bordered_sm:hover, .ujb_btn_bordered_sm:focus, .ujb_btn_bordered_lg:hover, 
+    // .ujb_btn_bordered_lg:focus { 
+    //     background: var(--ujb_blueDark); color: #fff;
+    // }
+    .ujb_btn_bordered_sm {
+        height: 35px;
+        line-height: 35px;
+        border-radius: 17.5px;
+    }
+    .ujb_btn_bordered_lg {
+        height: 49px;
+        line-height: 49px;
+        border-radius: 24.5px;
+    }
+    // UJB Button Common */
+    .ujb_btn_blue,
+    .ujb_button_bordered {
+        font-size: 18px;
+        height: 49px;
+        line-height: 49px;
+
+        @media screen and (max-width: 411px) {
+            font-size: 17px;
+            height: 45px; line-height: 45px;
+        }
+    }
+    
+    // UJB Link */
+    .ujb_link {
+        font-size: 16px;
+        color: var(--ujb_blueDark);
+        text-decoration: none;
+        font-weight: 600;
+        @media screen and (max-width: 411px) {
+            font-size: 15px;
+        }
+    }
+    // UJB btnUser [OLD]*/
+    // .btnUser {
+    //     width: 115px; height: 115px; border-radius: 100%; border: 3px solid color(ujb_blueLight) !important;
+    //     font-size: 45px; padding: 0; text-align: center; background: white;
+    // }
+    // .btnUser:hover, .btnUser:focus, .btnUser:active { border-color: ujb_blueDark !important; }
+    // UJB List ========================================================= (Input, Select, Range, Checkbox, DateTime)  */
+    // (IOS) */
+    ion-list.list-ios.ujb_list,
+    ion-list.list-md.ujb_list,
+    ion-list.ujb_list {
+        margin-bottom: 0;
+        margin-top: 0;
+        // -------------------------------------------------------------- ION Item Basic */
+        ion-item {
+            padding-left: 0;
+            .item-inner {
+                padding-right: 0;
+            }
+        }
+        
+        ion-item:first-child {
+            border-top: none;
+        }
+        ion-item:last-child {
+            border-bottom: none;
+        }
+        // -------------------------------------------------------------- Ion Item SELECT */
+        ion-item.item-select .item-inner,
+        ion-item.item-input .item-inner {
+            border-bottom: 0.55px solid var(--ujb_lines) !important;
+            box-shadow: none !important;
+            ion-label {
+                margin-bottom: 0;
+                margin-top: 0;
+            }
+            // ion-select { padding-bottom: 0; padding-top: 5px; }
+        }
+        ion-select.ujb_select {
+            width: 100%;
+            max-width: 100%;
+            padding-left: 0;
+
+            .select-placeholder { color: rgba(55, 55, 55,0.8); }
+            .select-text { min-height: 19px; font-size: 16px; color: var(--ujb_gray) !important; }
+
+            @media screen and (max-width: 413px) {
+                .select-text { font-size: 15px; }
+            }
+        }
+        //  -------------------------------------------------------------- Ion Item INPUT */
+        ion-item.item-input {
+            margin-top: 10px;
+            ion-label {
+                padding-bottom: 0;
+                font-size: 16px;
+                color: rgba(55,55,55, 0.6) !important;
+            }
+            ion-input input {
+                color: var(--ujb_gray);
+                font-size: 16px;
+                @media screen and (max-width: 411px) {
+                    font-size: 15px;
+                }
+            }
+            .item-inner {
+                border-bottom-color: var(--ujb_lines) !important;
+                box-shadow: none !important;
+            }
+        }
+        
+        ion-item.input-has-focus ion-label {
+            color: var(--ujb_lgray) !important;
+        }
+        ion-item.input-has-focus .item-inner {
+            border-bottom-color:var(--ujb_input_border_focus) !important;
+            // box-shadow: inset 0 -1px 0 0 var(--ujb_lgray) !important;
+            box-shadow: none;
+        }
+        //  -------------------------------------------------------------- UJB ICON INPUT */
+        .ujb_input_icon ion-label,
+        .ujb_input_icon ion-input {
+            padding-left: 30px !important;
+        }
+        .ujb_input_icon ion-input.iconName,
+        .ujb_input_icon ion-input.iconUser,
+        .ujb_input_icon ion-input.iconMapNav,
+        .ujb_input_icon ion-input.iconEmail,
+        .ujb_input_icon ion-input.iconUrl,
+        .ujb_input_icon ion-input.iconRupee {
+            background-size: 18px 18px !important;
+        }
+        .ujb_input_icon ion-input.iconName {
+            background: url('/../assets/imgs/icons/profile.png') no-repeat 0 4px;
+        }
+        .ujb_input_icon ion-input.iconUser {
+            background: url('/../assets/imgs/icons/profile.png') no-repeat 0 4px;
+        }
+        .ujb_input_icon ion-input.iconMapNav {
+            background: url('/../assets/imgs/icons/location.png') no-repeat 0 4px;
+        }
+        .ujb_input_icon ion-input.iconEmail {
+            background: url('/../assets/imgs/icons/email.png') no-repeat 0 4px;
+        }
+        .ujb_input_icon ion-input.iconUrl {
+            background: url('/../assets/imgs/icons/url@2x.png') no-repeat 0 4px;
+        }
+        .ujb_input_icon ion-input.iconRupee {
+            background: url('/../assets/imgs/icons/rupee.png') no-repeat 0 8px;
+        }
+        .ujb_input_icon.input-has-focus ion-label,
+        .ujb_input_icon.item-input-has-value ion-label {
+            padding-left: 0;
+        }
+        .password {
+            background: url('/../assets/imgs/icons/lock.png') no-repeat 0 4px;
+            background-size: 20px 20px;
+        }
+        .password::after {
+            background: url('https://deepai.org/assets/img/eye-icon.png') no-repeat 0 4px;
+            background-size: 20px 20px;
+            background-position: right;
+        }
+        .inputIcon_right {
+            position: absolute;
+            bottom: 10px;
+            right: 15px;
+            color: var(--ujb_lgray);
+            z-index: 2;
+        }
+        // -------------------------------------------------------------- UJB Two Placeholder Input */
+        ion-item.ujb_input_labelPlaceholder {
+            // webkit solution */
+             ::-webkit-input-placeholder {
+                text-align: right;
+                font-size: 12px;
+                color: var(--ujb_gray2);
+                @media screen and (max-width: 411px) {
+                    font-size: 10px;
+                }
+            }
+            // mozilla solution */
+            input:-moz-placeholder {
+                text-align: right;
+                font-size: 12px;
+                color: var(--ujb_gray2);
+                @media screen and (max-width: 411px) {
+                    font-size: 10px;
+                }
+            }
+        }
+        // -------------------------------------------------------------- UJB Textarea */
+        ion-item.item-textarea {
+            margin-top: 15px;
+            .item-inner {
+                border-bottom: none !important;
+            }
+            ion-textarea {
+                border: 1.3px solid #ccc;
+                border-radius: 6.7px;
+                padding: 10px;
+                // webkit solution */
+                 ::-webkit-input-placeholder {
+                    font-size: 16px;
+                    color: var(--ujb_gray2);
+                }
+                // mozilla solution */
+                input:-moz-placeholder {
+                    font-size: 16px;
+                    color: var(--ujb_gray2);
+                    @media screen and (max-width: 411px) {
+                        font-size: 15px;
+                    }
+                }
+                textarea { margin: 8px; }
+            }
+        }
+        .input-has-focus .item-inner {
+            border-bottom: none !important;
+        }
+        //  -------------------------------------------------------------- Ion Item RANGE */
+        ion-item.item-range {
+            .item-inner {
+                border-bottom: none !important;
+                box-shadow: none;
+            }
+            .range-md {
+                padding: 8px 16px;
+            }
+        }
+        ion-item.item-range.input-has-focus,
+        ion-item:last-child.item-range.input-has-focus,
+        ion-item.item-range:last-child {
+            border-bottom: none;
+            .item-inner {
+                border-bottom: none !important;
+                box-shadow: none;
+            }
+        }
+        //  -------------------------------------------------------------- Ion Item CHECKBOX */
+        // UJB Checkbox */
+        ion-item.item-checkbox {
+            .item-inner {
+                border-bottom: none;
+            }
+            ion-checkbox.checkbox {
+                .checkbox-icon {
+                    border-radius: 3px !important;
+                    border-color: var(--ujb_lines);
+                }
+            }
+            ion-checkbox.checkbox-md {
+                .checkbox-inner {
+                    left: 5px;
+                    top: 1px;
+                }
+            }
+            ion-checkbox.checkbox-ios {
+                .checkbox-inner {
+                    top: 2px !important;
+                }
+            }
+            .checkbox-checked .checkbox-inner {
+                border-color: #333;
+            }
+            .checkbox-checked {
+                background: #fff !important;
+            }
+        }
+        ion-item.htmlStyle_checkbox.item-checkbox {
+            ion-checkbox {
+                display: inline-block;
+                vertical-align: text-bottom;
+            }
+        }
+        //  -------------------------------------------------------------- Ion Item DATETIME */
+        ion-item.item-datetime {
+            border-bottom: none;
+            padding-left: 0;
+            .item-inner {
+                padding-right: 0;
+                border-bottom: none;
+            }
+            ion-dateTime {
+                border-bottom: 0.55px solid var(--ujb_lines);
+                padding: 5px;
+                border-bottom: 1px solid var(--ujb_lines);
+            }
+        }
+        // ion-item.item-datetime.noLabelDatePicker {
+        //     ion-dateTime { width: 100%; }
+        // }
+        .icon_mobile {
+            ion-select {
+                padding-left: 30px;
+                background: url(https://img.icons8.com/ios/2x/google-mobile.png) no-repeat;
+                background-size: 20px 20px;
+            }
+        }
+    }
+    ion-list.ujb_list.ujbEditItems {
+        ion-item.ujbEditItem_input {
+            .iconEdit {
+                bottom: 0;
+                margin-top: 0 !important;
+                margin-right: 0 !important;
+            }
+            ion-input {
+                background-position: 0 10px !important;
+                color: var(--ujb_gray);
+            }
+            .inputIcon_right.iconEdit::before {
+                content: '';
+                width: 15px;
+                height: 15px;
+                background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAAclBMVEX///8zMzMqKiqAgIA0NDQjIyOtra20tLQwMDAtLS0cHBzS0tJISEgmJibc3NxeXl5zc3NWVlbs7Oy9vb3Z2dmampoYGBhKSkrl5eVra2tmZmaoqKjPz8/5+fnw8PCPj48+Pj6FhYUSEhJ4eHigoKDGxsY3E4EsAAAFAklEQVR4nO3d63qqOhQFUBKJDSmIiALeitva93/FY3u6u9uahQmt5vLN+VdpMyThEmUlSS6zqE/zKk+Zf0kPh3Ky7TRttshs1TaiyKRrDBXJRZNP96N9u40ovMV9RIp8Os7XlSpz3XqzSFWN6at9E4jvNZna2u9A4brVdlGbJyvgMuWum2wbfrDpqTtleoCRGb97iEN7JmrzPWgKlCrdPE/unXWrtD1MNitDYJcaAkVb23X+X8p+OdfvAzUx+wOl4RhUf24LGcqLnijWJhv3hkdRYdonbpKZvpVFdb1XzY5mQG70cd0uD0rfrHxxbcvS8EQvfnjJ++MQDc0Os+HtdvqP5vIPlfdx0HkgRlMml4PbbUx34cir3d9LR7VUFo8DmxED+DLq5W4UIk8H6qQm+QBxVZgKhz6n8enWcyL9xXtz8rQt+Y78D63p5dqNhDNFXKoVl+OeFp4vtijiojEE3kxI9SHNkW1AeL6CI0ZRbXzP5LnwfOevJ55Mh6H3Qoo4N76v91547qi6sVgZTzz5L9QfbnJTYAhC7XnRfOI3BKGOaAwMQ3i+gPt+jRqbkEn57U4jOuH5Zurr/WJ8QpblX+76IxQyXsUuZMXn+ZYohUx8mmSMU8jUv2nBSIWs+Zjwj1UoP2YGYxWeT4tPkQsZ38QuZO/fEkcsZKqLXZhVsQuZmsYulPk+cuHbdy1xC2Ueu5A1XexCsY1dyCexC2UZu5AdIAxemEYvZBBCCCGEEEIIIYQQQgghhBBCCCGEEEIIIYTBCEWmD49G2FZEnu8udP7s2p58du13hOLBtXAxpiiJhTBz/BhwktSGT7uOFbLCyaP4n7IeU5nERsgdPo3/GtMHlscLmXI6Ep/kqNpAVkKnB5suH1c9x07I1POVR99vlaeTHFkeyFLIOK/67cOdM12tUzG2fJWt8HzS4OLu+UntMXthaIEw/EAYfiAMPxCGHwjDD4ThB8LwA2H4gTD8QBh+IAw/V4Uupkctwq/OhF8RFkXVb6f+ZttXxZWyiINCyfurRYidZ9HzwQnxIWGWDpfn9SXLdKirDghl5rr2s2m6oa81BoTuf3thnJeBb4dpYbZx3W6LDNSzpoXuf1xiEarS96CQhzIKX9PRSx+QQinHrzh0/+zpXzHQwtR1q61CL9ABYSiBEEL/AyGE/gdCCP0PhBD6Hwgh9D8QQuh/IITQ/0AIof+BEEL/AyGE/gdCCP0PhBD6Hwgh9D8QQuh/IITQ/0AIof+BEEL/AyGE/gdCCP0PhBD6Hwgh9D8QQuh/IITQ/0AIof+BEEL/MyBMIxemSR65ME8q4qVIhLJK5kQNqUiE2Tw5EUX5IhEWp6QmqmRFIhR1smiiFjaLJGn1r8UhlO35tZV+IMYhLFbJ6zqgRDcNq16bHiHeFlEjag4WQdXc03fE99qPxLKCYuq41TaZ6jui2v3/cqndiVnlttFWqfSEv+vtzo6h70RiFx4/ljLs9W8QYRTZTZIl0f7+31tKbXFMeazdtdoi9VF7JP2yJnRHnE7U/NH3c8b+ca4/Usr0y8lgqfRErtr1xOesW6UvzirVtzG2I4hMZtznUFWg5d8Txae9mNKFasML15Ui70q62nBoEaX+gqxvRi5I61myptf63najCt+YKWIHvh9wNqIYvzCt+8hCbC4OMd8yW7XNj9bfdRWZFaJpV0ZrTi/q07zKqaliP5Pm1fxU69aq+A8eN6XwxrPZPgAAAABJRU5ErkJggg==);
+                background-size: 15px 15px;
+                background-repeat: no-repeat;
+                background-position: top right;
+            }
+            // UJB Edit Items */
+            >.item-inner {
+                border-bottom: 1px solid #ccc !important;
+            }
+        }
+    }
+    ion-list.ujb_list.ujbEditItems {
+        ion-item.ujbEditItem_input.item-input-disabled {
+            .iconEdit {
+                bottom: 0;
+                margin-top: 0 !important;
+                margin-right: 0 !important;
+            }
+            ion-input {
+                background-position: 0 10px !important;
+                color: var(--ujb_gray);
+            }
+            .inputIcon_right.iconEdit::before {
+                content: '';
+                width: 15px;
+                height: 15px;
+                background-image: url('/../assets/imgs/icons/editCopy3@2x.png');
+                background-size: 15px 15px;
+                background-repeat: no-repeat;
+                background-position: top right;
+            }
+            // UJB Edit Items */
+            >.item-inner {
+                border-bottom: none !important;
+            }
+        }
+    }
+    //  -------------------------------------------------------------- Validation */
+    .validateError {
+        color: var(--ujb_error_validation_text);
+        // min-height: 25px;
+        // line-height: 25px;
+        padding-top: 5px;
+        font-size: 13px !important;
+        span {
+            font-family: Lato Semibold;
+        }
+    }
+    .validateError.outSideList {
+        padding: 5px 16px 0 16px;
+    }
+    ion-list.ujb_edit {
+        position: relative;
+        //==================================== Edit Select */
+        ion-item.item-select {
+            .item-inner {
+                border-bottom: none !important;
+            }
+            ion-select {
+                position: relative;
+                width: 100%;
+                max-width: 100%;
+                padding-right: 30px;
+                background: url('/../assets/imgs/icons/editCopy3@2x.png') no-repeat;
+                background-size: 13px 13px;
+                background-position: right;
+                opacity: 0.9;
+                padding-left: 0;
+                .select-icon {
+                    display: none;
+                }
+                .select-text { min-height: 19px; font-size: 16px; color: var(--ujb_gray) !important; }
+                @media screen and (max-width: 413px) {
+                    .select-text { font-size: 15px; }
+                }
+            }
+        }
+        ion-item.item-select:last-child {
+            .item-inner { border-bottom: none !important; }
+        }
+        .overlayTape::after {
+            content: "";
+            position: absolute;
+            width: calc(100% - 40px);
+            height: 100%;
+            background: rgba(0, 0, 0, 0);
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+        }
+    }
+    // UJB Input Fields with Select - Mobile No. */
+    .ujb_selectNinput {
+        display: flex;
+        ion-item.ujb_select {
+            width: 110px;
+            margin-right: 15px;
+            margin-left: 16px;
+            ion-select {
+                max-width: 100%;
+                width: 100%;
+                padding-left: 0;
+
+                .select-text { min-height: 19px; font-size: 16px; color: var(--ujb_gray) !important; }
+                @media screen and (max-width: 413px) {
+                    .select-text { font-size: 15px; }
+                }
+            }
+        }
+        ion-item.ujb_input {
+            margin-right: 16px;
+            margin-top: 0 !important;
+        }
+    }
+    .ujb_withIcon {
+        ion-item.ujb_select {
+            width: 170px;
+            ion-select {
+                padding-left: 35px !important;
+                background: url('/../assets/imgs/icons/mobile.png') no-repeat;
+                background-size: 25px;
+                background-position: left bottom;
+                padding-top: 20px;
+
+                .select-text { min-height: 19px; font-size: 16px; color: var(--ujb_gray) !important; }
+                @media screen and (max-width: 413px) {
+                    .select-text { font-size: 15px; }
+                }
+            }
+        }
+    }
+    // OTP Block */
+    .otp {
+        width: 255px;
+        margin: auto;
+        position: relative;
+        .ujb_otp_block {
+            display: flex;
+            .item-inner {
+                border-bottom: none !important;
+            }
+            ion-label {
+                margin: 0;
+                height: 100%;
+                display: flex;
+                justify-content: center;
+                flex-direction: column;
+            }
+            ion-item.item-input {
+                padding: 5px !important;
+                box-shadow: none !important;
+                ion-input {
+                    width: 50px;
+                    height: 40px;
+                    display: inline-block;
+                    padding: 5px;
+                    border: 1px solid var(--ujb_blueLight)
+                    input {
+                        width: 100%;
+                        height: 100%;
+                        text-align: center;
+                        margin: 0 !important;
+                        line-height: 28px;
+                        font-size: 25px !important;
+                        padding-right: 0 !important;
+                    }
+                }
+            }
+            .otp_validation {
+                text-align: left;
+                padding-left: 5px;
+                img.otpRight {
+                    width: 28px;
+                    height: 21px;
+                }
+                img.otpWrong {
+                    width: 20px;
+                    height: 20px;
+                    display: none;
+                }
+            }
+            //To show hide OTP validation
+            ion-item {
+                transition: margin-right 0.5s;
+            }
+            .show {
+                margin-right: 0;
+            }
+            .hide {
+                margin-right: -75px;
+            }
+        }
+    }
+    .otp.otp_success::before {
+        content: "";
+        width: 30px;
+        height: 30px;
+        position: absolute;
+        right: -35px;
+        top: 15px;
+        background: url('/../assets/imgs/icons/tick@2x.png') no-repeat;
+        background-size: 24px 18px;
+        z-index: 100000000;
+    }
+    .otp.otp_wrong::before {
+        content: "";
+        width: 30px;
+        height: 30px;
+        position: absolute;
+        right: -35px;
+        top: 15px;
+        background: url('/../assets/imgs/icons/cross@2x.png') no-repeat;
+        background-size: 20px 20px;
+        z-index: 100000000;
+    }
+    // UJB Radio Button */
+    .ujb_radioButtons {
+        margin-bottom: 0;
+        ion-radio {
+            width: 15px;
+            height: 15px;
+            background: white;
+            border: 1px solid #ccc;
+            border-radius: 100%;
+            .radio-icon>.radio-inner {
+                display: none;
+            }
+            .radio-icon {
+                width: 15px;
+                height: 15px;
+                border: none;
+            }
+            .radio-md .radio-icon,
+            .radio-icon.radio-checked,
+            .radio-icon.radio-checked .radio-inner {
+                left: 0;
+                top: 0;
+                border: none;
+                background: var(--ujb_blueLight);
+                width: 100%;
+                height: 100%;
+                border-radius: 100%;
+            }
+            .item-radio {
+                ion-label { color: var(--ujb_gray); }
+            }
+        }
+        .item-block:last-child,
+        .item-inner {
+            border-bottom: none !important;
+        }
+        .item-block:first-child {
+            border-top: none;
+        }
+        ion-radio[item-left] {
+            margin: -3px 15px 0 0;
+        }
+        ion-item:first-child,
+        ion-item.item-block {
+            padding-left: 0;
+        }
+    }
+    // UJB Radio Button - Inline */
+    .ujb_radioButtons.radioGroup-inline {
+        display: inline-flex;
+        ion-label {
+            white-space: nowrap;
+            overflow: visible;
+        }
+        ion-item:not(:first-child) {
+            margin-left: 20px;
+        }
+    }
+    // Take from Dashboard page */
+    .ujb_search {
+        margin-top: 15px;
+        margin-bottom: 5px;
+        position: relative;
+        box-shadow: 0 0 2px 3px #f1f1f1;
+        border-radius: 10px;
+
+        .searchbar-search-icon {
+            background-image: url('/../assets/imgs/icons/search@2x.png');
+            display: none;
+        }
+        // UJB Searchbar */
+        ion-searchbar.ujb_searchbar {
+            // padding: 7px 15px;
+            // min-height: auto;
+            width: calc(100% - 40px);
+            display: inline-block;
+            background: transparent;
+            // margin: 0 16px;
+            // width: calc(100% - 32px);
+            padding: 5px 15px;
+            .searchbar-input {
+                padding-left: 0;
+                font-size: 16px;
+                line-height: 25px;
+                padding-right: 35px;
+                @media screen and (max-width: 413px) {
+                    font-size: 13.5px;
+                }
+            }
+            .searchbar-search-icon {
+                right: 0px;
+                left: auto;
+                top: 3px;
+                width: 21px;
+                height: 21px;
+                background-size: 21px;
+            }
+            .searchbar-clear-icon {
+                display: none !important;
+            }
+        }
+        .ujb_searchbar.searchbar-ios { min-height: 40px !important; max-height: 40px; width: calc(100% - 50px); }
+
+        button {
+            background: transparent !important; position: relative; top: 5px; margin: 0 !important;
+            img { width: 21px; height: 21px; }
+        }
+        // .searchbar-md .searchbar-input::-webkit-input-placeholder {
+        //     color: rgba(55, 55, 55,0.8) !important;
+        // }
+
+        ion-list {
+            margin-bottom: 0 !important;
+            position: absolute;
+            z-index: 10000;
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 0 3px 3px #f1f1f1;
+            top: 60px;
+            background: #ffffff;
+            ion-item {
+                .item-inner {
+                    border-bottom: none !important;
+                }
+                .checkbox-checked {
+                    border-color: var(--ujb_bg_search_item_checkbox);
+                    background-color: var(--ujb_bg_search_item_checkbox);
+                }
+            }
+            // ion-item { border-bottom: 0.55px solid #ccc !important; }
+            ion-item:first-child {
+                border-top: none !important;
+                border-radius: 10px 10px 0 0;
+            }
+            ion-item:last-child {
+                border-bottom: none !important;
+                border-radius: 0 0 10px 10px;
+            }
+            ion-checkbox {
+                .checkbox-icon {
+                    width: 20px;
+                    height: 20px;
+                    border-radius: 100%;
+                }
+                .checkbox-inner {
+                    left: -1px !important;
+                    top: -2px !important;
+                    bottom: 0;
+                    right: 0;
+                    margin: auto;
+                }
+            }
+        }
+        // Searchbar in Android */
+        ion-searchbar.ujb_searchbar.searchbar-md {
+            .searchbar-input {
+                box-shadow: none;
+                padding-top: 0;
+                padding-bottom: 0;
+            }
+        }
+        // Searched Tags */
+        .searchedTags {
+            .text-xs {
+                font-size: 13px;
+                color: var(--ujb_gray);
+                line-height: 25px;
+                padding-left: 15px;
+                margin-top: 15px;
+            }
+            ul {
+                margin: 0;
+                padding: 0;
+                li {
+                    background: rgb(234, 232, 232);
+                    color: var(--ujb_gray);
+                    padding: 0 15px;
+                    line-height: 25px;
+                    border-radius: 20px;
+                    margin: 0 5px 5px 0;
+                    display: inline-block;
+                    font-size: 13px;
+                    img {
+                        width: 9px;
+                        height: 9px;
+                        display: inline-block;
+                        margin-left: 15px;
+                    }
+                }
+            }
+        }
+        // Sort/Filter Button */
+        .businessListingFilter {
+            font-size: 14px;
+            position: relative;
+            text-align: right;
+            margin-top: 10px;
+            .icon-filter {
+                width: 19px;
+                height: 18px;
+                display: inline-block;
+                vertical-align: middle;
+                margin-left: 10px;
+                margin-right: 5px;
+            }
+            .filterApplied {
+                position: absolute;
+                right: 0;
+                top: -3px;
+                display: inline-block;
+                width: 10px;
+                height: 10px;
+                border-radius: 100%;
+                background: var(--ujb_blueDark);
+            }
+        }
+    }
+    .searchbar-clear-icon {
+        display: none !important;
+    }
+    // Product Counter */
+    // .products { counter-reset: my-sec-counter; }
+    // .productCounter::before {
+    //     input {
+    //         // Increment "my-sec-counter" by 1 */
+    //         counter-increment: my-sec-counter;
+    //         content: "" counter(my-sec-counter) ". ";
+    //     }
+    // }
+    // FloatingButton */
+    .floatingButton {
+        width: 145px;
+        .ujb_btn_blue {
+            height: 35px;
+        }
+    }
+    .fb_bottomCenter {
+        bottom: 15px;
+        left: 0;
+        right: 0;
+        margin: auto;
+    }
+    .fb_ujb_referNow {
+        width: 75%;
+        margin: auto;
+        left: 0;
+        right: 0;
+        bottom: 15px;
+    }
+    // Category Image Grid */
+    .categoryGrid {
+        ul {
+            display: block;
+            list-style-type: none;
+            overflow: auto;
+            margin: 10px 0;
+            padding: 0 6px 0 16px;
+            li {
+                width: 25%;
+                display: inline-flex;
+                padding-right: 10px;
+                margin-bottom: 15px;
+                div {
+                    text-align: center;
+                    width: 100%;
+                    color: var(--ujb_blueDark);
+                    img {
+                        display: inline-block;
+                        max-width: 60px;
+                    }
+                    div {
+                        font-size: 12px;
+                        @media screen and (max-width: 400px) {
+                            font-size: 11px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    // Profile Page */
+    .secRow {
+        h3 { min-height: 21px; }
+    }
+    // PROFILE PAGES COMMON CSS */
+    .dataInputs {
+        margin-bottom: 30px;
+        img.icon-mobile,
+        img.icon-email {
+            width: 20px;
+            height: 20px;
+            display: inline-block;
+            margin-right: 15px;
+            vertical-align: middle;
+        }
+        .icon-mobile {
+            width: 25px !important;
+            height: 25px !important;
+            vertical-align: bottom !important;
+        }
+        span.Data {
+            color: var(--ujb_gray);
+            font-size: 16px;
+        }
+        img.icon-edit {
+            width: 12px;
+            height: 12px;
+            display: inline-block;
+            float: right;
+        }
+        @media screen and (max-width: 411px) {
+            span.Data { font-size: 15px; }
+            .icon-mobile { width: 21px !important; height: 20px !important; } 
+        }
+    }
+    color-blue {
+        color: rgb(0, 51, 102);
+    }
+
+    // Edit Icons to Baseline
+    .editIcons_baseline {
+        position: relative;
+        .icon-edit { position: absolute; right: 0; top: 6px; margin-top: 0 !important; }
+    }
+
+    // MEDIA QUERY SETUP */
+    
+    @media screen and (max-width: 411px){
+
+        
+
+    // UJB Button Blue */
+    .ujb_btn_blue { padding: 0 15px; border-radius: 24.5px; }
+
+    // UJB Button Bordered */
+    .ujb_btn_bordered,
+    .ujb_btn_bordered_sm,
+    .ujb_btn_bordered_lg { font-size: 16px; }
+
+    .ujb_btn_bordered_lg { height: 45px; line-height: 45px; border-radius: 22.5px; }
+
+    // UJB Button Common */
+    // .ujb_btn_blue, .ujb_button_bordered { font-size: 18px; height: 45px; line-height: 45px; }
+
+    .partnerStats {
+        .ujb_userStatsCard {
+            .imgContainer {
+                // Image Sizes */
+                .img_referralsGiven {
+                    width: 40.7px;
+                    height: 27.28px;
+                }
+                .img_dealsClosed {
+                    width: 40.7px;
+                    height: 26.31px;
+                }
+                .img_amountEarned {
+                    width: 32.3px;
+                    height: 31.36px;
+                }
+                .img_businessClosed {
+                    width: 34.3px;
+                    height: 34.3px;
+                }
+                
+            }
+            .counts { font-size: 20px !important; }
+        }
+    }
+
+
+    }
+    .zeroConnects { position: relative; top: -10px; color: rgba(51,51,51, 0.8); }
+
+        // Text Animation
+        .flashit {
+            -webkit-animation: flash linear 1s infinite forwards;
+            animation: flash linear 1s infinite forwards;
+        }
+        @-webkit-keyframes flash {
+            0% {
+                opacity: 1;
+            }
+            50% {
+                opacity: .1;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+        
+// }
+
+// Platform IOS
+.ios {
+    .modal_opened {
+        .scroll-content { overflow: hidden !important }
+    }
+    ion-content {
+        --background: white;
+    }
+}
+
+
+
+
+ion-item {
+  --transition: unset;
+}
+
+.active {
+  --color: var(--ion-color-primary);
+  --background: rgba(var(--ion-color-primary-rgb), 0.12);
+  --background-hover: rgba(var(--ion-color-primary-rgb), 0.16);
+  --background-focused: rgba(var(--ion-color-primary-rgb), 0.24);
+
+  ion-icon {
+    color: inherit;
+  }
+}
+// CSS MIGRATION FIXES
+.ujb_intro_slides .swiper-slide {flex-direction: column;}
+a[disabled], button[disabled], [ion-button][disabled] {
+    cursor: default;
+    opacity: 0.4;
+    pointer-events: none;
+}
+.ujb_search form {
+    display: flex;
+    align-items: center;
+}
+.ujb_search ion-searchbar.ujb_searchbar {
+    display: flex;
+    align-items: center;
+}
+
+ion-list.list-ios.ujb_list .ujb_input_icon.item-has-focus ion-label, 
+ion-list.list-ios.ujb_list .ujb_input_icon.item-has-value ion-label, 
+ion-list.list-md.ujb_list .ujb_input_icon.item-has-focus ion-label, 
+ion-list.list-md.ujb_list .ujb_input_icon.item-has-value ion-label, 
+ion-list.ujb_list .ujb_input_icon.item-has-focus ion-label, 
+ion-list.ujb_list .ujb_input_icon.item-has-value ion-label {
+    padding-left: 0 !important;
+}
+
+ion-list.list-ios.ujb_list .ujb_input_icon ion-label, 
+ion-list.list-ios.ujb_list .ujb_input_icon ion-input, 
+ion-list.list-md.ujb_list .ujb_input_icon ion-label, 
+ion-list.list-md.ujb_list .ujb_input_icon ion-input, 
+ion-list.ujb_list .ujb_input_icon ion-label, 
+ion-list.ujb_list .ujb_input_icon ion-input {
+    padding-left: 30px !important;
+}
+
+ion-icon {
+    display: inline-block;
+    font-size: 1.2em;
+}
+.header-ios ion-toolbar:last-child {
+    --border-width: 0 0 0;
+}
+.searchbar-ios .searchbar-input {
+    background-color: #fff;
+}
+.ujb_stats_slides .swiper-pagination-bullet {
+    background: black;
+}
+.ujb_stats_slides ion-slide {
+    margin: 0 5px;
+}
+
+
+ion-header.blue-bg {
+    background: var(--ujb_headerBlue) !important;
+    --background: var(--ujb_headerBlue) !important;
+    // margin-top: 10px !important;
+    // padding-top: 0 !important;
+    ion-toolbar {
+        --background: var(--ujb_headerBlue) !important;
+        --opacity: 1 !important;
+        margin-top: 0 !important
+    }
+}
+
+ion-back-button {
+    color: black !important;
+}
+
+// .statusBarPlaceholder { display: none }
+
+.sortFilterPanel ion-label {
+    display: flex !important;
+    align-items: center;
+}
+
+.menuBlock {
+    padding: 35px;
+    position: relative;
+    padding-bottom: 42px;
+    ul {
+        margin: 0;
+        padding: 0;
+        list-style-type: none;
+        height: auto;
+        overflow-y: auto;
+        overflow-x: hidden;
+        li {
+            color: #333333;
+            padding: 10px 0;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            &.learnMore img {
+                width: 24px;
+                height: 24px;
+                margin-left: 12px;
+            }
+        }
+    }
+    .ujb_btn_bordered,
+    .ujb_btn_bordered_sm,
+    .ujb_btn_bordered_lg {
+        padding: 0 15px;
+        background: white;
+        width: 103%;
+        border: 1px solid var(--ujb_blueDark);
+        color: var(--ujb_blueDark);
+        font-size: 18px;
+        margin: 0 0 30px 0;
+        img {
+            width: 16px;
+            height: 17px;
+            margin-right: 5px;
+        }
+    }
+}
+
+.ujb_menus.moreMenus {
+    position: absolute;
+    background: #f1f1f1;
+    width: 100%;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 0 10px 0 40px;
+    height: auto;
+    display: flex;
+    li {
+        padding: 10px;
+        margin-bottom: 0;
+    }
+} 
+
+.popupConfirmationAlert .modal-wrapper {
+    width: 280px;
+    max-height: 180px;
+    margin: auto;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    border-radius: 8px;
+    background: white;
+}
+
+.p0 {
+    padding: 0 !important;
+}
+
+.ujb_searchbar .searchbar-input {
+    box-shadow: none;
+    background: transparent;
+    padding: 0;
+}
+.ujb_searchbar .searchbar-search-icon {
+    display: none !important;
+}
+
+.FilterPanel ion-label {
+    display: flex !important;
+}
+
+.card-content-ios {
+    font-size: 1.4rem;
+}
+
+ion-searchbar {
+    min-height: 40px !important;
+    max-height: 40px;
+}
+
+.ujb_search button {
+    top: 0
+}
+
+.segment-button-checked {
+    color: #6699cc !important;
+    border-bottom-color: #6699cc !important;
+    text-transform: uppercase !important;
+}
+
+.editSingleInput, .editBooleanPopup  {
+    .modal-wrapper {
+        max-height: 160px;
+        width: 280px;
+    }
+}
+
+.ujb_popup_partner .modal-wrapper {
+    width: 90vw;
+    height: 70vh;
+}
+
+.item-native {
+    padding: 0 !important;
+}

@@ -1,0 +1,83 @@
+<ion-header class="ujb_header ujbFrame_header blue-bg">
+    <div class="statusBarPlaceholder" showWhen="ios"></div>
+    <ion-toolbar>
+        <ion-title>Business Listing</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  
+  <ion-content padding style="background: #a3c2e0;">
+        <div class="container layer-outer">
+            <div class="white-outer-div">
+            <form [formGroup]="businessList11Form">
+            <div class="contentArea">
+                <h3>Name of the Partner</h3>
+                <div class="answer-section">
+                    <ion-list class="ujb_list" padding-horizontal>
+                        <ion-item>
+                            <ion-label position="floating">Partner Name</ion-label>
+                            <ion-input type="text" formControlName="nameOfPartner" [(ngModel)]="nameOfPartner" (keyup.enter)="goToNextBusiness()"></ion-input>
+                        </ion-item>
+                        <div class="validateError" *ngIf="businessList11Form.get('nameOfPartner').hasError('required') && checkValidation">Partner name is required</div>
+                    </ion-list>
+                </div>
+            </div>
+            </form>
+        </div>
+        <div class="layer-group">
+                <div class="layer-overlay" float-left>
+                    <div class="layerSecond"></div>
+                    <div class="layerLast"></div>
+                </div>  
+              </div>
+        </div>
+        <div class="container slider-navigation ujbFrame_footer pl0 pr0" no-padding>
+            <div class="slider-button" float-left>
+                    <!-- <div class="block w-full pad-15 pad-t0"  float-left>
+                            <button class="ujb_btn_blue"type="submit" *ngIf="isEdit"(click)="goToBusinessListing3()" >Update</button>
+                        </div> -->
+                              <div class="block w-full" float-left>
+                                  <div *ngIf="hidePrevious" class="navLeft" float-left (click)="goToPreviousBusiness()">
+                                      <img class="img-icon" src="assets/imgs/icons/previous.png" alt="">
+                                      <span>Previous</span>
+                                  </div>
+                                  <button *ngIf="hideNext" class="btn_invisible" type="submit" float-right (click)="goToNextBusiness()">
+                                      <div class="navRight" >
+                                          <span>Next</span>
+                                          <img class="img-icon" src="assets/imgs/icons/next.png" alt="">
+                                      </div>
+                                  </button>
+                              </div>
+                              <!-- <div class="block w-full link-skip" *ngIf="hideSkipForLater"type="submit" (click)="goToBusinessListing3()" text-center float-left>
+                                <span>skip for later</span>
+                            </div> -->
+                              <div class="ujb_btn_blue" type="submit" *ngIf="isEdit"(click)="goToNextBusiness()" text-center float-left>
+                                    <span>Update</span>
+                                </div>
+            </div>
+        </div>
+  </ion-content>
+  <!-- <ion-footer no-padding>
+    <footer class="ujbFrame_footer">
+  <div class="block w-full pad-15 pad-t0"  float-left>
+      <button class="ujb_btn_blue"type="submit" *ngIf="isEdit"(click)="goToBusinessListing3()" >Update</button>
+  </div>
+        <div class="block w-full" float-left>
+            <div *ngIf="hidePrevious" class="navLeft" float-left (click)="goToPreviousBusiness()">
+                <img class="img-icon" src="assets/imgs/icons/previous.png" alt="">
+                <span>Previous</span>
+            </div>
+            <button *ngIf="hideNext" class="btn_invisible" type="submit" float-right (click)="goToNextBusiness()">
+                <div class="navRight" >
+                    <span>Next</span>
+                    <img class="img-icon" src="assets/imgs/icons/next.png" alt="">
+                </div>
+            </button>
+        </div> -->
+        <!-- <div class="block w-full link-skip" *ngIf="hideSkipForLater"type="submit" (click)="goToBusinessListing3()" text-center float-left>
+            <span>skip for later</span>
+        </div> -->
+        <!-- <div class="block w-full link-skip" type="submit" *ngIf="isEdit"(click)="goToNextBusiness()" text-center float-left>
+            <span>Update</span>
+        </div>
+    </footer>
+  </ion-footer> -->

@@ -1,0 +1,71 @@
+// @import '../../../../theme/ujb.scss';
+// @import '../../../../theme/variables.scss';
+
+// page-language-selection {
+    ion-header {
+        ion-toolbar{
+            .back-button .back-button-icon { font-size: 1.8em; }
+        }
+    }
+    ion-header.ujb_header.header-ios {
+        ion-toolbar{
+            .back-button { margin-left: 10px; }
+        }
+    }
+    .scroll-content {
+        @media screen and (min-height: 600px) {
+            overflow: hidden;
+        }
+        @media screen and (max-height: 499px){
+            overflow: auto;
+        }
+    }
+    .block { width: 193px; margin: auto; }
+    // .backButton { background: transparent; font-size: 1.6em !important; position: absolute; top: 15px; left: 15px; }
+    .logo {
+        margin-top: 20%;
+
+        @media screen and (max-height: 670px){
+            margin-top: 15%;
+        }
+
+        img {
+            display: block; width: 98px; margin: auto;
+            @media screen and (max-height: 520px){
+                width: 75px;
+            }
+        }
+    }
+    .title {
+        color: var(--ujb_gray); font-size: 18px; text-align: center; margin-top: 20%; margin-bottom: 30px;
+        @media screen and (max-height: 670px){
+            margin-top: 15%; margin-bottom: 20px;
+        }
+        @media screen and (max-height: 559px){
+            margin-top: 30px; margin-bottom: 20px;
+        }
+        @media screen and (max-height: 520px){
+            margin-top: 20px; margin-bottom: 20px;
+        }
+    }
+    button.ujb_btn_bordered_sm { margin-bottom: 20px; }
+    .block {
+        margin-bottom: 15%;
+        @media screen and (max-height: 670px){
+            margin-bottom: 10%;
+        }
+        @media screen and (max-height: 540px){
+            margin-bottom: 20px;
+        }
+    }
+    .ujb_link {
+        text-align: center; font-size: 20px; font-family: Lato Semibold;
+        .icon-play { width: 27px; height: auto; display: inline-block; vertical-align: middle; margin-left: 10px; }
+        @media screen and (max-height: 560px){
+            margin-bottom: 30px;
+        }
+    }
+    //ion-header{
+      //  padding-top: 10px !important;
+    //}
+// }

@@ -1,0 +1,17 @@
+    h3 {
+        font-size: 15px; font-family: Lato Heavy; line-height: 28px; margin: 0;
+        @media screen and (max-width: 411px) {
+            
+        }
+    }
+    ul.bulletHeading {
+        font-family: Lato Semibold; padding: 0 16px; margin: 10px 0;
+    }
+    ul.listBlock { padding-left: 25px !important; }
+    p {
+        font-size: 14px; color: var(--ujb_gray); line-height: 18px; margin-bottom: 35px !important;
+    }
+    //ion-header{
+      //  padding-top: 10px !important;
+    //}
+

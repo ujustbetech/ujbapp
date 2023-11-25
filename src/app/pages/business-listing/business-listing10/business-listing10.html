@@ -1,0 +1,51 @@
+<ion-header class="ujb_header ujbFrame_header blue-bg">
+  <div class="statusBarPlaceholder" showWhen="ios"></div>
+  <ion-toolbar>
+      <ion-title>{{ pageTitle }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="scroll-disabled ujbFrameContent">
+  <div class="stackLayers ujbFrame_footerSkipLink">
+      <div class="layerFront">
+          <div class="contentArea">
+                  <h3>Are you?</h3>
+                  <div class="block ">
+                      <div class="{{myClass1}}">
+                        <button class="ujb_btn_bordered_sm" id="freelancer1" (click)="selectValue(1,'Freelancer')">Individual/Proprietor</button>
+                        <button class="ujb_btn_bordered_sm" id="PartnershipFirm" (click)="selectValue(2,'Partnership Firm')">Partnership Firm</button>
+                        <button class="ujb_btn_bordered_sm" id="llp" (click)="selectValue(3,'LLP')">LLP</button>
+                        <button class="ujb_btn_bordered_sm" id="company1" (click)="selectValue(4,'Company')">Company</button>
+                        <div class="validateError" text-center *ngIf="!isInputGiven && checkValidation">Please select value.</div>
+                      </div>
+                  </div>
+          </div>
+      </div>
+      <div class="layerSecond"></div>
+      <div class="layerLast"></div>
+  </div>
+</ion-content>
+<ion-footer no-padding>
+  <footer class="ujbFrame_footer">
+      <!-- <div class="block w-full pad-15 pad-t0"  float-left>
+    <button class="ujb_btn_blue">UJB Button Blue</button>
+</div> -->
+<div class="block w-full" float-left>
+      <div class="navLeft" float-left (click)="goToPreviousBusiness()"  *ngIf="!showSave">
+          <img class="img-icon" src="assets/imgs/icons/previous.png" alt="">
+          <span>Previous</span>
+      </div>
+      <button class="btn_invisible" type="submit" float-right (click)="goToNextBusiness()" *ngIf="!showSave">
+          <div class="navRight">
+              <span>Next</span>
+              <img class="img-icon" src="assets/imgs/icons/next.png" alt="">
+          </div>
+      </button>
+  </div>
+  <div class="block w-full link-skip" text-center float-left>
+      <div class="block w-full pad-15 pad-t0" float-left *ngIf="showSave ">
+          <button class="ujb_btn_blue" (click)="saveOrginazationType()" disabled="{{disableSave}}">Save</button>
+        </div>
+  </div>
+  </footer>
+</ion-footer>

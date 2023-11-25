@@ -1,0 +1,37 @@
+    ion-header.ujb_header.header-ios {
+        ion-toolbar{
+            .back-button { margin-left: 10px; }
+        }
+    }
+    .ujb_logo_login { width: 98px; height: auto; display: block; margin: 65px auto 0; }
+    h3 { color: var(--ujb_gray); font-size: 24px; padding: 0 15px; }
+    .ujb_link { margin-top: 15px; font-weight: normal !important; padding: 0 16px; }
+    .ujb_btn_blue { margin: 40px 16px 0 16px; width: calc(100% - 32px) !important; }
+   // ion-item { margin-top: 10px; }
+    .content-header {
+        position: relative; font-size: 1.6em; 
+
+        .back_button { 
+            display: inline-block; padding: 5px; width: 24px; height: 24px; text-align: left; position: absolute; left: 20px; top: -55px;
+        }
+    }
+    @media screen and (max-width: 411px) {
+        h3 { font-size: 22px; }
+    }
+    .scroll-content { height: 100%; position: relative; transition: height 0.5s ease; }
+    // .keypadFocused {
+    //     .scroll-content { height: calc(100vh - 225px); }
+    // }
+   // .margin { margin-bottom: 80px; }
+//     ion-list.list-ios.ujb_list ion-item.item-input, ion-list.list-md.ujb_list ion-item.item-input, ion-list.ujb_list ion-item.item-input {
+//     margin-top: 0px !important;
+//     padding-bottom: 0px !important;
+// }
+// .list-md .item-input.ng-invalid.ng-touched:not(.input-has-focus):not(.item-input-has-focus):last-child{
+//     padding-bottom: 0px !important;
+// }
+.scroll-content{padding-bottom: 0px !important;}
+ion-header{
+    --padding-top: 10px !important;
+}
+

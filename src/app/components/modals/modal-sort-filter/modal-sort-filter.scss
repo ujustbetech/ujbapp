@@ -1,0 +1,64 @@
+
+    .pad-tb { padding-top: 15px !important; padding-bottom: 10px !important; }
+    .textLight { color: var(--ujb_bg_search_item_checkbox); font-size: 16px; }
+    ion-header {
+        background: #fff;
+
+        h3 {
+            font-size: 20px; line-height: 26px; padding: 10px 35px; position: relative; background: var(--ujb_lines); 
+            color: var(--ujb_gray); margin: 0;            
+        }
+        .ujb_link { font-size: 12px; float: right; position: absolute; right: 35px;  }
+        .sortControls {
+            padding: 0 25px; margin-top: 15px;
+
+            .textLight { padding: 0 7.5px; }
+            ul {
+                list-style-type: none; margin: 0; padding: 0; display: flex; margin-top: 10px;
+                li {
+                    width: 25%; text-align: center; padding: 0 5px;
+
+                    img { width: 42px; height: 42px; display: inline-block; }
+                    div { color: rgba(51,51,51,0.5); font-size: 12px; }
+                }
+                li:hover > div { color: var(--ujb_gray); }
+            }
+        }
+        @media screen and (max-width: 411px) {
+            h3 { font-size: 18px; }
+        }
+    }
+    .sortFilterPanel {
+        // max-height: calc(100vh - 30vh - 223px); overflow: auto;
+        .filterControls {
+            // max-height: 300px; overflow: auto;
+            ion-list { margin-bottom: 110px !important; }
+
+            ion-item {
+                border-bottom: 1px solid #ccc; font-size: 16px;
+                .item-inner { border-bottom: none !important; }
+                padding: 5px 15px !important;
+
+                .item-inner {
+                    position: relative; bottom: -2px;
+                }
+                ion-checkbox {
+                    margin-top: 0 !important; margin-bottom: 0 !important; margin-right: 10px !important;
+                    .checkbox-icon { width: 19px !important; height: 19px !important; }
+                }
+                @media screen and (max-width: 411px) {
+                    font-size: 15px;
+                }
+            }
+            ion-item:first-child {
+                padding-top: 0 !important;
+            }
+
+
+
+            padding: 0 16px;
+            .textLight { padding: 0 20px; }
+        }
+        
+    }
+

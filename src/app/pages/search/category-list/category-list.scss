@@ -1,0 +1,45 @@
+    .content_head {
+        padding: 15px 16px 0;
+        h3 { font-size: 20px; color: var(--ujb_gray); margin-top: 35px !important; font-family: Lato Semibold; }
+        @media screen and (max-width: 411px) {
+            h3 { font-size: 18px; }
+        }
+    }
+    .categories {
+        margin-top: 30px;
+        h3 { padding: 0 16px; margin-top: 0 !important; line-height: 26px; }
+    }
+    .promotionalSlider {
+        h3 { padding: 0 16px; }
+    }
+    .businessListingFilter{
+        font-size: 14px; position: relative; text-align: right;
+        .icon-filter { width: 19px; height: 18px; display: inline-block; vertical-align: middle; margin-left: 10px; margin-right: 5px; }
+        .filterApplied { 
+            position: absolute; right: 0; top: -3px; display: inline-block; width: 10px; height: 10px; border-radius: 100%;
+            background: var(--ujb_blueDark);
+        }
+    }
+    .wrapper {
+        padding-top: 0 !important; padding-left: 0 !important; padding-right: 0 !important;
+        .ujb_businessCard { margin: 15px 0 !important; width: 100% !important; }
+    }
+    .categoryGrid ul li { margin-bottom: 30px !important; }
+    ion-item.categoryinfoobj {
+        ion-label {
+            line-height: 32px;
+            .icon_cat { width: 45px; height: 32px; vertical-align: middle; margin-right: 10px; }
+        }
+    }
+    ion-footer{
+        margin-bottom: constant(safe-area-inset-bottom);
+           margin-bottom: env(safe-area-inset-bottom);
+       }
+    //ion-header{
+      //  padding-top: 10px !important;
+    //}
+
+    ion-searchbar {
+        min-height: 40px !important;
+        max-height: 40px;
+    }

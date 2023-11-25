@@ -1,0 +1,303 @@
+<ion-content class="partner" [ngClass]="{'modal_opened':scrollBlock==true}">
+    <section class="partnerHeader" style="text-align: center !important">
+        <img class="partnerPhoto" *ngIf= "profilePhoto.ImageBase64" src="{{profilePhoto.ImageBase64}}" style="height: 300px !important; width: auto !important;"  onerror="src='assets/imgs/content-imgs/otp@2x.png'" alt="" imageViewer>
+        <img class="partnerPhoto" *ngIf= "!profilePhoto.ImageBase64" src="{{profilePhoto.ImageBase64}}" style="height: 300px !important; width: auto !important;"  onerror="src='assets/imgs/content-imgs/otp@2x.png'" alt="" >
+        
+        <!-- Controls -->
+        <img class="ctrl_ImageEdit" src="assets/imgs/icons/camera@2x.png" alt="" (click)="addImage()" *ngIf="!isConnectors">
+        <!--  -->
+        <ion-icon class="back_button" *ngIf="viewOtherProfile" ios="ios-arrow-back" md="md-arrow-back" (click)="onBackPressed()"></ion-icon>
+    </section>
+
+    <div class="partnerCode">Code - {{partnerDetails.ujbId}}</div>
+    <section class="padding border-bottom">
+        <h2 class="partnerName">
+            {{partnerDetails.firstName}} {{partnerDetails.lastName}}
+            <img class="icon-edit" float-right src="assets/imgs/icons/editCopy3@2x.png" alt="" *ngIf="!isConnectors && restrictEdit" (click)="editData('Name')">
+        </h2>
+        <div class="pull-left font" *ngIf="showContact">
+            <span class="w-icon pull-left"  (click)="openonApp()">
+                 <img src="assets/imgs/icons/whatsapp.png" class="wts-i"><u>WhatsApp</u>
+            </span>
+            <span class="m-icon pull-left"  (click)="gotoKeypad()">
+                <img src="assets/imgs/icons/mobile.png" class="call-i"><u>Call</u>
+            </span>
+        </div>
+        <div class="{{viewProfile}} " *ngIf="!isConnectors">
+            <span class="ujb_link t18" (click)="openBusinessStat()">View Referral Statistics</span>
+            <img src="assets/imgs/icons/forma1Copy9@2x.png" alt="" class="linkArrow">
+        </div>
+        <h3 class="m-b-20 {{viewProfile}}" *ngIf="!isConnectors">My Connects </h3>
+        <div class="partnerConnects" *ngIf="!isConnectors">
+            <div class="mentor" (click)="openProfileMentor(userinfoobj)" *ngFor="let userinfoobj of mentorUserInfo">
+                <div class="pc-label">Mentor</div>
+                <div class="imgContainer">
+                    <img src="{{userinfoobj.base64Image}}" onerror="src='assets/imgs/icons/profilepic@2x.png'" alt="" class="connect">
+                </div>
+            </div>
+            <div class="connects">
+                <div class="pc-label pad-l-10" *ngIf="firstconnects.length>0">Connect</div>
+                <ul>
+                    <li (click)="openProfileConnect(userinfoconnectobj)" *ngFor="let userinfoconnectobj of firstconnects">
+                        <div class="imgContainer">
+                            <img src="{{userinfoconnectobj.base64Image}}" onerror="src='assets/imgs/icons/profilepic@2x.png'" alt="" class="connect">
+                        </div>
+                    </li>
+                    <li (click)="gotoConnectlist()" class="{{connectCounters}}">
+                        <div class="connectCounters">
+                            <span class="ujb_link">{{countofconnects}} <br> More</span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="zeroConnects {{showBlock}}">No connects found</div>
+    </section>
+    <section class="padding {{borderBottom}}">
+        <h3 class="m-b-10 m-t-0">About</h3>
+        <div class="secRow {{viewProfile}}" *ngIf="!partnerDetails.otherDetails.aboutMe">
+            <span class="font-12">Description</span>
+            <span class="ujb_link" float-right (click)="editData('AboutMe')">Add answer</span>
+        </div>
+        <div class="secRow editIcons_baseline" *ngIf="partnerDetails.otherDetails.aboutMe">
+            <p class="font-12 editIcons_baseline">
+                Description
+                <img class="icon-edit" float-right src="assets/imgs/icons/editCopy3@2x.png" alt="" *ngIf="!isConnectors" (click)="editData('AboutMe')">
+            </p>
+            <p class="unbold">
+                {{partnerDetails.otherDetails.aboutMe}}
+            </p>
+        </div>
+
+
+        <div class="secRow {{viewProfile}}" *ngIf="!isConnectors">
+            <div class="secData">
+                <p class="font-12 editIcons_baseline">
+                    How much passive income would you like to earn
+                    <img class="icon-edit" float-right src="assets/imgs/icons/editCopy3@2x.png" alt="" (click)="editData('PassiveIncome')">
+                </p>
+                <p>&#8377; {{partnerDetails.passiveIncome}}</p>
+            </div>
+        </div>
+
+        <!-- oooooooooooooooooooooooooooooooooooo How did you know come to know about UJustBe? -->
+        <div class="secRow {{viewProfile}}" *ngIf="!isConnectors">
+            <div class="secData">
+                <p class="font-12 editIcons_baseline">
+                    How did you come to know about UJustBe?
+                    <!-- <img class="icon-edit" float-right src="assets/imgs/icons/editCopy3@2x.png" alt="" (click)="editData('KnowledgeSource')"> -->
+                </p>
+                <p>{{partnerDetails.knowledgeSource}}</p>
+            </div>
+        </div>
+
+        <!-- oooooooooooooooooooooooooooooooooooo Are you -->
+        <!-- <div class="secRow {{viewProfile}}" *ngIf="!isConnectors">
+            <div class="secData">
+                <p class="font-12 editIcons_baseline">
+                    Are you?
+                    <img class="icon-edit" float-right src="assets/imgs/icons/editCopy3@2x.png" alt="" (click)="editData('AreYou')">
+                </p>
+                <p>{{partnerDetails.organisationType}}</p>
+            </div>
+        </div> -->
+
+        <!-- oooooooooooooooooooooooooooooooooooo Localities -->
+        <div class="secRow {{viewProfile}}" *ngIf="!isConnectors">
+            <div class="secData">
+                <p class="font-12 editIcons_baseline">
+                    Enter localities where you have lot of connects
+                    <img class="icon-edit" float-right src="assets/imgs/icons/editCopy3@2x.png" alt="" (click)="editData('Localities')">
+                </p>
+                <p>
+                    {{localities}}
+                </p>
+            </div>
+        </div>
+
+        <!-- oooooooooooooooooooooooooooooooooooo Hobbies -->
+        <div class="secRow m-t-20 {{viewProfile}}" *ngIf="!partnerDetails.otherDetails.hobbies">
+            <span class="font-12">Hobbies</span>
+            <span class="ujb_link" float-right *ngIf="!isConnectors" (click)="editData('Hobbies')">Add answer</span>
+        </div>
+        <div class="secRow " *ngIf="partnerDetails.otherDetails.hobbies">
+            <div class="secData">
+                <p class="font-12 editIcons_baseline">
+                    Hobbies
+                    <img class="icon-edit" float-right src="assets/imgs/icons/editCopy3@2x.png" alt="" (click)="editData('Hobbies')" *ngIf="!isConnectors">
+                </p>
+                <p> {{partnerDetails.otherDetails.hobbies}}</p>
+            </div>
+            <!-- <div class="editField" *ngIf="editHobbies">
+                <ion-list class="ujb_list">
+                    <ion-item>
+                        <ion-label floating>Hobbies</ion-label>
+                        <ion-input type="text" value="Dancing, Painting, Photography"></ion-input>
+                    </ion-item>
+                    <div class="validateError">Something went wrong</div>
+                </ion-list>
+            </div> -->
+        </div>
+
+        <!-- oooooooooooooooooooooooooooooooooooo Hobbies -->
+        <!-- <div class="secRow m-t-20">
+            <span class="font-12">Hobbies</span>
+            <span class="ujb_link" float-right>Add answer</span>
+          </div> -->
+        <!-- <div class="secRow">
+            <div class="secData">
+              <p class="font-12">
+                Hobbies
+                <img class="icon-edit" float-right src="assets/imgs/icons/editCopy3@2x.png" alt="">
+              </p>
+              <p>Dancing, Painting, Photography</p>
+            </div>
+          </div> -->
+
+        <!-- oooooooooooooooooooooooooooooooooooo Area of Interest -->
+        <div class="secRow m-t-15 " *ngIf="!partnerDetails.otherDetails.areaOfInterest && !isConnectors">
+            <span class="font-12">Area of Interest</span>
+            <span class="ujb_link" float-right *ngIf="!isConnectors" (click)="editData('AreaOfInterest')">Add answer</span>
+        </div>
+        <div class="secRow" *ngIf="partnerDetails.otherDetails.areaOfInterest">
+            <div class="secData">
+                <p class="font-12 editIcons_baseline">
+                    Area of Interest
+                    <img class="icon-edit" float-right src="assets/imgs/icons/editCopy3@2x.png" alt="" (click)="editData('AreaOfInterest')" *ngIf="!isConnectors">
+                </p>
+                <p> {{partnerDetails.otherDetails.areaOfInterest}}</p>
+            </div>
+        </div>
+
+        <!-- <div class="secRow m-t-15">
+            <span class="font-12">Area of Interest</span>
+            <span class="ujb_link" float-right>Add answer</span>
+        </div> -->
+
+        <!-- oooooooooooooooooooooooooooooooooooo Can Impart Training -->
+        <div class="secRow m-t-15 {{viewProfile}}" *ngIf="partnerDetails.otherDetails.canImpartTraining == null || partnerDetails.otherDetails.canImpartTraining == undefined && !isConnectors">
+            <span class="font-12">Can Impart Training?</span>
+            <span class="ujb_link" float-right (click)="editData('CanImpartTraining')">Add answer</span>
+        </div>
+        <div class="secRow m-b-0 {{viewProfile}}" *ngIf="(partnerDetails.otherDetails.canImpartTraining != null && partnerDetails.otherDetails.canImpartTraining != undefined) && !isConnectors">
+            <div class="secData">
+                <p class="font-12 editIcons_baseline">
+                    Can Impart Training?
+                    <img class="icon-edit" float-right src="assets/imgs/icons/editCopy3@2x.png" alt="" (click)="editData('CanImpartTraining')">
+                </p>
+                <p *ngIf=" partnerDetails.otherDetails.canImpartTraining">Yes</p>
+                <p *ngIf=" !partnerDetails.otherDetails.canImpartTraining"> No</p>
+            </div>
+        </div>
+    </section>
+    <section class="padding border-bottom {{viewProfile}}" *ngIf="!isConnectors">
+        <h3 class="m-b-10 m-t-0">Basic Details</h3>
+        <div class="secRow">
+            <div class="secData">
+                <p class="font-12 editIcons_baseline">
+                    Gender
+                    <img class="icon-edit" *ngIf="!partnerDetails.gender" float-right src="assets/imgs/icons/editCopy3@2x.png" alt="" (click)="editData('Gender')">
+                </p>
+                <p *ngIf="partnerDetails.gender" class="editIcons_baseline">
+                    {{partnerDetails.gender}}
+                    <img class="icon-edit" float-right src="assets/imgs/icons/editCopy3@2x.png" alt="" (click)="editData('Gender')">
+                </p>
+            </div>
+        </div>
+        <div class="secRow">
+            <div class="secData">
+                <p class="font-12 editIcons_baseline">
+                    Date of Birth
+                    <img class="icon-edit" *ngIf="!partnerDetails.birthDate" float-right src="assets/imgs/icons/editCopy3@2x.png" alt="" (click)="editData('BirthDate')">
+                </p>
+                <p class="editIcons_baseline" *ngIf="partnerDetails.birthDate">
+                    {{partnerDetails.birthDate | date:'dd MMM yyyy'}}
+                    <img class="icon-edit" float-right src="assets/imgs/icons/editCopy3@2x.png" alt="" (click)="editData('BirthDate')">
+                </p>
+            </div>
+        </div>
+        <!-- When Data is Unavailable -->
+        <div class="secRow m-b-0" *ngIf="!partnerDetails.otherDetails.maritalStatus">
+            <span class="font-12">Marital Status</span>
+            <span class="ujb_link" float-right (click)="showEditMaritalStatus()">Add answer</span>
+            <ion-list class="hide">
+                <ion-item class="overlayTape heightAdj">
+                    <ion-select class="ujb_select" #select1 [(ngModel)]="partnerDetails.otherDetails.maritalStatus" (ionChange)="updateMaritalStatus()">
+                        <ion-select-option *ngFor="let i of maritalStaus" [value]='i'>{{i}}</ion-select-option>
+                    </ion-select>
+                </ion-item>
+            </ion-list>
+        </div>
+
+        <div class="secRow m-b-0" *ngIf="partnerDetails.otherDetails.maritalStatus">
+            <div class="secData">
+                <p class="font-12 editIcons_baseline">
+                    Marital Status
+                </p>
+            </div>
+            <div class="editField">
+                <ion-list class="ujb_list ujb_edit">
+                    <ion-item class="overlayTape heightAdj">
+                        <ion-select class="ujb_select" [placeholder]="partnerDetails.otherDetails.maritalStatus" 
+                        [(ngModel)]="partnerDetails.otherDetails.maritalStatus" (ionChange)="updateMaritalStatus()">
+                            <ion-select-option *ngFor="let i of maritalStaus" [value]='i'>{{i}}</ion-select-option>
+                        </ion-select>
+                    </ion-item>
+                </ion-list>
+            </div>
+
+        </div>
+    </section>
+    <section class="padding profileDetails {{viewProfile}}" *ngIf="!isConnectors">
+        <h2 class="m-t-0">Contact Details</h2>
+
+        <div class="dataInputs">
+            <div class="secData editIcons_baseline">
+                <img src="assets/imgs/icons/email.png" alt="" class="icon-email">
+                <span class="Data"> {{partnerDetails.emailId}}</span>
+                <img src="assets/imgs/icons/editCopy3@2x.png" alt="" class="icon-edit" (click)="editData('EmailId')">
+            </div>
+            <ion-list class="ujb_list ujbEditItems" hidden>
+                <ion-item class="ujb_input_icon">
+                    <ion-label position="floating">Email Id</ion-label>
+                    <ion-input class="iconEmail" type="email"></ion-input>
+                </ion-item>
+            </ion-list>
+        </div>
+
+        <div class="dataInputs">
+            <div class="secData editIcons_baseline">
+                <img src="assets/imgs/icons/mobile.png" alt="" class="icon-mobile">
+                <span class="Data">{{partnerDetails.countryCode}} {{partnerDetails.mobileNumber}}</span>
+                <img src="assets/imgs/icons/editCopy3@2x.png" alt="" class="icon-edit" (click)="editData('MobileNumber')">
+            </div>
+            <!-- <ion-list class="ujb_list ujb_selectNinput ujb_withIcon">
+                <ion-item class="ujb_select">
+                    <ion-select>
+                        <ion-option value="nes" selected="true">(+91)</ion-option>
+                        <ion-option value="n64">(+92)</ion-option>
+                        <ion-option value="ps">(+93)</ion-option>
+                        <ion-option value="genesis">(+94)</ion-option>
+                    </ion-select>
+                </ion-item>
+                <ion-item class="ujb_input">
+                    <ion-label floating>Mobile Number*</ion-label>
+                    <ion-input type="tel" placeholder="" maxLength="10"></ion-input>
+                </ion-item>
+            </ion-list> -->
+        </div>
+
+        <div class="dataInputs">
+            <div class="secData">
+                <img src="assets/imgs/icons/location.png" alt="" class="icon-email vAlign-top">
+                <span class="Data address inline-block">{{adderes}}
+                    <br>{{partnerDetails.location.location}}, {{stateName}}, {{countryName}}</span>
+                <img src="assets/imgs/icons/editCopy3@2x.png" *ngIf="restrictEdit" alt="" class="icon-edit" (click)="editData('Location')">
+            </div>
+        </div>
+    </section>
+</ion-content>
+
+<ion-footer class="footer-adj"> 
+    <bottombar [activePage]="activePage"></bottombar>
+</ion-footer>

@@ -1,0 +1,20 @@
+    .block { width: 193px; margin: auto; }
+    h3 {
+        text-align: center; font-size: 24px; margin-top: 15%; color: var(--ujb_gray); font-family: Lato Semibold;
+        margin-bottom: 20%;
+        @media screen and (max-width: 411px) {
+            font-size: 22px;
+        }
+    }
+    button.ujb_btn_bordered_sm { margin-bottom: 20px; }
+    .ujb_btn_bordered:hover, .ujb_btn_bordered:focus, .ujb_btn_bordered_sm:hover, .ujb_btn_bordered_sm:focus, .ujb_btn_bordered_lg:hover, 
+    .ujb_btn_bordered_lg:focus { 
+        background: var(--ujb_blueDark); color: #fff;
+    }
+    ion-footer { background: transparent !important; padding-left: 0 !important; padding-right: 0 !important}
+    .validateError {
+        height:20px ;
+    }
+    //ion-header{
+      //  padding-top: 10px !important;
+    //}

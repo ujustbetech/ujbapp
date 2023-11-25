@@ -1,0 +1,55 @@
+<ion-header class="ujb_header ujb_header_sm blue-bg">
+
+    <div class="statusBarPlaceholder" showWhen="ios"></div>
+
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button></ion-back-button>
+        </ion-buttons>
+        <ion-title>
+            <span>{{pageTitle}}</span>
+        </ion-title>
+    </ion-toolbar>
+
+</ion-header>
+<ion-content>
+    <section class="content_head">
+        <div class="ujb_search">
+            <form action=".">
+                <ion-searchbar search-icon="null" class="ujb_searchbar" [(ngModel)]="searchTerm" [ngModelOptions]="{standalone: true}" (search)="searchData(searchTerm)" (ionInput)="getSearchSuggestions()" placeholder="Search for Category">
+                </ion-searchbar>
+                <button end>
+                    <img (click)="searchData(searchTerm)" src="assets/imgs/icons/search@2x.png" alt="">
+                </button>
+            </form>
+            <ion-list class="{{myClass}}">
+                <ion-item *ngFor="let categoryinfoobj of catList" (click)="selectValue(categoryinfoobj)">
+                    <!-- <img class="icon_cat" src="assets/imgs/caytegories/art-design.png" alt=""> -->
+                    {{categoryinfoobj.categoryName}}
+                </ion-item>
+            </ion-list>
+        </div>
+
+        <h3>Categories</h3>
+    </section>
+
+
+    <div class="wrapper">
+        <div class="categoryGrid">
+            <ul>
+                <li *ngFor="let categoryviewlistobj of catViewList">
+                    <div>
+                        <img src="{{categoryviewlistobj.categoryImgBase64}}" alt="" (click)="goToResultPage(categoryviewlistobj)">
+                        <div (click)="goToResultPage(categoryviewlistobj)">{{categoryviewlistobj.categoryName}}</div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <ion-infinite-scroll *ngIf="canLoadMore" (ionInfinite)="onScroll($event)">
+        <ion-infinite-scroll-content></ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+</ion-content>
+<ion-footer class="footer-adj">
+    <bottombar></bottombar>
+</ion-footer>

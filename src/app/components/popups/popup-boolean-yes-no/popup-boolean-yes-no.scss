@@ -1,0 +1,26 @@
+    .modalAlert {
+        position: relative;
+
+        div.header, section { padding: 10px 15px; }
+        .header {
+            border-radius: 8px 8px 0 0; font-size: 16px; font-weight: 600; color: var(--ujb_gray);
+        }
+        section {
+            overflow: auto; max-height: 120px; width: 100%;
+            .validateError { line-height: 20px !important; height: 20px; min-height: 20px; }
+            ion-item.item-radio {
+                height: 27px !important; min-height: 27px !important;
+                
+                ion-label { margin-top: 5px; margin-bottom: 5px; }
+                .item-inner { min-height: 27px !important; height: 27px !important; }
+            }
+        }
+        footer {
+            position: fixed; bottom: 0; left: 0; right: 0; text-align: right; padding: 2px 4px;
+            button {
+                padding: 10px; text-align: center; background: white; font-size: 16px;
+            }
+            button:last-child { color: var(--ujb_blueDark); }
+        }
+    }
+
