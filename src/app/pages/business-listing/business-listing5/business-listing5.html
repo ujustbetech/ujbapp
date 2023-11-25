@@ -1,0 +1,74 @@
+<ion-header class="ujb_header ujbFrame_header blue-bg">
+  <div class="statusBarPlaceholder" showWhen="ios"></div>
+  <ion-toolbar>
+      <ion-title>Business Listing</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<!-- <ion-content class="scroll-disabled ujbFrameContent"> -->
+<ion-content padding style="background: #a3c2e0;">
+        <div class="container layer-outer">
+            <div class="white-outer-div">
+            <form [formGroup]="businessListForm5">
+          <div class="contentArea">
+              <h3>Email id</h3>
+              <div class="answer-section">
+                <ion-list class="ujb_list m-t-60" padding-horizontal>
+                  <ion-item class="ujb_input_icon">
+                    <ion-label position="floating">Email Id</ion-label>
+                    <ion-input class="iconEmail" type="email" formControlName="email" (keyup.enter)="goToBusinessListing6()" ></ion-input>
+                  </ion-item>
+                  <div class="validateError" *ngIf="businessListForm5.get('email').hasError('required') && checkValidation">Email id is required</div>
+                  <div class="validateError" *ngIf="businessListForm5.controls.email.errors?.EmailInvalid && businessListForm5.controls['email'].dirty">Please enter valid email id</div>
+                </ion-list>
+              </div>
+          </div>
+            </form>
+      </div>
+      <div class="layer-group">
+          <div class="layer-overlay" float-left>
+              <div class="layerSecond"></div>
+              <div class="layerLast"></div>
+          </div>  
+        </div>
+  </div>
+  <div class="container slider-navigation ujbFrame_footer pl0 pr0" no-padding>
+    <div class="slider-button" float-left>
+        <div class="block w-full" float-left>
+            <div class="navLeft" float-left (click)="goToBusinessListing4()">
+                <img class="img-icon" src="assets/imgs/icons/previous.png" alt="">
+                <span>Previous</span>
+            </div>
+            <button class="btn_invisible" type="submit" float-right (click)="goToBusinessListing6()">
+              <div class="navRight">
+                <span>Next</span>
+                <img class="img-icon" src="assets/imgs/icons/next.png" alt="">
+              </div>
+            </button>
+          </div>
+          <div class="block w-full link-skip" (click)="skip()" text-center float-left>
+            <span>Skip For Later</span>
+          </div>
+    </div>
+  </div>
+</ion-content>
+<!-- <ion-footer no-padding>
+  <footer class="ujbFrame_footer">
+  
+<div class="block w-full" float-left>
+      <div class="navLeft" float-left (click)="goToBusinessListing4()">
+          <img class="img-icon" src="assets/imgs/icons/previous.png" alt="">
+          <span>Previous</span>
+      </div>
+      <button class="btn_invisible" type="submit" float-right (click)="goToBusinessListing6()">
+        <div class="navRight">
+          <span>Next</span>
+          <img class="img-icon" src="assets/imgs/icons/next.png" alt="">
+        </div>
+      </button>
+    </div>
+    <div class="block w-full link-skip" (click)="skip()" text-center float-left>
+      <span>skip for later</span>
+    </div>
+  </footer>
+</ion-footer> -->

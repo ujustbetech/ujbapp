@@ -1,0 +1,58 @@
+    //ion-header{
+      //  padding-top: 10px !important;
+    //}
+    .contentArea {
+        h3 {
+            text-align: center; font-size: 24px; margin-top: 15%; color: var(--ujb_gray); font-family: Lato Semibold;
+            @media screen and (max-width: 411px) {
+                font-size: 22px;
+            }
+        }
+        .subHeading { font-size: 16px; color: rgba(51,51,51,0.9); text-align: center;margin-bottom: 15px; }
+        .answer-section { margin: 10px 0 40px 0; }
+        .item-select {
+            ion-label { font-size: 16px; color: rgba(51,51,51,0.7); }
+        }
+        ion-item { margin-top: 25px; }   
+    }
+    .wrapper {
+        padding-top: 0 !important; padding-left: 0 !important; padding-right: 0 !important;
+        .ujb_businessCard { margin: 15px 0 !important; width: 100% !important; }
+    }
+    .categoryGrid ul {    padding: 0 0px 0 0px !important;}
+    .categoryGrid ul li { margin-bottom: 30px !important; position: relative;}
+    ion-footer { background: transparent !important; padding-left: 0 !important; padding-right: 0 !important}
+    .selected{
+        border-color: #003366;
+        border: 1px;
+        border-style: solid;
+    }
+    .disabled{
+        pointer-events:none;
+        opacity:0.4;
+
+    }
+    .m-3{
+        // margin: 3px;
+    }
+    .grey-circle{
+    position: absolute;
+    width: 12px !important;
+    height: 12px !important;
+    border-radius: 50px;
+    background: #b5b5b5;
+    right: 10px;
+    top: 0px;
+    z-index: 1000;
+    }
+    .blue-circle{
+        position: absolute;
+        width: 12px !important;
+        height: 12px !important;
+        border-radius: 50px;
+        background: #003366;
+        right: 10px;
+        top: 0px;
+        z-index: 1000;
+        }
+

@@ -1,0 +1,163 @@
+<ion-header class="ujb_header ujb_header_sm blue-bg">
+        
+            <div class="statusBarPlaceholder" showWhen="ios"></div>
+        
+            <ion-toolbar>
+                <ion-buttons slot="start">
+                    <ion-back-button></ion-back-button>
+                </ion-buttons>
+                <ion-title>
+                    <span>{{pageTitle}}</span>
+                </ion-title>
+            </ion-toolbar>
+        
+        </ion-header>
+        <ion-content [ngClass]="{'modal_opened':scrollBlock==true}">
+            <section class="content_head">
+                <div class="ujb_search">
+                    <form action=".">
+                        <ion-searchbar search-icon="null" class="ujb_searchbar" [(ngModel)]="searchTerm" [ngModelOptions]="{standalone: true}" (search)="searchData(searchTerm)" (ionInput)="setFilteredItems()" placeholder="{{placeholderBusinessSearch}}">
+                        </ion-searchbar>
+                        <button end>
+                            <img (click)="searchData(searchTerm)" src="assets/imgs/icons/search@2x.png" alt="">
+                        </button>
+                        </form>
+                    <ion-list class="{{hideSearch}}" hidden>
+                        <ion-item *ngFor="let item of items" (click)="selectValue(item,searchTerm)">
+                            {{item.businessName}}
+                        </ion-item>
+                    </ion-list>
+                    <div class="searchedTags" *ngIf="getBusinessListInfo.categoryListForSort.length>0">
+                        <!-- <div class="text-xs " *ngIf="filterList.length>0">search results for</div>
+                        <ul>
+        
+        
+                            <li *ngFor="let filter of filterList;">{{filter.categoryName}}
+                                <img src="assets/imgs/icons/crossBlue@2x.png" (click)="clearVal('category', filter)" alt="">
+                            </li>
+        
+                        </ul> -->
+                    </div>
+        
+                </div>
+            </section>
+            <div class="categories">
+                <!-- Client Partner: Category List -->
+                <h3>Categories
+                    <span class="ujb_link" float-right (click)="viewCategories()">view all</span>
+                </h3>
+                <div class="categoryGrid">
+                    <ul>
+                        <li *ngFor="let categoryinfoobj of catList">
+                            <div>
+                                <img src="{{categoryinfoobj.categoryImgBase64}}" alt="" (click)="selectCategory(categoryinfoobj)">
+                                <div>{{categoryinfoobj.categoryName}}</div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        
+            <!-- Promotional Slider -->
+            <section class="promotionalSlider" *ngIf="showPromotions">
+                <h3>Promotions</h3>
+                <ion-slides #slider slidesPerView="1.2" zoom="false" speed="500" spaceBetween="10" centeredSlides="true" (ionSlideWillChange)="slideEnded()" class="ujb_stats_slides">
+                    <ion-slide class="ujb_bg_grd_lBlue" *ngFor="let promotion of promotions">
+                        <!-- Image -->
+                        <img src="{{promotion.imageURL}}" onerror='src="assets/imgs/content-imgs/banner-cp-default.jpg"' (click)="openProfile(promotion.userId)">
+                    </ion-slide>
+                    <!-- <ion-slide class="ujb_bg_grd_lBlue">
+                        
+                        <img src="http://www.architectureartdesigns.com/wp-content/uploads/2013/04/tumblr_m7oynl386H1qa7gx5o1_500.jpg">
+                    </ion-slide>
+                    <ion-slide class="ujb_bg_grd_lBlue">
+                        
+                    </ion-slide>
+                    <ion-slide class="ujb_bg_grd_lBlue">
+                        
+                    </ion-slide>
+                    <ion-slide class="ujb_bg_grd_lBlue">
+                        
+                    </ion-slide> -->
+                </ion-slides>
+            </section>
+            <div class="wrapper">
+                <div class="businessListingFilter" (click)="openModal()">
+                    Sort/Filter
+                    <img class="icon-filter" src="assets/imgs/icons/sortFilter@2x.png" alt="">
+        
+                    <span class="{{myClass1}}"></span>
+                </div>
+                <section class="ujb_userContent">
+                    <!-- ======================================================================== USER BASED CONTENT -->
+                    <div class="ujb_userBased">
+                        <!-- Client Partner: Business Card -->
+                        <div class="businessListings {{blurName}}">
+                            <ion-card class="ujb_businessCard ujb_businessCard_utility" *ngFor="let businessinfoobj of businessList,let i=index">
+                                <ion-item>
+                                    
+                                    <ion-avatar item-start (click)="viewBusinessDetail(i)">
+                                            <div>
+                                        <img src="{{businessinfoobj.logo.logoBase64}}" onerror='src="assets/imgs/content-imgs/businessprofileCopy@2x.png"'>
+                                        </div>
+                                    </ion-avatar>
+                                    <ion-card-content>
+                                        <p class="business_categories" (click)="viewBusinessDetail(i)" *ngIf="businessinfoobj.categories.length>0">{{businessinfoobj.categories[0].categoryName}}
+                                            <span class="circleSeperator" *ngIf="businessinfoobj.categories.length>1"></span><span *ngIf="businessinfoobj.categories.length>1"> {{businessinfoobj.categories[1].categoryName}}</span></p>
+                                        <h2 class="business_name" (click)="viewBusinessDetail(i)">{{businessinfoobj.businessName}}</h2>
+                                        <!-- <p class="business_service" (click)="viewBusinessDetail(i)">{{businessinfoobj.tagline}}</p> -->
+                                        <address (click)="viewBusinessDetail(i)">{{businessinfoobj.address.location}}</address>
+                                        <div class="cardIndicator">
+                                            <img (click)="viewBusinessDetail(i)" class="ratingStar" src="assets/imgs/icons/ratingCopy7@2x.png">
+                                            <span (click)="viewBusinessDetail(i)">{{businessinfoobj.rating}}</span>
+                                            <span *ngIf="businessinfoobj.showShared">
+                                            <span (click)="viewBusinessDetail(i)" class="circleSeperator"></span>
+                                            <span (click)="viewBusinessDetail(i)" *ngIf="businessinfoobj.showPercent" class="textLight">% shared </span>
+                                            <span (click)="viewBusinessDetail(i)" *ngIf="businessinfoobj.showAmount" class="textLight">&#x20b9; shared </span>
+                                            <span (click)="viewBusinessDetail(i)" *ngIf = "businessinfoobj.showValue">{{businessinfoobj.shareDetails[0].value}}</span>
+                                            <span (click)="viewBusinessDetail(i)" class="icon-arrow" *ngIf="businessinfoobj.showArrow">
+                                                <ion-icon ios="ios-arrow-down" md="md-arrow-down"></ion-icon>
+                                            </span>
+                                            </span>
+                                            <button class="btnCardReferNow" (click)="gotoReferNow(businessinfoobj)" *ngIf="businessinfoobj.showShared">Refer Now</button>
+                                        <button class="btnCardReferNow" (click)="gotoReferNow(businessinfoobj)" *ngIf="!businessinfoobj.showShared">Connect</button>
+                                        </div>
+                                    </ion-card-content>
+                                </ion-item>
+                            </ion-card>
+                            <!--<ion-card class="ujb_businessCard ujb_businessCard_utility">
+                                <ion-item>
+                                    <ion-avatar item-start (click)="viewBusinessDetail()">
+                                        <img src="assets/imgs/content-imgs/businessprofileCopy@2x.png">
+                                    </ion-avatar>
+                                    <ion-card-content>
+                                        <p class="business_categories" (click)="viewBusinessDetail()">IT & Tech
+                                            <span class="circleSeperator"></span> Software development</p>
+                                        <h2 class="{{blurName}}" (click)="viewBusinessDetail()">Karuyaki Solutions Pvt. Ltd.</h2>
+                                        <p class="business_service" (click)="viewBusinessDetail()">Web and Software development</p>
+                                        <address (click)="viewBusinessDetail()">Andheri East, Mumbai</address>
+                                        <div class="cardIndicator">
+                                            <img class="ratingStar" src="assets/imgs/icons/ratingCopy7@2x.png">
+                                            <span>4.3</span>
+                                            <span class="circleSeperator"></span>
+                                            <span class="textLight">% Shared </span>
+                                            <span>10%</span>
+                                            <button class="btnCardReferNow" (click)="gotoReferNow()">Refer Now</button>
+                                        </div>
+                                    </ion-card-content>
+                                </ion-item>
+                            </ion-card>-->
+                        </div>
+                    </div>
+                    <div class="noData" *ngIf="noBusinessFound" text-center>No Business Found</div>
+        
+                </section>
+            </div>
+            <ion-infinite-scroll *ngIf="canLoadMore" (ionInfinite)="onScroll($event)">
+                <ion-infinite-scroll-content></ion-infinite-scroll-content>
+            </ion-infinite-scroll>
+        </ion-content>
+        <ion-footer class="footer-adj">
+            <bottombar></bottombar>
+        </ion-footer>
+        

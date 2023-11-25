@@ -1,0 +1,24 @@
+    .wrapper {
+        padding: 15px 20px 35px !important;
+        .ujb_btn_blue, .ujb_btn_bordered_lg { width: calc(100% - 32px); display: block; margin: auto; }
+        @media screen and (max-width: 375px){
+            .ujb_btn_blue, .ujb_btn_bordered_lg { font-size: 16px; }
+        }
+        .ujb_btn_blue { margin-top: 45px; }
+        .ujb_btn_bordered_lg { margin-top: 20px; }
+        ion-item:not(:first-child), ion-item:last-child { --margin-top: 10px; }
+        .ujb_selectNinput { margin-top: 10px !important; }
+        .ujb_input_password .inputIcon_right { margin-right: 0 !important; margin-top: 0 !important; padding: 10px !important; }
+    }
+    .scroll-content { height: 100%; position: relative; transition: height 0.5s ease; }
+    // .keypadFocused {
+    //     .scroll-content { height: calc((100vh - 59px) - 225px); }
+    // }
+    ion-footer{
+        --margin-bottom: constant(safe-area-inset-bottom);
+           --margin-bottom: env(safe-area-inset-bottom);
+       }
+    ion-header{
+        --padding-top: 10px !important;
+        background: var(--ujb_headerBlue);
+    }

@@ -1,0 +1,146 @@
+<ion-header class="ujb_header blue-bg">
+
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button></ion-back-button>
+        </ion-buttons>
+        <ion-title>{{title}}</ion-title>
+    </ion-toolbar>
+
+</ion-header>
+
+<ion-content [ngClass]="{'keypadFocused':pushNow==true, 'keypadFocusedCaseSpecial':focused==true}">
+    <!-- Add Class "pushNow" to "blockToPush" on focus of selected input element and remove when blur -->
+    <div class="rN_wrapper">
+        <div class=""><!--blockToPush-->
+            <form [formGroup]="referNowForm1" (ngSubmit)="sendReferral()">
+                <div class="rN_block">
+
+                    <div class="rN_block_head m-t-15">
+                        <h2>
+                            <img src="{{businessList.logo.logoBase64}}" onerror='src="assets/imgs/content-imgs/businessprofileCopy@2x.png"'
+                                alt="">{{businessList.businessName}}
+                        </h2>
+                        <ion-list class="ujb_list">
+                            <ion-item>
+                                <ion-select [(ngModel)]="createnewreferal.selectedProductId"
+                                    formControlName="businessCategory" class="ujb_select"
+                                    placeholder="{{productPlaceholder}}">
+                                    <ion-select-option value="{{productDetail.productId}}"
+                                        *ngFor="let productDetail of productDetailsList" [value]="productDetail">
+                                        {{productDetail.name}}</ion-select-option>
+                                    <!-- <ion-option value="c1"></ion-option> -->
+
+                                </ion-select>
+                            </ion-item>
+                            <div class="validateError"
+                                *ngIf="referNowForm1.get('businessCategory').hasError('required') && checkValidation">
+                                Required field</div>
+                            <ion-item class="productServiceName m-t-15">
+                                <ion-label position="floating">Short description of the lead*</ion-label>
+                                <ion-input type="text" (ionBlur)="inputBlur()"
+                                (ionFocus)="inputFocused(5000);" formControlName="productDescription" [(ngModel)]="shortDescp">
+                                </ion-input>
+                            </ion-item>
+                            <div class="validateError"
+                                *ngIf="referNowForm1.get('productDescription').hasError('required') && checkValidation">
+                                Required field</div>
+                        </ion-list>
+                    </div>
+                    <div class="imgCircle" id="imageCircle">
+                        <img src="assets/imgs/content-imgs/referralsGivenCopy@2x.png" alt="">
+                    </div>
+                </div>
+                <form [formGroup]="referNowForm2" (ngSubmit)="sendReferral()">
+                <div class="rN_block">
+                    <button class="ujb_btn_bordered_lg  rN_btn_margin" id="self"
+                        (click)="selectRefer('forself','1')" type="button">For self</button>
+                    <button class="ujb_btn_bordered_lg rN_btn_margin" id="someOneElse"
+                        (click)="selectRefer('forsomeOneElse','2')" type="button">For someone else</button>
+
+                   
+
+                        <div class="rN_someoneElse_form" *ngIf="referSomeoneElse">
+                            <ion-list class="ujb_list">
+                                <ion-item class="productServiceName">
+                                    <ion-label position="floating">Name of Referral*</ion-label>
+                                    <ion-input type="text" id="referralName" formControlName="referralName" (ionFocus)="scrollTo(310);"></ion-input>
+                                </ion-item>
+                                <div class="validateError"
+                                    *ngIf="referNowForm2.get('referralName').hasError('required') && checkSomeoneElseValidation">
+                                    Required field</div>
+                            </ion-list>
+                            <ion-list class="ujb_list ujb_selectNinput ujb_withIcon m-t-10" style="display: flex; align-items: end;">
+                                <ion-item class="ujb_select">
+                                    <ion-select formControlName="countryCode" [(ngModel)]="countryCode">
+                                        <ion-select-option *ngFor="let countryCodeObj of countries"
+                                            value="{{countryCodeObj.code}}"
+                                            [selected]="countryCode == countryCodeObj.code">({{countryCodeObj.code}})
+                                        </ion-select-option>
+                                        <!-- <ion-option value="nes" selected="true">(+91)</ion-option>
+                                                    <ion-option value="n64">(+92)</ion-option>
+                                                    <ion-option value="ps">(+93)</ion-option>
+                                                    <ion-option value="genesis">(+94)</ion-option> -->
+                                    </ion-select>
+                                </ion-item>
+                                <ion-item class="ujb_input">
+                                    <ion-label position="floating">Mobile Number*</ion-label>
+                                    <ion-input type="tel" [(ngModel)]="mobileNo" formControlName="mobileNo" (ionFocus)="scrollTo(360);" placeholder="" maxLength="10" (keyup)="changeErrorMessages($event);" class="scroll-animation"></ion-input>
+                                </ion-item>
+                            </ion-list>
+                            <div class="validateError"
+                                *ngIf="referNowForm2.get('mobileNo').hasError('required') && checkSomeoneElseValidation">
+                                Required field</div>
+                            <div class="validateError" *ngIf="!validMobileNum && !isNan && !referNowForm2.controls['mobileNo'].valid && referNowForm2.controls['mobileNo'].dirty && !referNowForm2.get('mobileNo').hasError('required')">
+                                Mobile Number must be 10 digits.</div>
+                                <div class="validateError" *ngIf="validMobileNum || isNan">Enter valid Mobile number</div>
+                            <ion-list class="ujb_list">
+                                <ion-item class="ujb_input_icon">
+                                    <ion-label position="floating">Email Id (Optional)</ion-label>
+                                    <ion-input id="referNowEmailId" class="iconEmail" type="Email" (keyup.enter)="sendReferral()" (ionFocus)="scrollTo(410);" formControlName="referElseEmail"></ion-input>
+                                    <div class="validateError" *ngIf="referNowForm2.get('referElseEmail').hasError('email')">Enter valid Email ID</div>
+                                </ion-item>
+                            </ion-list>
+                        </div>
+                    <div class="validateError " *ngIf="(checkValidation || checkSomeoneElseValidation) && !canSend">
+                        Select atleast one of the above.</div>
+                </div>
+            <button class="ujb_btn_blue rN_btn_margin rN_btn_spcl margin" type="submit" >{{buttonTextSend}}</button>
+   
+                    <ion-list class="ujb_list">
+                            <ion-item class="ujb_input_icon" style="visibility: hidden;">
+                                <ion-label position="floating" style="visibility: hidden;"></ion-label>
+                                <ion-input class="iconEmail" type="Email"  style="visibility: hidden;"></ion-input>
+                            </ion-item>
+                        </ion-list>
+                        <ion-list class="ujb_list">
+                                <ion-item class="ujb_input_icon" style="visibility: hidden;">
+                                    <ion-label position="floating" style="visibility: hidden;"></ion-label>
+                                    <ion-input class="iconEmail" type="Email" style="visibility: hidden;"></ion-input>
+                                </ion-item>
+                            </ion-list>
+                            <ion-list class="ujb_list">
+                                    <ion-item class="ujb_input_icon" style="visibility: hidden;">
+                                        <ion-label position="floating" style="visibility: hidden;"></ion-label>
+                                        <ion-input class="iconEmail" type="Email" style="visibility: hidden;"></ion-input>
+                                    </ion-item>
+                                </ion-list>
+                                <ion-list class="ujb_list">
+                                        <ion-item class="ujb_input_icon" style="visibility: hidden;">
+                                            <ion-label position="floating" style="visibility: hidden;"></ion-label>
+                                            <ion-input class="iconEmail" type="Email" style="visibility: hidden;"></ion-input>
+                                        </ion-item>
+                                    </ion-list>
+                                    <ion-list class="ujb_list">
+                                            <ion-item class="ujb_input_icon" style="visibility: hidden;">
+                                                <ion-label position="floating" style="visibility: hidden;"></ion-label>
+                                                <ion-input class="iconEmail" type="Email" style="visibility: hidden;"></ion-input>
+                                            </ion-item>
+                                        </ion-list>
+            
+        </form>
+        </form>
+        </div>
+    </div>
+
+</ion-content>

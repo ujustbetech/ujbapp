@@ -1,0 +1,138 @@
+<ion-header class="ujb_header ujb_header_sm blue-bg">
+
+    <div class="statusBarPlaceholder" showWhen="ios"></div>
+
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button></ion-back-button>
+        </ion-buttons>  
+        <ion-title>
+            <span>{{pageTitle}}</span>
+        </ion-title>
+    </ion-toolbar>
+
+</ion-header>
+<ion-content [ngClass]="{'modal_opened':scrollBlock==true}">
+    <section class="content_head">
+        <div class="searchPanel">
+            <div class="seg1">
+                <div class="ujb_search">
+                    <div class="inline-block">
+                        <form action=".">
+                            <ion-searchbar search-icon="null" class="ujb_searchbar" [(ngModel)]="getBusinessListInfo.searchTerm"
+                                [ngModelOptions]="{standalone: true}"
+                                (search)="searchData(getBusinessListInfo.searchTerm)" (ionInput)="setFilteredItems()"
+                                placeholder="{{placeholderBusinessSearch}}">
+                            </ion-searchbar>
+                            <button end>
+                                <img (click)="searchData(getBusinessListInfo.searchTerm)" src="assets/imgs/icons/search@2x.png" alt="">
+                            </button>
+                        </form>
+                    </div>
+
+                    <ion-list class="{{hideSearch}}" hidden>
+                        <ion-item *ngFor="let item of items" (click)="selectValue(item,getBusinessListInfo.searchTerm)">
+                            {{item.businessName}}
+                        </ion-item>
+                    </ion-list>
+                    
+                    <ion-list hidden>
+                        <ion-item>
+                            <ion-label>Daenerys Targaryen</ion-label>
+                        </ion-item>
+                        <ion-item>
+                            <ion-label>Daenerys Targaryen</ion-label>
+                        </ion-item>
+                        <ion-item>
+                            <ion-label>Daenerys Targaryen</ion-label>
+                        </ion-item>
+                        <ion-item>
+                            <ion-label>Daenerys Targaryen</ion-label>
+                        </ion-item>
+                    </ion-list>
+                </div>
+            </div>
+            <div class="seg2 inline-block">
+                <div class="businessListingFilter inline-block">
+                    <span class="inline-block" (click)="openModal()">
+                        <!-- Sort/Filter -->
+                        <img class="icon-filter" src="assets/imgs/icons/sortFilter@2x.png" alt="">
+                        <span class="{{myClass1}}"></span>
+                    </span>
+                </div>
+            </div>
+            <div class="seg3">
+                    <div class="searchedTags"
+                    *ngIf="getBusinessListInfo.categoryListForSort.length>0||getBusinessListInfo.searchTerm!=undefined||getBusinessListInfo.searchTerm!=''">
+                    <div class="text-xs"
+                        *ngIf="getBusinessListInfo.categoryListForSort.length>0||(getBusinessListInfo.searchTerm!=undefined&&getBusinessListInfo.searchTerm!='')">
+                        search results for</div>
+                    <ul>
+                        <li *ngIf="getBusinessListInfo.searchTerm!=undefined&&getBusinessListInfo.searchTerm!=''">
+                            {{getBusinessListInfo.searchTerm}}
+                            <img src="assets/imgs/icons/crossBlue@2x.png"
+                                (click)="clearVal('searchedTerm',getBusinessListInfo.searchTerm)" alt="">
+                        </li>
+                        <li *ngFor="let category of getBusinessListInfo.categoryListForSort;">
+                            {{category.categoryName}}
+                            <img src="assets/imgs/icons/crossBlue@2x.png" (click)="clearVal('category', category)"
+                                alt="">
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="wrapper">
+        <section class="ujb_userContent">
+            <!-- ======================================================================== USER BASED CONTENT -->
+            <div class="ujb_userBased">
+                <!-- Client Partner: Business Card -->
+                <div class="businessListings {{blurName}}">
+                    <ion-card class="ujb_businessCard ujb_businessCard_utility"
+                        *ngFor="let businessinfoobj of businessList,let i=index">
+                        <ion-item>
+                            <ion-avatar item-start (click)="viewBusinessDetail(i)">
+                                <div>
+                                    <img src="{{businessinfoobj.logo.logoBase64}}"
+                                        onerror='src="assets/imgs/content-imgs/businessprofileCopy@2x.png"'>
+                                </div>
+                            </ion-avatar>
+                            <ion-card-content>
+                                <p class="business_categories" (click)="viewBusinessDetail(i)" *ngIf="businessinfoobj.categories.length>0">{{businessinfoobj.categories[0].categoryName}}
+                                    <span class="circleSeperator" *ngIf="businessinfoobj.categories.length>1"></span><span *ngIf="businessinfoobj.categories.length>1"> {{businessinfoobj.categories[1].categoryName}}</span></p>
+                                <h2 class="business_name" (click)="viewBusinessDetail(i)">
+                                    {{businessinfoobj.businessName}}</h2>
+                                <!-- <p class="business_service" (click)="viewBusinessDetail(i)">{{businessinfoobj.tagline}}
+                                </p> -->
+                                <address (click)="viewBusinessDetail(i)">{{businessinfoobj.address.location}}</address>
+                                <div class="cardIndicator">
+                                    <img (click)="viewBusinessDetail(i)" class="ratingStar" src="assets/imgs/icons/ratingCopy7@2x.png">
+                                    <span (click)="viewBusinessDetail(i)">{{businessinfoobj.rating}}</span>
+                                    <span *ngIf="businessinfoobj.showShared">
+                                    <span (click)="viewBusinessDetail(i)" class="circleSeperator"></span>
+                                    <span (click)="viewBusinessDetail(i)" *ngIf="businessinfoobj.showPercent" class="textLight">% shared </span>
+                                    <span (click)="viewBusinessDetail(i)" *ngIf="businessinfoobj.showAmount" class="textLight">&#x20b9; shared </span>
+                                    <span (click)="viewBusinessDetail(i)"
+                                        *ngIf="businessinfoobj.showValue">{{businessinfoobj.shareDetails[0].value}}</span>
+                                    <span (click)="viewBusinessDetail(i)" class="icon-arrow" *ngIf="businessinfoobj.showArrow">
+                                        <ion-icon ios="ios-arrow-down" md="md-arrow-down"></ion-icon>
+                                    </span>
+                                    </span>
+                                    <button class="btnCardReferNow" (click)="gotoReferNow(businessinfoobj)" *ngIf="businessinfoobj.showShared">Refer Now</button>
+                                <button class="btnCardReferNow" (click)="gotoReferNow(businessinfoobj)" *ngIf="!businessinfoobj.showShared">Connect</button>
+                                </div>
+                            </ion-card-content>
+                        </ion-item>
+                    </ion-card>
+
+                </div>
+            </div>
+            <div class="noData" *ngIf="noBusinessFound" text-center>No Business Found</div>
+        </section>
+    </div>
+</ion-content>
+<ion-footer class="footer-adj">
+    <bottombar></bottombar>
+</ion-footer>

@@ -1,0 +1,17 @@
+Files to edit
+
+AndroidManifest.xml
+	1) application tag
+		android:usesCleartextTraffic="true"
+		android:allowBackup="false"  
+ 
+	2) Activity Tab
+		android:windowSoftInputMode="adjustResize|adjustPan"
+
+	3) Remove all Read_phone_state and all sms permissions except Read_sms
+
+/plugins/cordova-plugin-sms/plugins.xml
+	4) Remove all Read_phone_state and all sms permissions except Read_sms
+
+/android.json
+	5) Remove all Read_phone_state and all sms permissions except Read_sms

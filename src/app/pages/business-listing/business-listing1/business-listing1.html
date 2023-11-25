@@ -1,0 +1,83 @@
+<ion-header class="ujb_header ujbFrame_header blue-bg">
+    <div class="statusBarPlaceholder" showWhen="ios"></div>
+    <ion-toolbar>
+        <ion-title>Business Listing</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content class="scroll-disabled ujbFrameContent">
+    <div class="stackLayers ujbFrame_footerSkipLink">
+        <div class="layerFront">
+            <!--<form [formGroup]="businessList1Form" (ngSubmit)="submitBusinessCategory()">-->
+                <div class="contentArea">
+                    <h3>Business / Professional Categories</h3>
+                    <div class="subHeading">Select atleast one (Max 2)</div>
+                    <div class="validateError" id="oneCategory">
+                        <span *ngIf="selectedBusinessCat && !selectMinBusinessCat">Please select atleast one category.</span>
+                    </div>
+                    <div class="validateError" id="minCategory">
+                        <span *ngIf="selectMinBusinessCat && !selectedBusinessCat"> You have already selected two categories. Please unselect earlier category</span>
+                    </div>
+                  
+                   <!-- <div class="answer-section">
+                        <ion-list class="ujb_list" padding-horizontal>
+                            <ion-item>
+                                <ion-select formControlName="businessCategoryFirst" [(ngModel)]="businessCategory1"class="ujb_select" placeholder="Business Category 1" (ionChange)="disableItem(1)">
+                                    <ion-option value="" [selected]="true" [disabled]="true">Select</ion-option>
+                                    <ion-option disabled="{{categoryinfoobj.disabled}}"  value="{{categoryinfoobj.catId}}" *ngFor="let categoryinfoobj of catList"> {{categoryinfoobj.categoryName}}</ion-option>
+                                </ion-select>
+                            </ion-item>
+                            <div class="validateError" *ngIf="businessList1Form.get('businessCategoryFirst').hasError('required') && checkValidation"> Business category is required.</div>
+                            <ion-item>
+                                <ion-select  formControlName="businessCategorySecond"[(ngModel)]="businessCategory2" class="ujb_select" placeholder="Business Category 2" (ionChange)="disableItem(2)">
+                                    <ion-option value="" [selected]="true" [disabled]="true">Select</ion-option>
+                                    <ion-option disabled="{{categoryinfoobj.disabled}}"  value="{{categoryinfoobj.catId}}" *ngFor="let categoryinfoobj of catListSecond"> {{categoryinfoobj.categoryName}}</ion-option>
+                                </ion-select>
+                            </ion-item>
+
+                        </ion-list>
+                    </div>-->
+                    <div class="wrapper">
+                        <div class="categoryGrid">
+                            <ul>
+                                <li *ngFor="let categoryinfoobj of catList" class="{{categoryinfoobj.disableCategory}}">
+                                    <div class="{{categoryinfoobj.selectedCategory}}"></div>
+                                    <div>
+                                        <img  src="{{categoryinfoobj.categoryImgBase64}}" (click)="selectValue(categoryinfoobj)" alt="">
+                                        <div (click)="selectValue(categoryinfoobj)">{{categoryinfoobj.categoryName}}</div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+            <!--</form>-->
+
+        </div>
+        <div class="layerSecond"></div>
+        <div class="layerLast"></div>
+    </div>
+
+</ion-content>
+<ion-footer no-padding>
+    <footer class="ujbFrame_footer">
+            <div class="block w-full pad-15 pad-t0"  float-left>
+                    <button class="ujb_btn_blue" type="submit" [disabled]="disableSave" *ngIf="isEdit"(click)="editCategory()" >Update</button>
+                </div>
+        <div class="block w-full" float-left>
+            <div class="navLeft" (click)="goToDashboard()" float-left *ngIf="hidePrevious">
+                <img class="img-icon" src="assets/imgs/icons/previous.png" alt="">
+                <span>Previous</span>
+            </div>
+            
+            <button class="btn_invisible" type="submit"  [disabled]="disableSave" (click)="submitBusinessCategory()" float-right >
+        <div class="navRight" *ngIf="hideNext">
+          <span>Next</span>
+          <img class="img-icon" src="assets/imgs/icons/next.png" alt="">
+        </div>
+      </button>
+        </div>
+        
+    </footer>
+</ion-footer>

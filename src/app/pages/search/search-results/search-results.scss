@@ -1,0 +1,98 @@
+    .content_head { padding: 15px 16px 0; }
+    .wrapper {
+        padding-top: 0 !important;
+        .ujb_businessCard { margin: 15px 0 !important; width: 100% !important; }
+        .noData { margin-top: 40px; font-size: 20px; }
+    }
+    //.business_name { text-shadow: 0 0 8px #000; color: transparent !important; }
+    .view {
+        display: block !important;
+    }
+    .hide {
+        display: none !important;
+    }
+    .user_guest_Only {
+        .ujb_button { width: calc(100% - 55px); margin: 20px auto; }
+       .business_name { text-shadow: 0 0 8px #000; color: transparent !important; }
+       ion-avatar {
+        div {
+         border-radius: 50px;
+         //box-shadow: inset 0 0 10px #003366; 
+            img { filter: blur(4px); }
+        }
+    }
+    }
+
+    // Repositioning of Searchbar and filter
+    .ujb_search .ujb_searchbar { width: calc(100% - 50px); float: left; } 
+    .ujb_search .businessListingFilter { margin-bottom: 15px; }
+    .ujb_search {
+        margin-top: 5px !important;
+        ion-list { width: 100% !important; top: 45px; }
+    }
+    
+    .searchPanel {
+        .icon-filter {
+            width: 19px;
+            height: 18px;
+        }
+        .searchedTags {
+            .text-xs {
+                font-size: 13px;
+                color: var(--ujb_gray);
+                line-height: 25px;
+                padding-left: 15px;
+                margin-top: 0;
+            }
+            ul {
+                margin: 0;
+                padding: 0;
+                li {
+                    background: rgb(234, 232, 232);
+                    color: var(--ujb_gray);
+                    padding: 0 15px;
+                    line-height: 25px;
+                    border-radius: 20px;
+                    margin: 0 5px 5px 0;
+                    display: inline-block;
+                    font-size: 13px;
+                    img {
+                        width: 9px;
+                        height: 9px;
+                        display: inline-block;
+                        margin-left: 15px;
+                    }
+                }
+            }
+        }
+
+        .seg1 { width: calc(100% - 35px); display: inline-block; margin-right: 10px; }
+        .seg2 { position: relative; top: 5px; }
+        .seg3 { width: 100%; }
+        .ujb_search > .inline-block { width: 100%; }
+    }
+
+    ion-footer{
+        margin-bottom: constant(safe-area-inset-bottom);
+           margin-bottom: env(safe-area-inset-bottom);
+       }
+       //ion-header{
+      //  padding-top: 10px !important;
+    //}
+
+    ion-item {
+        display: flex;
+        ion-avatar {
+            height: fit-content;
+            width: fit-content;
+        }
+        ion-card-content {
+            width: calc(100% - 65px);
+            flex: 1;
+        }
+    }
+
+    ion-searchbar {
+        min-height: 40px !important;
+        max-height: 40px;
+    }

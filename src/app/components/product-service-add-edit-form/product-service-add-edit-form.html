@@ -1,0 +1,335 @@
+<div #expandWrapper class="expand-wrapper product-service-panel" [class.collapsed]="!expanded">
+    <!-- Product Images ====================================================================-->
+    <h4 *ngIf="productDetails.productImages.length<5">Add up to 5 photos (optional)</h4>
+    <div class="add-product-image">
+        <!-- Add Product Images - Uploaded View -->
+        <!-- Note PR: Add "defaultImage" to "product-uploaded" element When Default Product/Service Image selected -->
+        <div class="product-uploaded {{productImage.myClass}}"
+            *ngFor="let productImage of productDetails.productImages; let i =index">
+            <span class="radioEl" (click)="selectedImage(productImage,i)"></span>
+            <div class="imgContainer">
+                <img class="productImage" src="{{productImage.prodImgBase64}}" alt="" imageViewer>
+            </div>
+            <p class="productImageName">{{productImage.prodImgName}}</p>
+            <img src="assets/imgs/icons/trash@2x.png" alt="" (click)="deleteImage(productImage,i)" class="icon-del">
+        </div>
+        <!-- Add Product Images - Unavailable View -->
+
+        <div class="product-image-unavailable" *ngIf="uploadClick || productDetails.productImages.length==0">
+            <div class="imgUpload-placeholder" (click)="addProductImage()">
+                <img class="icon-camera" src="assets/imgs/icons/camera@2x.png" alt=""> Upload Photo
+            </div>
+        </div>
+        <div class="link-addMore"
+            *ngIf="addImage || (productDetails.productImages.length<5 && productDetails.productImages.length>0)">
+            <span class="inlne-block ujb_link" (click)="addMoreImage()">+ add more</span>
+        </div>
+    </div>
+
+
+    <!-- Product Details ====================================================================-->
+    <div class="product-details">
+        <form [formGroup]="productDetailForm">
+            <ion-list class="ujb_list">
+                <!-- Product Name -->
+                <ion-item class="productServiceName">
+                    <ion-label position="floating">{{productDetails.type}} Name* </ion-label>
+                    <ion-input type="text" (keyup)="nameChanged()" (ionBlur)="removeSroll()"
+                        (ionFocus)="scrollTo(5000);" [(ngModel)]="productDetails.name" [attr.id]="'productName' + index"
+                        formControlName="productName"></ion-input>
+                </ion-item>
+                <div class="validateError"
+                    *ngIf="productDetailForm.get('productName').hasError('required') && checkValidation">
+                    {{productDetails.type}} Name is required</div>
+                <div class="validateError"
+                    *ngIf="!productDetailForm.get('productName').hasError('required') && this.productDetails.isSameProductName">
+                    You already have {{productDetails.type}} with this Name.</div>
+
+                <!-- Product Description -->
+                <ion-item>
+                    <ion-textarea (ionBlur)="removeSroll()" (ionFocus)="scrollTo(5000);" formControlName="description"
+                        [attr.id]="'description' + index" [(ngModel)]="productDetails.description"
+                        placeholder="Description*" rows="5"></ion-textarea>
+                </ion-item>
+                <div class="validateError"
+                    *ngIf="productDetailForm.get('description').hasError('required') && checkValidation">
+                    {{productDetails.type}} description is required</div>
+
+                <!-- Product URL -->
+                <ion-item class="ujb_input_icon">
+
+                    <ion-label position="floating">URL (Image/Video Link) - optional </ion-label>
+                    <ion-input (ionBlur)="removeSroll()" (ionFocus)="scrollTo(5000);" class="iconUrl"
+                        formControlName="url" [attr.id]="'url' + index" [(ngModel)]="productDetails.url" type="text">
+                    </ion-input>
+                </ion-item>
+                <div class="validateError"
+                    *ngIf="productDetailForm.get('url').hasError('pattern') && productDetailForm.controls['url'].dirty">
+                    Please enter valid url</div>
+
+                <!-- Product Price -->
+                <ion-item class="ujb_input_icon" *ngIf="productDetails.type=='Product' && hideInput">
+                    <ion-label position="floating">Product Price (optional)</ion-label>
+                    <ion-input (ionBlur)="removeSroll()" (ionFocus)="scrollTo(5000);" (keyup)="validateMinDealValue()"
+                        class="iconRupee" formControlName="productPrice" [attr.id]="'productPrice' + index"
+                        [(ngModel)]="productDetails.productPrice" type="tel"></ion-input>
+                </ion-item>
+                <div class="validateError"
+                    *ngIf="productDetailForm.get('productPrice').hasError('pattern') && productDetailForm.controls['productPrice'].dirty">
+                    Please enter valid price</div>
+
+                <!-- Minimum Deal Value -->
+                <ion-item class="ujb_input_icon pushAdj" *ngIf="hideInput">
+                    <ion-label position="floating">Minimum Deal Value*</ion-label>
+                    <ion-input (ionBlur)="removeSroll()" (ionFocus)="scrollTo(5000);" (keyup)="validateMinDealValue()"
+                        class="iconRupee" formControlName="dealValue" [attr.id]="'dealValue' + index"
+                        [(ngModel)]="productDetails.minimumDealValue" type="tel"></ion-input>
+                </ion-item>
+                <div *ngIf="hideInput">
+                    <div class="validateError"
+                        *ngIf="productDetailForm.get('dealValue').hasError('required') && checkValidation">Minimum deal
+                        is required</div>
+                    <div class="validateError"
+                        *ngIf="productDetailForm.get('dealValue').hasError('pattern') && productDetailForm.controls['dealValue'].dirty && !productDetailForm.get('dealValue').hasError('required')">
+                        Please enter valid deal value</div>
+                    <div class="validateError"
+                        *ngIf="!productDetailForm.get('dealValue').hasError('pattern') && !productDetailForm.get('dealValue').hasError('required') && isMinDealValueInvalid && checkValidation">
+                        Deal value should be greater than product price</div>
+                </div>
+            </ion-list>
+
+            <!-- Reference Percentage / Amount -->
+            <div class="referal-commission" *ngIf="hideInput">
+                <h4>Referral Percentage / Amount*</h4>
+                <!-- Reference Percentage / Amount - Radio Button Selection -->
+                <div class="redioSelection">
+                    <ion-list
+                        class="ujb_radioButtons radioGroup-inline">
+                        <ion-radio-group formControlName="radioValueTypeOf" [(ngModel)]="productDetails.typeOf" (ionChange)="selectReferancePer(productDetails.typeOf)" >
+                        <ion-item>
+                            <ion-label>Single</ion-label>
+                            <ion-radio slot="start" [value]="1"></ion-radio>
+                        </ion-item>
+
+                        <ion-item>
+                            <ion-label>Multiple</ion-label>
+                            <ion-radio slot="start" [value]="2"></ion-radio>
+                        </ion-item>
+                    </ion-radio-group>
+</ion-list>
+
+                    <span class="inline-block ujb_link font-14" (click)="openTipPopup()">
+                        <img src="assets/imgs/icons/toolTip@2x.png" alt="" class="icon-tip"> Tip
+                    </span>
+                </div>
+                <div class="validateError"
+                    *ngIf="!productDetails.typeOf && checkValidation">Please
+                    select value.</div>
+                <div class="redioSelection " *ngIf="productDetails.showMultiple">
+                    <ion-list 
+                        [attr.id]="'radioValueshareType' + index" 
+                        class="ujb_radioButtons radioGroup-inline"
+                        [attr.id]="'slabOrProduct' + index" >
+<ion-radio-group formControlName="radioValueshareType" [(ngModel)]="productDetails.shareType" (ionChange)="selectValue(productDetails.shareType)">
+                        <ion-item>
+                            <ion-label> Slabs</ion-label>
+                            <ion-radio slot="start" [value]="1"></ion-radio>
+                        </ion-item>
+
+                        <ion-item class="m-adj">
+                            <ion-label>Product</ion-label>
+                            <ion-radio slot="start" [value]="2"></ion-radio>
+                        </ion-item>
+                    </ion-radio-group>
+</ion-list>
+                </div>
+                <div class="validateError"
+                    *ngIf="productDetails.isSlabProdRadioInvalid && checkValidation && productDetails.typeOf ==2">Please
+                    select value.</div>
+                <!-- Reference Percentage / Amount Single -->
+                <!--   <div class="block-single">
+                    <ion-grid no-padding class="m-t-15">
+                        <ion-row>
+                            <ion-col col-4 class="pad-r-15">
+                                <ion-list class="ujb_list">
+                                    <ion-item>
+                                        <ion-label></ion-label>
+                                        <ion-select interface="popover" [(ngModel)]="ProductsOrService.type" [ngModelOptions]="{standalone: true}" (ionChange)=" getSelectedCurrency($event) ">
+                                            <ion-option value="1 " selected="true">%</ion-option>
+                                            <ion-option value="2 ">&#8377;</ion-option>
+                                        </ion-select>
+                                    </ion-item>
+                                </ion-list>
+                            </ion-col>
+                            <ion-col col-8>
+                                <ion-list class="ujb_list ">
+                                    <ion-item>
+                                        <ion-input type="number " placeholder=" " [(ngModel)]="ProductsOrService.value" [ngModelOptions]="{standalone: true}"></ion-input>
+                                    </ion-item>
+                                </ion-list>
+                            </ion-col>
+                        </ion-row>
+                    </ion-grid>
+                </div> -->
+
+
+                <!-- Reference Percentage / Amount slab- Block Multiple -->
+                <div class="block-slab-single slab_fromTo"
+                    *ngFor="let ProductsOrService of productDetails.ProductsOrServices, let i=index">
+                    <ion-list class="ujb_list" *ngIf="productDetails.showProducts">
+                        <ion-item>
+                            <ion-input [attr.id]="'prodName'+index+i" type="text"
+                                (keyup)="checkSubProducts(ProductsOrService,i)" (ionBlur)="removeSroll()"
+                                (ionFocus)="scrollTo(5000);" placeholder="Product name*"
+                                [(ngModel)]="ProductsOrService.productName" [ngModelOptions]="{standalone: true}">
+                            </ion-input>
+                        </ion-item>
+                        <div class="validateError"
+                            *ngIf="ProductsOrService.isInvalidProduct && !ProductsOrService.isSameProductName">Please
+                            enter a product name.</div>
+                        <div class="validateError" *ngIf="ProductsOrService.isSameProductName">You already have product
+                            with this name.</div>
+                    </ion-list>
+                    <ion-list class="ujb_list" *ngIf="productDetails.showSlabs">
+                        <ion-item>
+                            <ion-input [attr.id]="'slabFrom'+index+i" type="tel" (ionBlur)="removeSroll()"
+                                (ionFocus)="scrollTo(5000);" placeholder="From*" (keyup)="onKey(ProductsOrService,i)"
+                                [(ngModel)]="ProductsOrService.from" [ngModelOptions]="{standalone: true}"></ion-input>
+                        </ion-item>
+                        <div class="validateError" *ngIf="ProductsOrService.isInValidSlabFrom">Please enter a from
+                            value.</div>
+                        <div class="validateError" *ngIf="ProductsOrService.isSlabFromLengthInValid">Please enter a
+                            value less than 10 digits.</div>
+                        <ion-item>
+                            <ion-input type="tel" placeholder="To*" (keyup)="onKey(ProductsOrService,i)"
+                                (ionFocus)="scrollTo(5000);" [(ngModel)]="ProductsOrService.to"
+                                [ngModelOptions]="{standalone: true}"></ion-input>
+                        </ion-item>
+                        <div class="validateError" *ngIf="ProductsOrService.isSlabFromInValid">Value of To should be
+                            greater than from.</div>
+                        <div class="validateError" *ngIf="ProductsOrService.isSlabGreatInValid">Values in current slab
+                            should be greater than previous.</div>
+                        <!-- <div class="validateError" *ngIf="ProductsOrService.isInValidSlabFrom">Please enter a from value.</div> -->
+                        <div class="validateError" *ngIf="ProductsOrService.isInValidSlabFrom">Please enter a from
+                            value.</div>
+                        <div class="validateError" *ngIf="ProductsOrService.isSlabToLengthInValid">Please enter a value
+                            less than 10 digits.</div>
+
+                    </ion-list>
+                    <div no-padding class=" {{singleClass}}">
+                        <div>
+                            <div col-4 class="pull-left">
+                                <ion-list class="ujb_list">
+                                    <ion-item>
+                                        <ion-select class="selectPopover"
+                                            [(ngModel)]="ProductsOrService.type"
+                                            (ionChange)="onKey1(ProductsOrService,i)"
+                                            [ngModelOptions]="{standalone: true}">
+                                            <ion-select-option [value]="1">%</ion-select-option>
+                                            <ion-select-option [value]="2">&#8377;</ion-select-option>
+                                        </ion-select>
+                                    </ion-item>
+                                </ion-list>
+                            </div>
+                            <div col-8 class="pull-left">
+                                <ion-list class="ujb_list">
+                                    <ion-item>
+                                        <ion-input (keyup)="onKey1(ProductsOrService,i)" type="number"
+                                            [attr.id]="'value'+index+i" (ionBlur)="removeSroll()"
+                                            (ionFocus)="scrollTo(5500);" placeholder="value*"
+                                            [(ngModel)]="ProductsOrService.value" [ngModelOptions]="{standalone: true}">
+                                        </ion-input>
+                                    </ion-item>
+                                </ion-list>
+                            </div>
+                        </div>
+                    </div>
+
+                    <ion-grid no-padding
+                        *ngIf="productDetails.showMultiple && (productDetails.showProducts || productDetails.showSlabs)">
+                        <ion-row>
+                            <ion-col>
+                                <div class="remove">
+                                    <img [ngClass]="{'disableDelete': this.productDetails.ProductsOrServices.length == 2}"
+                                        src="assets/imgs/icons/trash@2x.png" (click)="removeReference(i)" alt=""
+                                        class="icon-del">
+                                </div>
+                            </ion-col>
+                        </ion-row>
+                    </ion-grid>
+                    <div class="validateError" *ngIf="ProductsOrService.isInValidType">Please select a referrence /
+                        amount type.</div>
+                    <div class="validateError"
+                        *ngIf="ProductsOrService.isValueNotEntered && ProductsOrService.type == '1'">Please enter a
+                        percentage.</div>
+                    <div class="validateError"
+                        *ngIf="ProductsOrService.isInValidValue && ProductsOrService.type == '1'">Please enter a valid
+                        percentage.</div>
+                    <div class="validateError"
+                        *ngIf="ProductsOrService.isValueNotEntered && ProductsOrService.type != '1'">Please enter an
+                        amount.</div>
+                    <div class="validateError"
+                        *ngIf="ProductsOrService.isInValidValue && ProductsOrService.type != '1'">Please enter a valid
+                        amount.</div>
+                    <div class="validateError"
+                        *ngIf="ProductsOrService.isInValidLengthValue && ProductsOrService.type != '1'">Please enter a
+                        amount with less than 10 digits.</div>
+                    <div class="validateError"
+                        *ngIf="ProductsOrService.isInValidValueRup && ProductsOrService.type != '1'">Amount should be
+                        lesser than minimum deal value.</div>
+                </div>
+
+                <!-- Reference Percentage / Amount - Product Block Multiple -->
+                <!--   <div class="block-slab-multiple" *ngIf="productDetails.showProducts">
+                    
+                    <ion-grid no-padding class="m-t-15">
+                        <ion-row>
+                            <ion-col col-4 class="pad-r-15">
+                                <ion-list class="ujb_list">
+                                    <ion-item>
+                                        <ion-select interface="popover">
+                                            <ion-option value="percentage" selected="true">%</ion-option>
+                                            <ion-option value="amount">&#8377;</ion-option>
+                                        </ion-select>
+                                    </ion-item>
+                                </ion-list>
+                            </ion-col>
+                            <ion-col col-8>
+                                <ion-list class="ujb_list">
+                                    <ion-item>
+                                        <ion-input type="number" placeholder=""></ion-input>
+                                    </ion-item>
+                                </ion-list>
+                            </ion-col>
+                        </ion-row>
+                    </ion-grid>
+                    <ion-grid no-padding>
+                        <ion-row>
+                            <ion-col>
+                                <div class="remove">
+                                    <img src="assets/imgs/icons/trash@2x.png" alt="" class="icon-del">
+                                </div>
+                            </ion-col>
+                        </ion-row>
+                    </ion-grid>
+                </div> -->
+                <div class="validateError"
+                    *ngIf="productDetails.isSlabProdLengthInvalid && productDetails.shareType == 1">Please add atleast 2
+                    Slabs.</div>
+                <div class="validateError"
+                    *ngIf="productDetails.isSlabProdLengthInvalid && productDetails.shareType == 2">Please add atleast 2
+                    Products.</div>
+                <div class="link-addMore"
+                    *ngIf='productDetails.ProductsOrServices.length>=0 && productDetails.ProductsOrServices.length<10 && productDetails.showMultiple == true'>
+                    <span [attr.id]="'addMoreButton' + index" (click)="addMoreRefData()" class="inlne-block ujb_link ">+
+                        add more</span>
+                </div>
+            </div>
+
+            <button class="ujb_btn_blue" (click)="checkValidations('add')">Save</button>
+            <div class="link-remove">
+                <span class="inlne-block ujb_link" (click)="removeProduct(productDetails)">- remove</span>
+            </div>
+        </form>
+    </div>
+</div>

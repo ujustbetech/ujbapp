@@ -1,0 +1,29 @@
+<div class="modalAlert">
+  <div class="header"> Edit {{title}}</div>
+  <section>
+    <form [formGroup]="formGroup">
+      <ion-list class="ujb_list">
+        <ion-item>
+          <ion-input type="text" tabindex="8" [(ngModel)]="geustInfo.firstName" formControlName="FirstName">
+          </ion-input>
+        </ion-item>
+        <div class="validateError">
+            <span *ngIf="formGroup.get('FirstName').hasError('required')&& checkValidation">First Name is required</span>
+            <span *ngIf="formGroup.get('FirstName').hasError('pattern' ) && checkValidation">Please enter valid first name</span></div>
+        <!-- Add Border when validation appear "add-borderBottom" -->
+        <ion-item>
+          <ion-input type="text" tabindex="8" [(ngModel)]="geustInfo.lastName" formControlName="LastName">
+          </ion-input>
+        </ion-item>
+        <div class="validateError">
+            <span *ngIf="formGroup.get('LastName').hasError('required')&& checkValidation">Last Name is required</span>
+            <span *ngIf="formGroup.get('LastName').hasError('pattern' ) && checkValidation">Please enter valid last name</span>
+        </div>
+      </ion-list>
+    </form>
+  </section>
+  <footer>
+    <button (click)="cancel()">Cancel</button>
+    <button (click)="ok()">OK</button>
+  </footer>
+</div>

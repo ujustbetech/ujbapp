@@ -1,0 +1,25 @@
+// page-error {
+    .scroll-content { overflow: hidden; }
+    .wrapper {
+        width: 275px; height: 444px; position: absolute; top: 0; bottom: 0; left: 0; right: 0; margin: auto; padding: 0 !important;
+        @media screen and (max-width: 374px){
+            width: 200px; height: 350px;
+        }
+        img { width: 100%; height: auto; display: block; }
+        h2, p { text-align: center; color: var(--ujb_gray); }
+        h2 { font-size: 26px; font-weight: 600; padding-top: 20px; }
+        p { font-size: 20px; }
+        .ujb_btn_bordered_lg { margin-top: 35px; }
+        @media screen and (max-width: 411px) {
+            h2 { font-size: 22px; }
+            p { font-size: 18px; }
+        }
+    }
+    div.backButton { 
+        display: inline-block; padding: 20px 15px 15px 25px;
+        .ion-ios-arrow-back, .ion-ios-arrow-back { font-size: 1.8em !important; }
+    }
+    //ion-header{
+      //  padding-top: 10px !important;
+    //}
+// }

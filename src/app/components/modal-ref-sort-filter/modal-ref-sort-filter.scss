@@ -1,0 +1,110 @@
+
+    .pad-tb { padding-top: 15px !important; padding-bottom: 10px !important; }
+    .textLight { color: var(--ujb_bg_search_item_checkbox); font-size: 16px; }
+    ion-header {
+        background: #fff;
+
+        h3 {
+            font-size: 20px; line-height: 26px; padding: 10px 35px; position: relative; background: var(--ujb_lines); 
+            color: var(--ujb_gray); margin: 0;
+            @media screen and (max-width: 411px) {
+                font-size: 18px;
+            }      
+        }
+        .ujb_link {
+            font-size: 12px; float: right; position: absolute; right: 35px;
+            @media screen and (max-width: 411px) {
+                font-size: 11px;
+            }
+        }
+        .sortControls {
+            padding: 0 25px; margin-top: 15px; padding-bottom: 15px; background: #fff;
+
+            .textLight { padding: 0 10px; }
+            ul {
+                list-style-type: none; margin: 0; padding: 0; display: flex; margin-top: 10px;
+                li {
+                    width: 20%; text-align: center; padding: 0 5px;
+
+                    img { width: 42px; height: 42px; display: inline-block; }
+                    div { color: rgba(51,51,51,0.5); font-size: 12px; }
+                }
+                li:hover > div { color: var(--ujb_gray); }
+            }
+            ion-segment-button.segment-activated { 
+                border-color: var(--ujb_fadedBlue) !important; color: var(--ujb_fadedBlue) !important;
+            }
+        }   
+    }
+    .ujb_segment_content {
+        border-top: none !important;
+    }
+    .sortRefStatus {
+        padding-top: 0; 
+        // max-height: calc(100vh - 50vh - 94px); overflow: auto;
+
+        ul {
+            list-style-type: none; padding: 0; margin: 0;
+            
+
+            li {
+                display: block;
+                padding: 10px 16px; text-align: left !important; font-size: 16px; color: var(--ujb_gray);
+                @media screen and (max-width: 411px){
+                    font-size: 15px;
+                }
+
+                img { width: 15px; height: 15px; display: inline-block; margin-right: 10px; vertical-align: top; }
+                .wrap {
+                    // max-width: 320px; margin: auto;
+                    // @media screen and (min-width: 401px){
+                    //     max-width: 335px;
+                    // }
+                }
+            }
+            li.selectedStatus { background: rgb(173, 201, 228); }
+        }
+    }
+    .FilterPanel {
+        padding: 0; margin: auto; 
+        // max-height: calc(100vh - 50vh - 94px); overflow: auto;
+        // max-width: 320px; 
+            // @media screen and (min-width: 401px){
+            //     max-width: 335px;
+            // }
+        .filterControls {
+            padding: 0 16px;
+            
+            ion-item {
+                border-bottom: 1px solid #ccc; font-size: 16px;
+                .item-inner { border-bottom: none !important; }
+                // padding: 5px 20px !important;
+
+                .item-inner {
+                    position: relative; bottom: -2px;
+                }
+                ion-checkbox {
+                    margin-top: 0 !important; margin-bottom: 0 !important; margin-right: 10px !important;
+                    .checkbox-icon { width: 19px !important; height: 19px !important; }
+                }
+                @media screen and (max-width: 411px) {
+                    font-size: 14px;
+                }
+            }
+            ion-item:first-child {
+                padding-top: 0 !important;
+            }
+            .textLight { padding: 0 20px; }
+            // .filterControls {
+            //     ion-item:not(:last-child) {
+            //         border-bottom: 1px solid #ccc !important;
+            //     }
+            // }
+        }
+        
+    }
+    .scroll-content{
+        margin-bottom: 30px !important;
+    }
+    ion-list.ujb_list ion-item, ion-list.list-ios.ujb_list ion-item { padding-left: 15px !important; padding-right: 15px; }
+

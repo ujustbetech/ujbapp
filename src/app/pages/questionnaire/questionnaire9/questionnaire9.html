@@ -1,0 +1,56 @@
+<ion-header class="ujb_header ujbFrame_header blue-bg">
+    <div class="statusBarPlaceholder" showWhen="ios"></div>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button></ion-back-button>
+        </ion-buttons>
+        <ion-title>{{ pageTitle }}</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content class="scroll-disabled ujbFrameContent">
+    <div class="stackLayers ujbFrame_footerButton">
+        <div class="layerFront">
+            
+            <div class="contentArea">
+                    <h3>How much passive income per month would you like to earn?</h3>
+                    <div class="block">
+                        <button class="ujb_btn_bordered_sm" id="slot1"(click)="selectValue('1000-5000')">&#8377; 1000 - &#8377; 5000</button>
+                        <button class="ujb_btn_bordered_sm" id="slot2"(click)="selectValue('5001-15000')">&#8377; 5001 - &#8377; 15000</button>
+                        <button class="ujb_btn_bordered_sm" id="slot3"(click)="selectValue('15001-30000')">&#8377; 15001 - &#8377; 30000</button>
+                        <button class="ujb_btn_bordered_sm" id="slot4"(click)="selectValue('30001 and above')">&#8377; 30001 and above</button>
+                       <div class="validateError" id="passiveIncome">
+                            <span *ngIf="!isInputGiven && checkvalidation">Please select value.</span>
+                        </div>
+                    </div>
+            </div>
+        </div>
+        <div class="layerSecond"></div>
+        <div class="layerLast"></div>
+    </div>
+</ion-content>
+<ion-footer no-padding>
+    <footer class="ujbFrame_footer">
+        <div class="block w-full pad-15 pad-t0"  float-left *ngIf="!showSave">
+      <button class="ujb_btn_blue" disabled="{{disableSave}}" style="opacity: 1;" (click)="gotoDashboard()">Explore</button>
+  </div>
+  <div class="block w-full" float-left *ngIf="!showSave">
+        <div class="navLeft" float-left (click)="goToQ8()">
+            <img class="img-icon" src="assets/imgs/icons/previous.png" alt="">
+            <span>Previous</span>
+        </div>
+        <button class="btn_invisible" disabled="{{disableSave}}" style="opacity: 1;" float-right (click)="verifyKyc()"  *ngIf="!showSave">
+            <div class="navRight">
+                <span>Verify KYC</span>
+                <img class="img-icon" src="assets/imgs/icons/next.png" alt="">
+            </div>
+        </button>
+    </div>
+    <!-- <div class="block w-full link-skip" text-center float-left>
+        <span>skip for later</span>
+    </div> -->
+    <div class="block w-full pad-15 pad-t0" float-left *ngIf="showSave">
+        <button class="ujb_btn_blue" (click)="savePassiveIncome()" disabled="{{disableSave}}">Save</button>
+      </div>
+    </footer>
+</ion-footer>

@@ -1,0 +1,42 @@
+<ion-header class="ujb_header">
+    <h3 text-center>{{modalHeader}}
+        <span class="ujb_link" (click)="closeModal()">{{modalDismiss}}</span>
+    </h3>
+    <div class="sortControls">
+        <div class="textLight">{{txt_SortBy}}</div>
+        <ul>
+           <!--  <li>
+                <img src="assets/imgs/content-imgs/rating@2x.png" alt="" (click)="selectedSort(0)">
+                <div>{{txt_Rating}}</div>
+            </li> -->
+            <li *ngFor="let data of sortData, let i=index">
+                <img src="{{data.src}}" alt="" (click)="selectedSort(i)" >
+                <div>{{data.text}}
+                    <br>{{data.text2}}</div>
+            </li>
+            <!-- <li style="display: none;">
+                <img src="assets/imgs/content-imgs/fartonear@2x.png" alt="" (click)="selectedSort('FarToNear')">
+            </li> -->
+            <!-- <li>
+                <img src="assets/imgs/content-imgs/aZ@2x.png" alt="" (click)="selectedSort(2)">
+            </li>
+            <li>
+                <img src="assets/imgs/content-imgs/zA@2x.png" alt="" (click)="selectedSort(3)">
+            </li> -->
+        </ul>
+        <div class="textLight pad-tb">{{txt_Categories}}</div>
+    </div>
+</ion-header>
+<ion-content>
+    <div class="sortFilterPanel">
+        <div class="filterControls">
+            <ion-list class="ujb_list">
+                <ion-item class="htmlStyle_checkbox" *ngFor="let categoryinfoobj of catList">
+                    <ion-label (click)="sortResults(categoryinfoobj)">
+                        <ion-checkbox disabled="{{categoryinfoobj.disabled}}" (ionChange)="sortResults(categoryinfoobj)" [checked]="categoryinfoobj.selected"  ></ion-checkbox>
+                        {{categoryinfoobj.categoryName}}</ion-label>
+                </ion-item>
+            </ion-list>
+        </div>
+    </div>
+</ion-content>

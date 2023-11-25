@@ -1,0 +1,76 @@
+<ion-header class="ujb_header ujb_header_sm blue-bg">
+
+    <div class="statusBarPlaceholder" showWhen="ios"></div>
+
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button></ion-back-button>
+        </ion-buttons>
+        <ion-title>
+            <span>{{pageTitle}}</span>
+        </ion-title>
+    </ion-toolbar>
+
+</ion-header>
+<ion-content [ngClass]="{'keypadFocused':pushNow==true}">
+    <div class="wrapper">
+        <form [formGroup]="registrationForm" class="blockToPush m-b-80">
+            <ion-list class="ujb_list" padding-horizontal>
+                <ion-item class="ujb_input_icon">
+                    <ion-label position="floating">First Name*</ion-label>
+                    <ion-input class="iconUser" type="text"  (ionFocus)="scrollTo(10);" formControlName="firstName" [(ngModel)]="userFirstName"></ion-input>
+                </ion-item>
+                <div class="validateError" *ngIf="registrationForm.get('firstName').hasError('required') && checkValidation">First name is required</div>
+                <div class="validateError" *ngIf="registrationForm.get('firstName').hasError('pattern' ) && checkValidation">Please enter valid first name</div>
+                <ion-item class="ujb_input_icon">
+                    <ion-label position="floating">Last Name*</ion-label>
+                    <ion-input class="iconUser" id="lastN" type="text"  (ionFocus)="scrollTo(60);" formControlName="lastName" [(ngModel)]="userLastName"></ion-input>
+                </ion-item>
+                <div class="validateError" *ngIf="registrationForm.get('lastName').hasError('required') && checkValidation">Last name is required</div>
+                <div class="validateError" *ngIf="registrationForm.get('lastName').hasError('pattern')  && checkValidation ">Please enter valid last name</div>
+                <ion-item class="ujb_input_icon">
+                    <ion-label position="floating">Email Id*</ion-label>
+                    <ion-input class="iconEmail" type="email"  (ionFocus)="scrollTo(110);" formControlName="email"  (ionBlur)="changeErrorMessages('email', $event);" (keyup)="changeErrorMessages('email',$event);" [(ngModel)]="email"></ion-input>
+                </ion-item>
+                <div class="validateError" *ngIf="registrationForm.get('email').hasError('required') && !userEmailIdExist && checkValidation">Email id is required</div>
+                <div class="validateError" *ngIf="registrationForm.controls.email.errors?.EmailInvalid && !userEmailIdExist && registrationForm.controls['email'].dirty">Enter valid email id</div>
+                <div class="validateError" *ngIf="userEmailIdExist && !registrationForm.controls.email.errors?.EmailInvalid">Email id is already registered </div>
+            </ion-list>
+
+            <ion-list class="ujb_list ujb_selectNinput ujb_withIcon" style="display: flex; align-items: end;">
+                <ion-item class="ujb_select">
+                    <ion-select formControlName="countryCode" [(ngModel)]="countryCode">
+                            
+                        <ion-select-option *ngFor="let countryCodeObj of countries" value="{{countryCodeObj.code}}" [selected]="countryCode == countryCodeObj.code">({{countryCodeObj.code}})</ion-select-option>
+                         
+                    </ion-select>
+                </ion-item>
+                <ion-item class="ujb_input">
+
+                    <ion-label position="floating">Mobile Number*</ion-label>
+                    <ion-input type="tel" onpaste="return false"  (ionFocus)="scrollTo(160);" placeholder="" maxLength="10" formControlName="mobileNo" (keyup)="changeErrorMessages('mobile',$event);" (ionBlur)="checkMobile(mobileNumber)" [(ngModel)]="mobileNumber"></ion-input>
+                </ion-item>
+            </ion-list>
+            
+            <div class="validateError outSideList" *ngIf="registrationForm.get('mobileNo').hasError('required') && !userMobileExist && checkValidation">Mobile number is required</div>
+            
+            <div class="validateError outSideList" *ngIf="!validMobileNum && !isNan && !registrationForm.controls['mobileNo'].valid && !userMobileExist && registrationForm.controls['mobileNo'].dirty && !registrationForm.get('mobileNo').hasError('required')">Mobile number must be 10 digits.</div>
+            <div class="validateError" padding-horizontal *ngIf="userMobileExist && !registrationForm.controls.mobileNo.errors?.valid">Mobile number is already registered</div>
+            <div class="validateError" padding-horizontal *ngIf="validMobileNum || isNan">Enter valid Mobile number</div>
+           
+            <ion-list class="ujb_list" padding-horizontal>
+                <ion-item class="ujb_input_password ujb_input_icon">
+                    <ion-label position="floating">Password*</ion-label>
+                    <ion-input class="password" (keyup)="checkPassword()" (ionFocus)="scrollTo(210);" clearOnEdit="false" [type]="passwordType" maxLength="30" formControlName="password" [(ngModel)]="password"></ion-input>
+                    <!--<ion-icon class="inputIcon_right" name="eye" color="gray" item-end></ion-icon>-->
+                    <ion-icon class="inputIcon_right" [name]="passwordIcon" color="gray" (click)='hideShowPassword()' item-end></ion-icon>
+                </ion-item>
+            </ion-list>
+            <div class="validateError outSideList" *ngIf="registrationForm.get('password').hasError('required') && checkValidation">Password is required</div>
+            <div class="validateError outSideList" *ngIf="!passwordInvalid && !registrationForm.controls['password'].valid && registrationForm.controls['password'].dirty && !registrationForm.get('password').hasError('required')">Password must be between 8 to 30 characters</div>
+            <div class="validateError outSideList" *ngIf="passwordInvalid && !registrationForm.controls.password.errors?.valid">Password shouldn't contain empty spaces</div>
+            <button class="ujb_btn_blue" type="submit" (click)="signUpUser('Partner')">Continue to sign up as Partner</button>
+            <button class="ujb_btn_bordered_lg" type="submit" (click)="signUpUser('Guest')">Be our Guest</button>
+        </form>
+    </div>
+</ion-content>

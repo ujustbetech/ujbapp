@@ -1,0 +1,84 @@
+<!--
+  Generated template for the GuestPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header class="ujb_header ujb_header_sm">
+    <div class="statusBarPlaceholder" showWhen="ios"></div>
+    <ion-toolbar text-center>
+        <ion-title>Guest Profile</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content [ngClass]="{'modal_opened':scrollBlock==true}">
+    <div class="profileGuest">
+        <section class="profileImages" text-center>
+            <!-- Enable Edit Mode - Add "edit" class to 'profilePic' -->
+            <div class="profilePic edit">
+                <div class="guestPhoto inline-block relative">
+                    <div *ngIf="profilePhoto.ImageBase64" >   <img class="photo" src="assets/imgs/icons/profilepic@2x.png" alt="" src="{{profilePhoto.ImageBase64}}" onerror="src='assets/imgs/icons/profilepic@2x.png'" #profImage imageViewer></div>
+                    <div *ngIf="!profilePhoto.ImageBase64">   <img class="photo" src="assets/imgs/icons/profilepic@2x.png" alt="" src="{{profilePhoto.ImageBase64}}" onerror="src='assets/imgs/icons/profilepic@2x.png'" #profImage ></div>
+                  
+                    <img class="editIcon-camera" src="assets/imgs/icons/camera@2x.png" alt="" (click)="openActionSheet(profImage)">
+                </div>
+            </div>
+            <!-- <div class="profilePic"><img src="{{guestInfo.base64Img}}" onerror="src='assets/imgs/icons/profilepic@2x.png'" #profImage alt="" (click)="openActionSheet(profImage)"></div> -->
+            <!-- <div class="profilePic"><img src="assets/imgs/icons/profilepic@2x.png" alt=""></div> -->
+            <h3 class="userName">
+                <div class="inline-block">
+                    {{guestInfo.firstName}} {{guestInfo.lastName}}
+                    <span class="edit" (click)="editGuestName()"><img class="iconEdit" src="assets/imgs/icons/editCopy3@2x.png" alt=""></span>
+                </div>
+            </h3>
+        </section>
+
+        <section class="profileDetails">
+            <h2>Contact details</h2>
+
+            <div class="dataInputs">
+                <div *ngIf="hideEdit" class="editIcons_baseline">
+                    <img src="assets/imgs/icons/email.png" alt="" class="icon-email">
+                    <span class="Data">{{guestInfo.emailId}}</span>
+                    <img (click)="editEmailId()" src="assets/imgs/icons/editCopy3@2x.png" alt="" class="icon-edit">
+                </div>
+                <ion-list class="ujb_list ujbEditItems" *ngIf="showEdit">
+                    <ion-item class="ujb_input_icon">
+                        <ion-label position="floating">Email Id</ion-label>
+                        <ion-input class="iconEmail" type="email" value="{{guestInfo.emailId}}"></ion-input>
+                    </ion-item>
+                    <!--<ion-item class="ujb_input_icon ujbEditItem_input " >
+            <ion-input disabled="true" class="iconEmail" clearOnEdit="false" [type]="passwordType" value="support@karuyaki.com"></ion-input>
+            <ion-icon class="inputIcon_right iconEdit" name="eye" color="gray"  item-end></ion-icon>
+          </ion-item> -->
+                </ion-list>
+            </div>
+
+            <div class="dataInputs">
+                <div class="editIcons_baseline">
+                    <img src="assets/imgs/icons/mobile.png" alt="" class="icon-mobile">
+                    <span class="Data">{{guestInfo.countryCode}} {{guestInfo.mobileNumber}}</span>
+                    <img (click)="editMobileNo()" src="assets/imgs/icons/editCopy3@2x.png" alt="" class="icon-edit">
+                </div>
+                <ion-list class="ujb_list ujb_selectNinput ujb_withIcon" hidden>
+                    <ion-item class="ujb_select">
+                        <ion-select>
+                            <ion-select-option value="nes" selected="true">(+91)</ion-select-option>
+                            <ion-select-option value="n64">(+92)</ion-select-option>
+                            <ion-select-option value="ps">(+93)</ion-select-option>
+                            <ion-select-option value="genesis">(+94)</ion-select-option>
+                        </ion-select>
+                    </ion-item>
+                    <ion-item class="ujb_input">
+                        <ion-label position="floating">Mobile Number*</ion-label>
+                        <ion-input type="tel" placeholder="" maxLength="10"></ion-input>
+                    </ion-item>
+                </ion-list>
+            </div>
+        </section>
+    </div>
+</ion-content>
+
+<ion-footer class="footer-adj">
+    <bottombar [activePage]="activePage"></bottombar>
+</ion-footer>

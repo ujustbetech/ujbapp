@@ -1,0 +1,71 @@
+<ion-header class="ujb_header">
+    <h3 text-center>{{modalHeader}}
+        <span class="ujb_link" (click)="closeModal()" *ngIf="hideTabs==false">{{modalDismiss}}</span>
+    </h3>
+        <div class="sortControls" *ngIf="hideTabs==false">
+        <div class="ujb_segment ujb_segment_plus_style2">
+            <div class="ujb_segment_tab">
+                <ion-segment [(ngModel)]="segmentSlider">
+                    <ion-segment-button value="0" (click)="selectedSegment(0)">{{txt_dealStatus}}</ion-segment-button>
+                    <ion-segment-button value="1" (click)="selectedSegment(1)">{{txt_Categories}}</ion-segment-button>
+                </ion-segment>
+            </div>
+        </div>
+    </div>
+</ion-header>
+<ion-content>
+    
+    <div class="ujb_segment ujb_segment_plus_style2">
+        <div class="ujb_segment_content">
+            <div [ngSwitch]="segmentSlider">
+                <div *ngSwitchCase="'0'">
+                        <div class="sortRefStatus">
+                                <ul>
+                                    <li [ngClass]="{'selectedStatus': dealStatus.selected}" *ngFor="let dealStatus of dealStatuses" (click)="setDealstatus(dealStatus.id)">
+                                        <div class="wrap">
+                                            <img src="{{dealStatus.src}}" alt="">{{dealStatus.text}}
+                                        </div>
+                                    </li>
+                                    <!-- <li><img src="assets/imgs/icons/no@2x.png" alt="">Deal not closed</li>
+                                    <li><img src="assets/imgs/icons/no@2x.png" alt="">Called but no response</li>
+        
+                                    <li><img src="assets/imgs/icons/inprogress@2x.png" alt="">Received part payment</li>
+                                    <li><img src="assets/imgs/icons/inprogress@2x.png" alt="">Discussion in progress</li>
+                                    <li><img src="assets/imgs/icons/inprogress@2x.png" alt="">Deal Closed</li>
+                                    <li><img src="assets/imgs/icons/inprogress@2x.png" alt="">Work in progress</li>
+        
+                                    <li><img src="assets/imgs/icons/done@2x.png" alt="">Work completed</li>
+                                    <li><img src="assets/imgs/icons/done@2x.png" alt="">Received full and final payment</li>
+                                    <li><img src="assets/imgs/icons/done@2x.png" alt="">Agreed percentage transferred to UJustBe</li> -->
+                                </ul>
+                            </div>
+                </div>
+                <div *ngSwitchCase="'1'">
+                        <div class="FilterPanel">
+                                <div class="filterControls">
+                                    <ion-list class="ujb_list">
+                                        <ion-item class="htmlStyle_checkbox" *ngFor="let categoryinfoobj of catList, let i=index">
+                                            <ion-label>
+                                                <ion-checkbox (ionChange)="selectDeselectCategory(i)" [checked]="categoryinfoobj.selected"></ion-checkbox>
+                                                {{categoryinfoobj.categoryName}}</ion-label>
+                                        </ion-item>
+                                    </ion-list>
+                                </div>
+                            </div>
+                </div>
+            </div>
+            <!-- <ion-slides #slider (ionSlideWillChange)="selectedSlide($event)">
+                <ion-slide>
+                    
+                </ion-slide>
+
+                <ion-slide>
+                    
+                </ion-slide>
+            </ion-slides> -->
+        </div>
+    </div>
+
+
+
+</ion-content>

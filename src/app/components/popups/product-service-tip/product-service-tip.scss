@@ -1,0 +1,16 @@
+
+    ion-header {
+        span.iconTextTip {
+            font-size: 16px; margin-top: 15px; margin-left: 15px; color: var(--ujb_blueDark); font-weight: 500;
+
+            img { width: 13px; height: auto; display: inline-block; margin-right: 8px; vertical-align: text-bottom; }
+        }
+        .tip-dismiss { width: 16px; height: 16px; margin: 15px; }
+    }
+    ion-content {
+        .scroll-content { margin-bottom: 15px; }
+        p {
+            padding: 0 15px; font-size: 15px; color: colors(var(--ujb_gray)); font-size: 14px; color: #333; line-height: 20px;
+            font-family: Lato Regular; margin-top: 15px !important; margin-bottom: 0 !important;
+        }
+    }

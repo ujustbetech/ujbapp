@@ -1,0 +1,197 @@
+<ion-content>
+  <div class="profileCP">
+    <div class="ujb_segment ujb_segment_plus_style2">
+      <div class="ujb_segment_content">
+        <div class="cpBusiness">
+          <!-- Client Partner - Business -->
+          <!--==== Note: Add class to "editModeOn" to show edit mode to "profile_images" class ====-->
+          <div class="profile_images {{openEditLogo}}">
+            <div class="imgContainer" style="text-align: center;">
+              <img class="wallpaper" *ngIf="coverImage"
+              src="{{coverImage}}" style="height: 300px; width: auto !important; margin: auto;" 
+              onerror="this.src='assets/imgs/content-imgs/banner-cp-default.jpg'" alt="" imageViewer>
+              <img class="wallpaper" *ngIf="!coverImage"
+              src="{{coverImage}}" style="height: 300px; width: auto !important; margin: auto;" 
+              onerror="this.src='assets/imgs/content-imgs/banner-cp-default.jpg'" alt="">
+              <span class="backButtonCpView" (click)="backToDashboard()">
+                <ion-icon class="back_button" ios="ios-arrow-back" md="md-arrow-back"></ion-icon>
+              </span>
+            </div>
+            <div class="upload_logo">
+               <img class="logo" *ngIf="cpBusinessDetails.logoBase64"
+                src="{{cpBusinessDetails.logoBase64}}"
+                onerror="this.src='assets/imgs/content-imgs/businessprofileCopy@2x.png'"
+                alt="" imageViewer>
+                <img class="logo" *ngIf="!cpBusinessDetails.logoBase64"
+                src="{{cpBusinessDetails.logoBase64}}"
+                onerror="this.src='assets/imgs/content-imgs/businessprofileCopy@2x.png'"
+                alt="" >
+                
+              <div class="updateLogo" >
+                <img class="icon-cam" src="assets/imgs/content-imgs/white-camera.png" alt="">
+              </div>
+            </div>
+            <div class="blockH50">
+              <span class="userCode">{{partnerDetails.myMentorCode}}</span>
+              <span class="rating" float-right>
+                <img src="assets/imgs/icons/gold-star.png" alt="">
+               {{cpBusinessDetails.rating}}
+              </span>
+            </div>
+            <img class="btn_activate_editMode {{hideEditIcon}}" src="assets/imgs/icons/camera@2x.png" alt="" (click)="openEditMode()">
+            <!-- Edit Wallpaper Icon Control - It will enable when editmode will be ON -->
+            <img class="icon-cam edit_wallpaper" src="assets/imgs/content-imgs/white-camera.png" alt="">
+          </div>
+        
+          <!--==== Note: Add class to "editModeOn" to show edit mode to "profileInfo" class ====-->
+          <div class="profileInfo {{showEditIcon}}">
+            <div class="category">
+              {{categoryName1}} <span class="seperatorCircle" *ngIf="showCircle"></span>{{categoryName2}}
+              <img class="icon_edit" src="assets/imgs/icons/editCopy3@2x.png" alt="" (click)="editcategories()">
+            </div>
+            <h2 class="profileName">
+              {{cpBusinessDetails.businessName}}
+              <img class="icon_edit" src="assets/imgs/icons/editCopy3@2x.png" alt="" (click)="editBusinessName()">
+            </h2>
+            <div class="buzCategory" *ngIf = "isTagline">
+              {{cpBusinessDetails.tagline}}
+              <img class="icon_edit" src="assets/imgs/icons/editCopy3@2x.png" alt=""(click)="editBusinessTagline()">
+            </div>
+            <div class="buzCategory" *ngIf = "noTagline">
+              <i>Tagline yet to be updated</i>
+              <img class="icon_edit" src="assets/imgs/icons/editCopy3@2x.png" alt="" (click)="editBusinessTagline()">
+          </div>
+            <div class="address">
+              <img class="icon_location" src="assets/imgs/icons/location.png" alt="">
+              {{cpBusinessDetails.addressInfo.location}}
+              <img class="icon_edit" src="assets/imgs/icons/editCopy3@2x.png" alt="" (click)="editBusinessAddress()">
+            </div>
+          </div>
+          <div class="link {{hidestat}}" (click)="viewBusinessStat()" text-left>
+            <span class="ujb_link">View Business Statistics</span>
+            <img class="icon_arrowRight" src="assets/imgs/icons/forma1Copy9@2x.png" alt="">
+          </div>
+        
+          <div class="ujb_segment ujb_segment_plus_style2 tabInfo">
+            <div class="ujb_segment_tab">
+              <ion-segment [(ngModel)]="segmentSlider2">
+                <ion-segment-button value="0" (click)="selectedSegment(0,'About')">About</ion-segment-button>
+                <ion-segment-button value="1" (click)="selectedSegment(1,'Service')">Services</ion-segment-button>
+                <ion-segment-button value="2" (click)="selectedSegment(2,'Product')">Products</ion-segment-button>
+              </ion-segment>
+            </div>
+            <div class="ujb_segment_content">
+              <ion-slides #slider2 (ionSlideWillChange)="selectedSlide($event)">
+                <ion-slide>
+                  <!-- Client Partner - About -->
+                  <div class="segment_cp">
+                    <div class="description">
+                      {{cpBusinessDetails.businessDescription}}
+                      <img class="icon_edit {{hideEditIcon}}" src="assets/imgs/icons/editCopy3@2x.png" alt="" (click)="editBusinessDescription()">
+                      <span class="ujb_link link_addAnser"*ngIf="showAddUrl" float-right>Add Description</span>
+                      <span class="noContent" *ngIf="showNoDes">Description Not Available</span>
+                    </div>
+                    <!--<div class="dataInputs">
+                      <div class="secData">
+                        <img src="assets/imgs/icons/email.png" alt="" class="icon-email" hidden>
+                        <span class="Data">
+                          {{cpBusinessDetails.businessEmail}}
+                        </span>
+                        <img src="assets/imgs/icons/editCopy3@2x.png" alt="" class="icon-edit" >
+                        <span class="ujb_link link_addAnser" *ngIf="showAddAbout" float-right>Add About</span>
+                      </div>
+                    </div>-->
+                    <div class="webUrl">
+                      <img src="assets/imgs/icons/url@2x.png" alt="" class="icon_url" *ngIf="hideUrlIcon">
+                      <span class="ujb_link" (click)="openUrl(cpBusinessDetails.websiteUrl)">{{cpBusinessDetails.websiteUrl}}</span>
+                      <img class="icon_edit {{hideEditIcon}}"  src="assets/imgs/icons/editCopy3@2x.png" alt="" (click)="editBusinessUrl()">
+                      <span class="noContent" *ngIf="showNoUrl">Corporate URL Not Available</span>
+                    </div>
+                  </div>
+                </ion-slide>
+
+
+                <ion-slide>
+                  <!-- Client Partner - Services -->
+                  <div class="segment_cp" style="width: 100%; background-color: white;" >
+                    <!-- zeroService - This is content Block when there will no Service listed -->
+                    <div class="zeroService" *ngIf="showNoSerives">
+                        <span class="placeholderText" >No services added</span>
+                      <!-- <button class="ujb_btn_bordered_sm" (click)="addProductServices()">Add services</button> -->
+                    </div>
+                    <div class="ujb_productSlider">
+                      <!-- <ion-slides class="ujb_intro_slides" [options]="slideOptions" > -->
+                        <div  *ngFor="let productDetail of productDetailsList,let i =index">
+                          <div class="productCard" (click)="openServiceDetails(productDetail)">
+                            <div class="dynamicImage">
+                              <img src="{{productDetail.productImages[0].prodImgBase64}}" onerror='src="assets/imgs/content-imgs/intro-1.jpg"' alt="">
+                            </div>
+                            <h2>{{productDetail.name}}</h2>
+                            <div class="bizDetail">
+                              <div  *ngIf="hideMinDeal">
+                                <span class="label">Min Deal Value</span>
+                                <span class="value">&#8377; {{productDetail.minimumDealValue}}</span>
+                              </div>
+                              <!--<div>
+                                <span class="label">Min Deal Value</span>
+                                <span class="value">&#8377; 15000</span>
+                              </div>-->
+                            </div>
+                          </div>
+                        </div>
+
+                      <!-- </ion-slides> -->
+                    </div>
+                    <!-- </div> -->
+                  </div>
+                </ion-slide>
+
+
+                <ion-slide>
+                  <!-- Client Partner - Products -->
+                  <!-- zeroService - This is content Block when there will no Service listed -->
+                  <div class="segment_cp" style="width: 100%; background-color: white; padding: 1rem 0;" >
+                      <div class="zeroService" *ngIf="showNoProduct">
+                          <span class="placeholderText" >No products added</span>
+                      </div>
+                      <!-- <div class="product" > -->
+                        <div class="ujb_productSlider" style="display: flex; overflow-y: hidden; overflow-x: auto;">
+                          <!-- <ion-slides class="ujb_intro_slides"  slidesPerView="1.4" spaceBetween="15"> -->
+                            <div *ngFor="let productDetail of productDetailsList,let i =index" style="min-width: 300px; padding: 0 1rem">
+                              <div class="productCard" (click)="openProductDetails(productDetail)">
+                                <div class="dynamicImage">
+                                  <img src="{{productDetail.productImages[0].prodImgBase64}}" onerror='src="assets/imgs/content-imgs/intro-1.jpg"' alt="">
+                                </div>
+                                <h2>{{productDetail.name}}</h2>
+                                <div class="bizDetail">
+                                  <div *ngIf="hideMinDeal">
+                                    <span class="label">Min Deal Value</span>
+                                    <span class="value">&#8377; {{productDetail.minimumDealValue}}</span>
+                                  </div>
+                                  <!--<div>
+                                    <span class="label">Min Deal Value</span>
+                                    <span class="value">&#8377; 15000</span>
+                                  </div>-->
+                                </div>
+                              </div>
+                            </div>
+            
+                          <!-- </ion-slides> -->
+                        </div>
+                      <!-- </div> -->
+                 </div>
+                </ion-slide>
+              </ion-slides>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+  </div>
+  
+</ion-content>
+
+<ion-footer>
+    <button class="ujb_btn_blue {{margin}}"(click)="goToReferNow()" *ngIf="partnerDetails.isRefer">{{referBtnText}}</button>
+    <bottombar [activePage]="activePage"></bottombar>
+</ion-footer>

@@ -1,0 +1,78 @@
+<ion-header class="ujb_header">
+
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button class="white-text"></ion-back-button>
+        </ion-buttons>
+        <ion-title></ion-title>
+    </ion-toolbar>
+
+</ion-header>
+
+
+<ion-content>
+    <div class="product-service-view">
+        <section class="productServiceSlider">
+            <ion-slides class="ujb_stats_slides" pager="{{showPager}}">
+                <ion-slide *ngFor="let productImage of productDetail.productImages">
+                    <img class="intro_img" *ngIf= "showImageViewer" src="{{productImage.prodImgBase64}}" onerror='this.src="assets/imgs/content-imgs/intro-1.jpg"' alt="Intro img 1" imageViewer>
+                    <img class="intro_img" *ngIf= "hideImageViewer" src="{{productImage.prodImgBase64}}" onerror='this.src="assets/imgs/content-imgs/intro-1.jpg"' alt="Intro img 1" >
+                    
+                </ion-slide>
+                <!-- <ion-slide>
+                    <img class="intro_img" src="assets/imgs/content-imgs/intro-img-1.png" alt="Intro img 1">
+                </ion-slide>
+                <ion-slide>
+                    <img class="intro_img" src="assets/imgs/content-imgs/intro-img-1.png" alt="Intro img 1">
+                </ion-slide>
+                <ion-slide>
+                    <img class="intro_img" src="assets/imgs/content-imgs/intro-img-1.png" alt="Intro img 1">
+                </ion-slide> -->
+            </ion-slides>
+        </section>
+
+        <section class="productServiceDetails">
+            <h2>{{productDetail.name}}</h2>
+
+            <div class="text_minDealValue" *ngIf="showProductPrice && hideInput">
+                <!-- <span *ngIf="productDetail.productPrice==0"> <i>Price Not Available.</i> </span> -->
+                <span *ngIf="productDetail.productPrice > 0"> <i style="vertical-align: bottom;">Price </i><span> &#8377; {{productDetail.productPrice}}</span></span>
+            </div>
+
+            <div class="text_minDealValue" *ngIf="hideInput">
+                <i style="vertical-align: bottom;">Min Deal Value </i><span> &#8377;  {{productDetail.minimumDealValue}}</span>
+            </div>
+            <!-- If has slab then add class "hasSlab" and if not then remove it for that element bottom margin adjustment -->
+            <div class="text_referral_percentage text_minDealValue" *ngIf="hideInput">
+                <i  style="vertical-align: bottom;">Referral Percent / Amount</i>
+                <span class="text_minDealValue m-l-10" *ngIf="productDetail.typeOf==1"><span *ngIf="productDetail.ProductsOrServices[0].type==2">&#8377;</span>{{productDetail.ProductsOrServices[0].value}}<span *ngIf="productDetail.ProductsOrServices[0].type==1">%</span></span>
+            </div>
+            <div *ngIf="productDetail.typeOf==2 || hideInput ">
+                <div *ngIf="productDetail.shareType==1">
+                    <h3 class="text_slab" *ngFor="let ProductsOrService of productDetail.ProductsOrServices">
+                        Sale of amount &#8377; {{ProductsOrService.from}} - &#8377; {{ProductsOrService.to}},
+                        <br><span *ngIf="ProductsOrService.type==2">&#8377;</span> {{ProductsOrService.value}}<span *ngIf="ProductsOrService.type==1">%</span>
+                    </h3>
+                </div>
+                <div *ngIf="productDetail.shareType==2">
+                    <h3 class="text_slab" *ngFor="let ProductsOrService of productDetail.ProductsOrServices">
+                        {{ProductsOrService.productName}},
+                        <br><span *ngIf="ProductsOrService.type==2">&#8377;</span> {{ProductsOrService.value}}<span *ngIf="ProductsOrService.type==1">%</span>
+                    </h3>
+                </div>
+            </div>
+            <!-- <h3 class="text_slab">
+                Sale of amount &#8377; 500000 - &#8377; 1000000
+                <br> 20%
+            </h3> -->
+            <p>
+                {{productDetail.description}}
+            </p>
+            <div class="webUrl">
+                <img src="assets/imgs/icons/url@2x.png" alt="" class="icon-url">
+                <span class="ujb_link" (click)="openUrl(productDetail.url)" *ngIf="productDetail.url!=null&&productDetail.url!=undefined&&productDetail.url!=''">{{productDetail.url}}</span>
+                <span *ngIf="productDetail.url==null || productDetail.url==undefined || productDetail.url==''"><i>URL Not Available.</i></span>
+            </div>
+        </section>
+    </div>
+</ion-content>
